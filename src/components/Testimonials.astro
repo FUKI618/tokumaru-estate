@@ -1,0 +1,31 @@
+---
+const testimonials = [
+  { text: "引越し前日に慌てて電話しましたが、2時間後には全部片付きました。しかも思った以上の金額で買い取ってもらえて助かりました。", name: "名古屋市中区 T.S様", tag: "引越し" },
+  { text: "LINEで写真を送ったらすぐに概算が出て、翌日には訪問してもらえました。重い冷蔵庫の搬出も手際よくて、お願いして本当によかったです。", name: "名古屋市緑区 M.K様", tag: "家電買取" },
+  { text: "他社で断られた古い家具も査定してくれて、値段がついたのは驚きでした。スタッフの方も丁寧で、家族にも勧めています。", name: "あま市 Y.N様", tag: "家具買取" },
+];
+---
+<section id="testimonials" class="py-16 md:py-28">
+  <div class="max-w-5xl mx-auto px-5">
+    <p class="text-gold text-[10px] md:text-xs tracking-[0.15em] font-bold mb-3 uppercase">Testimonials</p>
+    <h2 class="text-xl md:text-3xl font-bold text-navy mb-10 md:mb-16">
+      お客様の声
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+      {testimonials.map((item) => (
+        <div class="border-t border-cream-dark pt-6">
+          <p class="text-warm-gray-light text-[10px] tracking-widest uppercase mb-3">{item.tag}</p>
+          <blockquote class="text-warm-gray text-sm leading-[2] mb-4">
+            "{item.text}"
+          </blockquote>
+          <p class="text-navy font-bold text-xs">{item.name}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 md:mt-14 pt-6 border-t border-cream-dark text-center">
+      <p class="text-navy font-bold text-sm">お客様満足度 98%<span class="text-warm-gray-light font-normal text-xs ml-2">（自社調べ）</span></p>
+    </div>
+  </div>
+</section>

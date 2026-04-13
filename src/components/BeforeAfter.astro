@@ -1,0 +1,28 @@
+---
+import { assetPath } from "../lib/site";
+const beforeImg = assetPath("images/before.png");
+const afterImg = assetPath("images/after.png");
+---
+<section id="before-after" class="py-16 md:py-28 bg-cream">
+  <div class="max-w-5xl mx-auto px-5">
+    <p class="text-gold text-[10px] md:text-xs tracking-[0.15em] font-bold mb-3 uppercase">Before / After</p>
+    <h2 class="text-xl md:text-3xl font-bold text-navy mb-8 md:mb-14">
+      まるっと回収の実例
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl">
+      <div>
+        <div class="overflow-hidden rounded-sm mb-2">
+          <img src={beforeImg} alt="買取前の部屋の様子" width="600" height="400" class="w-full h-auto object-cover" loading="lazy" decoding="async" />
+        </div>
+        <p class="text-warm-gray-light text-xs">Before</p>
+      </div>
+      <div>
+        <div class="overflow-hidden rounded-sm mb-2">
+          <img src={afterImg} alt="買取後のスッキリした部屋" width="600" height="400" class="w-full h-auto object-cover" loading="lazy" decoding="async" />
+        </div>
+        <p class="text-warm-gray-light text-xs">After</p>
+      </div>
+    </div>
+  </div>
+</section>

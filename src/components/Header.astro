@@ -1,0 +1,39 @@
+---
+import { homePath, sectionPath, assetPath } from "../lib/site";
+const logoUrl = assetPath("logo.png");
+---
+<header class="fixed top-0 inset-x-0 z-50 border-b border-white/8 bg-ink/88 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-5 h-16 md:h-[72px] flex items-center justify-between gap-4">
+    <a href={homePath} class="flex items-center gap-3 min-w-0">
+      <img src={logoUrl} alt="徳丸商会ロゴ" width="36" height="36" class="w-9 h-9 rounded-sm bg-white object-contain" />
+      <div class="min-w-0">
+        <p class="text-white font-bold text-sm md:text-base leading-none">徳丸商会</p>
+        <p class="text-white/60 text-[10px] md:text-xs mt-1">名古屋・近郊の出張買取サービス</p>
+      </div>
+    </a>
+
+    <div class="flex items-center gap-4 md:gap-6">
+      <nav class="hidden lg:flex items-center gap-6 text-[13px] text-white/68">
+        <a href={sectionPath("service")} class="hover:text-white transition-colors">サービス</a>
+        <a href={sectionPath("items")} class="hover:text-white transition-colors">買取品目</a>
+        <a href={sectionPath("area")} class="hover:text-white transition-colors">対応エリア</a>
+        <a href={sectionPath("faq")} class="hover:text-white transition-colors">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-2 md:gap-3">
+        <a href="tel:052-990-3968" class="hidden md:inline text-white/78 hover:text-white text-sm transition-colors">
+          052-990-3968
+        </a>
+        <a
+          href="https://lin.ee/j4wK9IM"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-brass px-4 py-2 text-[13px] font-bold text-ink shadow-[0_12px_30px_rgba(184,146,74,0.28)] hover:bg-brass-light transition-colors"
+          aria-label="LINEで無料査定"
+        >
+          無料査定
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

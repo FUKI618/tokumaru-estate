@@ -1,0 +1,272 @@
+---
+import SpecializedLP from "../layouts/SpecializedLP.astro";
+import CTASection from "../components/CTASection.astro";
+import { homePath, pagePath } from "../lib/site";
+
+const faqs = [
+  { q: "遺品の仕分けから全てお任せできますか？", a: "はい。貴重品の捜索・仕分け・搬出・処分まですべて対応いたします。お立ち会いが難しい場合のリモート対応も可能です。" },
+  { q: "遺品の中に売れるものがあれば買い取ってもらえますか？", a: "その場で査定し、作業費用から買取額を差し引きます。家電・家具・貴金属・ブランド品など幅広く買取可能です。" },
+  { q: "仏壇や位牌の供養もお願いできますか？", a: "提携寺院での合同供養に対応しております。個別供養のご希望もご相談ください。" },
+  { q: "遠方に住んでいて立ち会えないのですが…", a: "鍵の郵送による受け渡しと、作業の写真報告で立ち会い不要の対応が可能です。" },
+  { q: "特殊清掃が必要な場合も対応できますか？", a: "遺品整理から特殊清掃・消臭まで対応可能です。必要に応じて提携業者と連携いたします。" },
+  { q: "見積もり後に追加費用が発生しますか？", a: "お見積もり後の追加料金は一切ありません。作業内容と金額にご納得いただいてから開始します。" },
+];
+
+const stats = [
+  { label: "対応範囲", value: "整理から供養まで", text: "片付け、買取、回収を一括で進行" },
+  { label: "費用感", value: "明朗会計", text: "見積もり後の追加費用なし" },
+  { label: "立会い", value: "不要対応可", text: "遠方のご家族にも対応" },
+];
+
+const feeRows = [
+  ["1K〜1DK", "15,000〜33,000円", "1〜3時間"],
+  ["1LDK〜2DK", "38,000〜79,000円", "2〜6時間"],
+  ["2LDK〜3DK", "70,000〜130,000円", "3〜8時間"],
+  ["3LDK〜4DK", "140,000〜180,000円", "5〜12時間"],
+];
+
+const serviceCards = [
+  { title: "遺品の仕分け・整理", text: "残す物、形見分けする物、処分する物、買取査定する物を丁寧に分けます。" },
+  { title: "価値ある品の買取", text: "家電、家具、ブランド品、貴金属などは作業費から差し引ける形で査定します。" },
+  { title: "不用品の回収・処分", text: "買取できない物も含めて一括整理。分別や搬出を個別に手配する必要がありません。" },
+  { title: "簡易清掃", text: "作業後に簡易清掃まで実施し、次の手続きに進みやすい状態に整えます。" },
+  { title: "供養の手配", text: "仏壇、位牌、写真など、気持ちの整理が必要な品の供養も相談できます。" },
+  { title: "立ち会い不要プラン", text: "遠方でも、鍵の受け渡しと作業報告で完了まで進められます。" },
+];
+
+const process = [
+  { title: "ご相談と現地確認", text: "状況やご希望をヒアリングし、必要な作業範囲を明確にします。" },
+  { title: "仕分け・査定・搬出", text: "ご要望に沿って仕分けし、売れる物は査定、不要品は搬出します。" },
+  { title: "清掃・ご報告・精算", text: "作業後の写真共有や買取相殺を含めて、最後までわかりやすくご説明します。" },
+];
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(pagePath("estate"), siteUrl).toString();
+const homeUrl = new URL(homePath, siteUrl).toString();
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: homeUrl },
+      { "@type": "ListItem", position: 2, name: "遺品整理・生前整理", item: pageUrl },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "遺品整理・生前整理",
+    serviceType: "遺品整理サービス",
+    areaServed: "名古屋市・近郊",
+    provider: {
+      "@type": "LocalBusiness",
+      name: "徳丸商会",
+      telephone: "052-990-3968",
+      url: homeUrl,
+    },
+    url: pageUrl,
+    description: "遺品整理、生前整理、買取、回収、供養手配まで対応するワンストップサービスページ。",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  },
+];
+---
+
+<SpecializedLP
+  title="名古屋の遺品整理・生前整理｜徳丸商会"
+  description="名古屋市で遺品整理・生前整理なら徳丸商会。片付けから買取・供養までワンストップ対応。買取額で費用を軽減。見積もり無料。052-990-3968"
+  slug="estate"
+  extraJsonLd={structuredData}
+>
+  <section class="relative overflow-hidden bg-[linear-gradient(180deg,#131920_0%,#181f28_56%,#212b35_100%)] text-white">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(195,154,81,0.18),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_24%)]"></div>
+    <div class="relative max-w-7xl mx-auto px-5 py-14 md:py-20">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.06fr)_minmax(320px,0.94fr)] items-end">
+        <div>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="rounded-full border border-brass/35 bg-brass/12 px-3 py-1 text-[11px] font-bold tracking-[0.18em] text-brass uppercase">Estate Support</span>
+            <span class="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[11px] text-white/72">片付け・買取・供養を一括対応</span>
+          </div>
+          <h1 class="font-serif text-[2.35rem] leading-[1.08] md:text-[4.3rem] mb-6">
+            遺品整理は、<br />
+            <span class="text-brass">気持ちと実務の両方</span>を整える仕事です。
+          </h1>
+          <p class="max-w-2xl text-base md:text-lg leading-[1.9] text-white/76 mb-8">
+            遺品整理や生前整理は、単なる片付けでは終わりません。仕分け、買取、回収、供養、立ち会いの段取りまで含めて、
+            何をどう進めるかを整理できるページに再構成しました。徳丸商会ならそのまま実務も引き受けられます。
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-8">
+            {stats.map((item) => (
+              <div class="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4">
+                <p class="text-white/45 text-[11px] tracking-[0.22em] uppercase mb-2">{item.label}</p>
+                <p class="font-serif text-3xl leading-none text-white mb-2">{item.value}</p>
+                <p class="text-sm leading-[1.7] text-white/68">{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="#cta-mid" class="inline-flex items-center justify-center rounded-full bg-brass px-7 py-4 text-sm md:text-base font-bold text-ink shadow-[0_18px_40px_rgba(195,154,81,0.28)] hover:bg-brass-light transition-colors">無料見積もりを依頼する</a>
+            <a href="tel:052-990-3968" class="inline-flex items-center justify-center rounded-full border border-white/14 bg-white/4 px-7 py-4 text-sm md:text-base font-bold text-white hover:border-white/28 hover:bg-white/7 transition-all">電話で相談する 052-990-3968</a>
+          </div>
+        </div>
+
+        <div class="rounded-[30px] border border-white/10 bg-white/[0.05] p-6 md:p-7 shadow-[0_28px_70px_rgba(0,0,0,0.24)] backdrop-blur-sm">
+          <p class="text-brass text-[11px] tracking-[0.22em] uppercase mb-3">First Answer</p>
+          <h2 class="font-serif text-2xl md:text-[2rem] leading-tight mb-5">最初に不安を消します。</h2>
+          <div class="space-y-3">
+            {[
+              "遠方で立ち会えない場合も進行できます。",
+              "売れる物があれば作業費から相殺できます。",
+              "見積もり後の追加費用はありません。",
+            ].map((point) => (
+              <div class="rounded-2xl border border-white/8 bg-white/[0.04] px-4 py-4 text-sm leading-[1.8] text-white/76">{point}</div>
+            ))}
+          </div>
+          <div class="mt-5 rounded-[24px] bg-sand px-5 py-5 text-ink">
+            <p class="text-[11px] tracking-[0.18em] uppercase text-graphite-light mb-2">対応イメージ</p>
+            <p class="font-bold text-base mb-2">1K〜4DKまで幅広く対応</p>
+            <p class="text-sm leading-[1.8] text-graphite-light">仕分け、搬出、簡易清掃、供養手配まで一括でご相談いただけます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative z-10 -mt-7 md:-mt-9">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="grid gap-3 md:grid-cols-3">
+        {[
+          { title: "ご家族の負担を減らせる", text: "仕分け、搬出、処分先の手配を分散させずに進められます。" },
+          { title: "費用の見通しを持てる", text: "買取で差し引ける物も含めて、全体費用を先に把握しやすくなります。" },
+          { title: "気持ちの整理もしやすい", text: "形見分けや供養の相談を含めて進められるため、作業が事務的になりません。" },
+        ].map((item) => (
+          <div class="rounded-[26px] border border-sand-dark bg-white px-6 py-6 shadow-[0_22px_45px_rgba(18,24,30,0.08)]">
+            <p class="text-ink font-bold text-lg mb-2">{item.title}</p>
+            <p class="text-sm leading-[1.8] text-graphite-light">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] items-start">
+        <div class="rounded-[32px] border border-sand-dark bg-sand px-7 py-8 md:px-10 md:py-10">
+          <p class="text-graphite text-xs tracking-[0.32em] uppercase mb-4">Fee Guide</p>
+          <h2 class="font-serif text-3xl md:text-5xl text-ink leading-[1.14] mb-5">
+            間取りごとの費用感を、<br />最初に見える形に。
+          </h2>
+          <p class="text-base leading-[1.9] text-graphite-light">
+            遺品整理で一番不安なのは総額の読みにくさです。ページでも、広さごとの目安と作業時間を明示して、
+            問い合わせ前の不安を減らす構成に変えています。
+          </p>
+        </div>
+        <div class="rounded-[30px] border border-sand-dark bg-white p-4 md:p-6 shadow-[0_20px_50px_rgba(18,24,30,0.06)]">
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[540px] text-sm">
+              <thead>
+                <tr class="border-b border-sand-dark">
+                  <th class="px-4 py-4 text-left font-bold text-ink">間取り</th>
+                  <th class="px-4 py-4 text-right font-bold text-ink">料金目安</th>
+                  <th class="px-4 py-4 text-right font-bold text-ink">作業時間</th>
+                </tr>
+              </thead>
+              <tbody>
+                {feeRows.map(([size, price, time], index) => (
+                  <tr class={index % 2 === 0 ? "bg-sand-light" : ""}>
+                    <td class="px-4 py-4 font-bold text-ink">{size}</td>
+                    <td class="px-4 py-4 text-right font-bold text-brass-dark">{price}</td>
+                    <td class="px-4 py-4 text-right text-graphite-light">{time}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-4 text-xs leading-[1.8] text-graphite-light">※買取品がある場合は上記目安から差し引けることがあります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 bg-[linear-gradient(180deg,#171d26_0%,#10151c_100%)] text-white">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="md:flex md:items-end md:justify-between gap-10 mb-10 md:mb-14">
+        <div>
+          <p class="text-brass-light text-xs tracking-[0.32em] uppercase mb-4">One Stop</p>
+          <h2 class="font-serif text-3xl md:text-5xl leading-[1.14]">依頼できる内容を、<br />一目でわかる形に整理</h2>
+        </div>
+        <p class="max-w-xl text-sm md:text-base leading-[1.9] text-white/70">
+          以前は並びが平板でしたが、ここは「何を任せられるか」でブロック化して見やすくしています。
+        </p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {serviceCards.map((item) => (
+          <div class="rounded-[28px] border border-white/8 bg-white/[0.05] px-6 py-7 shadow-[0_18px_40px_rgba(0,0,0,0.16)]">
+            <h3 class="text-lg font-bold leading-snug mb-3">{item.title}</h3>
+            <p class="text-sm leading-[1.85] text-white/68">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-24">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="rounded-[32px] border border-sand-dark bg-white px-6 py-8 md:px-10 md:py-10 shadow-[0_18px_40px_rgba(18,24,30,0.05)]">
+        <p class="text-graphite text-xs tracking-[0.32em] uppercase mb-4">Process</p>
+        <h2 class="font-serif text-3xl md:text-4xl text-ink leading-[1.2] mb-6">実際の進み方も、曖昧にしません</h2>
+        <div class="grid gap-4 md:grid-cols-3">
+          {process.map((item, index) => (
+            <div class="rounded-[24px] bg-sand-light px-5 py-6 border border-sand-dark">
+              <p class="text-brass-dark font-bold text-sm mb-3">STEP {index + 1}</p>
+              <h3 class="text-base font-bold text-ink mb-2">{item.title}</h3>
+              <p class="text-sm leading-[1.8] text-graphite-light">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection id="cta-mid" variant="mid" />
+
+  <section class="py-20 md:py-28 bg-sand-light">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="text-center mb-10">
+        <p class="text-graphite text-xs tracking-[0.32em] uppercase mb-4">FAQ</p>
+        <h2 class="font-serif text-3xl md:text-5xl text-ink leading-[1.14]">遺品整理・生前整理で<br />よくある質問</h2>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div x-data="{ open: false }" class="rounded-[26px] border border-sand-dark bg-white shadow-[0_16px_36px_rgba(18,24,30,0.04)] overflow-hidden">
+            <button x-on:click="open = !open" class="w-full flex items-start justify-between gap-4 px-5 py-5 text-left" x-bind:aria-expanded="open.toString()">
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-ink text-xs font-bold text-white">Q</span>
+                <span class="text-sm md:text-base font-bold leading-[1.7] text-ink">{faq.q}</span>
+              </div>
+              <span class="mt-1 text-2xl leading-none text-brass" x-text="open ? '−' : '+'"></span>
+            </button>
+            <div x-show="open" x-transition style="display: none;" class="px-5 pb-5">
+              <div class="flex items-start gap-3 border-t border-sand-dark pt-4">
+                <span class="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-brass text-xs font-bold text-ink">A</span>
+                <p class="text-sm md:text-base leading-[1.9] text-graphite-light">{faq.a}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</SpecializedLP>

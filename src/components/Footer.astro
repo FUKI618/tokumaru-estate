@@ -1,0 +1,46 @@
+---
+import { privacyPolicyPath, sectionPath, assetPath } from "../lib/site";
+const logoUrl = assetPath("logo.png");
+---
+<footer class="bg-ink-light text-white/60 py-14 md:py-16">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src={logoUrl} alt="徳丸商会ロゴ" width="32" height="32" class="w-8 h-8 rounded-sm bg-white object-contain" />
+          <div>
+            <p class="text-white font-bold text-sm">徳丸商会</p>
+            <p class="text-white/60 text-xs mt-1">名古屋市・近郊エリアの出張買取</p>
+          </div>
+        </div>
+        <p class="text-sm leading-[1.8] max-w-sm">
+          家電・家具・ブランド品などの出張買取に対応。査定から搬出まで、スムーズにご案内します。
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white/78 text-xs tracking-[0.22em] uppercase mb-4">Contact</p>
+        <div class="space-y-2 text-sm">
+          <a href="tel:052-990-3968" class="block hover:text-white transition-colors">052-990-3968</a>
+          <p>9:00〜21:00（年中無休）</p>
+          <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="block hover:text-white transition-colors">LINE公式アカウント</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-white/78 text-xs tracking-[0.22em] uppercase mb-4">Pages</p>
+        <nav class="flex flex-col gap-2 text-sm">
+          <a href={sectionPath("service")} class="hover:text-white transition-colors">サービス</a>
+          <a href={sectionPath("items")} class="hover:text-white transition-colors">買取品目</a>
+          <a href={sectionPath("area")} class="hover:text-white transition-colors">対応エリア</a>
+          <a href={sectionPath("faq")} class="hover:text-white transition-colors">FAQ</a>
+          <a href={privacyPolicyPath} class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-white/6 text-xs text-white/50 text-center md:text-left">
+      <p>&copy; {new Date().getFullYear()} 徳丸商会 All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>

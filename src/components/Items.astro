@@ -1,0 +1,22 @@
+---
+const items = ["冷蔵庫", "洗濯機", "エアコン", "テレビ", "腕時計", "ブランド品", "貴金属", "ゲーム機", "楽器", "電子レンジ", "香水", "高級家具"];
+---
+<section id="items" class="py-16 md:py-28 bg-cream">
+  <div class="max-w-5xl mx-auto px-5">
+    <p class="text-gold text-[10px] md:text-xs tracking-[0.15em] font-bold mb-3 uppercase">Purchase Items</p>
+    <h2 class="text-xl md:text-3xl font-bold text-navy mb-8 md:mb-14">
+      買取対応アイテム
+    </h2>
+
+    <div class="flex flex-wrap gap-2 md:gap-3 mb-6">
+      {items.map((item) => (
+        <span class="text-navy text-sm md:text-base font-medium border-b border-navy/20 pb-0.5">{item}</span>
+        <span class="text-warm-gray-light text-sm">/</span>
+      ))}
+    </div>
+
+    <p class="text-warm-gray-light text-xs">
+      上記以外のリサイクル・中古品もお気軽にご相談ください。
+    </p>
+  </div>
+</section>
