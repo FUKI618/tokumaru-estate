@@ -3,21 +3,22 @@ import Layout from "../layouts/Layout.astro";
 import { assetPath, homePath, sectionPath, privacyPolicyPath } from "../lib/site";
 
 const logo = assetPath("logo.png");
-const heroBg = assetPath("images/okuraya/hero-bg.png");
-const reason1 = assetPath("images/okuraya/reason-01.png");
-const reason2 = assetPath("images/okuraya/reason-02.png");
-const reason3 = assetPath("images/okuraya/reason-03.png");
-const ctaBg = assetPath("images/okuraya/cta-bg.png");
-const operator = assetPath("images/okuraya/operator.png");
-const car = assetPath("images/okuraya/car.png");
 const before = assetPath("images/before.png");
 const after = assetPath("images/after.png");
+const operatorImg = assetPath("images/okuraya/operator.jpg");
+const ctaBg = assetPath("images/okuraya/cta-bg.png");
 
-const buyItems = [
-  "仏壇・仏具","着物・和装品","骨董品・美術品","金・プラチナ・貴金属",
-  "ダイヤモンド・宝石","腕時計","ブランドバッグ","家電製品",
-  "家具","食器・陶器","カメラ","楽器","古銭・切手","お酒","掛軸・絵画","茶道具・書道具",
+const itemImages = [
+  { name: "時計買取", img: assetPath("images/items/watch.png") },
+  { name: "貴金属買取", img: assetPath("images/items/metals.png") },
+  { name: "ブランド品買取", img: assetPath("images/items/brand.png") },
+  { name: "エアコン買取", img: assetPath("images/items/aircon.png") },
+  { name: "冷蔵庫買取", img: assetPath("images/items/fridge.png") },
+  { name: "洗濯機買取", img: assetPath("images/items/washer.png") },
+  { name: "楽器買取", img: assetPath("images/items/guitar.png") },
+  { name: "電子レンジ買取", img: assetPath("images/items/microwave.png") },
 ];
+
 const faqItems = [
   { q: "遺品整理業者との違いは何ですか？", a: "遺品整理業者は片付け・処分がメインですが、当社はお品物の「買取」に特化しています。先に買取を行うことで整理費用を大幅に抑えられます。" },
   { q: "古いものばかりですが買取できますか？", a: "骨董品・古美術品など、一見価値がわからないお品物にも値段がつくことがあります。出張費・査定費は無料ですのでお気軽にどうぞ。" },
@@ -40,91 +41,128 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
   description="名古屋市で生前整理・遺品買取なら徳丸商会。骨董品・貴金属・着物・家電まで出張買取。遺品整理の前に買取で費用軽減。出張費0円。052-990-3968"
 >
 
-<!-- ═══ HERO: 大蔵屋スタイル。背景画像+大見出し+理由バッジ ═══ -->
-<section class="relative bg-[#3a4f5e] text-white overflow-hidden">
-  <!-- 背景画像 -->
-  <img src={heroBg} alt="" class="absolute right-0 top-0 h-full w-auto max-w-none object-contain object-right opacity-90 hidden md:block" loading="eager" />
-  <div class="absolute inset-0 bg-gradient-to-r from-[#3a4f5e] via-[#3a4f5e]/90 to-transparent md:to-[#3a4f5e]/30"></div>
+<!-- HEADER -->
+<header class="fixed top-0 inset-x-0 z-50 bg-teal shadow-md">
+  <div class="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
+    <a href={homePath} class="flex items-center gap-2">
+      <img src={logo} alt="徳丸商会" width="32" height="32" class="w-8 h-8" />
+      <span class="text-white font-bold text-sm">徳丸商会</span>
+    </a>
+    <div class="hidden md:block text-white/70 text-xs">受付 9:00–21:00（年中無休）</div>
+    <div class="flex items-center gap-2">
+      <a href="tel:052-990-3968" class="flex items-center gap-1.5 bg-orange hover:bg-orange-light text-white font-bold text-xs px-4 py-2 rounded-lg transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="hidden sm:inline">052-990-3968</span>
+      </a>
+      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="bg-line hover:opacity-90 text-white font-bold text-xs px-4 py-2 rounded-lg transition-opacity">LINE査定</a>
+    </div>
+  </div>
+</header>
 
-  <div class="relative max-w-6xl mx-auto px-5 pt-20 pb-8 md:pt-28 md:pb-12">
+<main class="pt-14">
+
+<!-- ═══ HERO ═══ -->
+<section class="bg-[#3a4f5e] text-white py-12 md:py-20">
+  <div class="max-w-6xl mx-auto px-5">
     <!-- ロゴ+キャッチ -->
-    <div class="flex items-center gap-3 mb-4">
-      <img src={logo} alt="徳丸商会" width="48" height="48" class="w-12 h-12" />
-      <div>
-        <span class="text-white font-black text-xl md:text-2xl">徳丸商会</span>
-        <span class="text-orange-light text-xs md:text-sm font-bold ml-2">名古屋エリアの出張買取</span>
-      </div>
+    <div class="flex items-center gap-3 mb-5">
+      <img src={logo} alt="徳丸商会" width="56" height="56" class="w-14 h-14" />
+      <span class="text-orange text-sm md:text-base font-bold">名古屋エリアの出張買取に挑戦！</span>
     </div>
 
-    <!-- メイン見出し: 超大型 -->
-    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black leading-[1.15] mb-2">
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black leading-[1.1] mb-3">
       生前整理・遺品買取<br />
       <span class="text-orange-light">お受けします</span>
     </h1>
 
-    <p class="text-white/60 text-sm md:text-base mb-6 max-w-md">
-      処分する前に、まず買取査定を。骨董品から家電まで、ご自宅でその場で現金買取いたします。
-    </p>
+    <p class="text-white/60 text-sm mb-8 max-w-lg">処分する前に、まず買取査定を。骨董品から家電まで、ご自宅でその場で現金買取。</p>
 
-    <!-- 選ばれている3つの理由バッジ -->
-    <div class="bg-white rounded-xl p-4 md:p-5 max-w-lg mb-6 shadow-xl">
-      <p class="bg-teal text-white text-xs md:text-sm font-bold text-center py-1.5 rounded mb-4">徳丸商会が選ばれている3つの理由</p>
+    <!-- 3つの理由: CSSで作り込む -->
+    <div class="bg-white rounded-xl p-5 max-w-xl shadow-xl mb-8">
+      <p class="bg-red text-white text-sm font-bold text-center py-2 rounded-lg mb-4">徳丸商会が選ばれている3つの理由</p>
       <div class="grid grid-cols-3 divide-x divide-border text-center">
-        <div class="px-2">
-          <img src={reason1} alt="高価買取" class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-1" loading="eager" />
-          <p class="text-text text-[10px] md:text-xs leading-tight">どこよりも<br /><strong class="text-teal">高価買取</strong></p>
+        <div class="px-3">
+          <div class="w-12 h-12 mx-auto mb-2 bg-teal/10 rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <p class="text-text text-xs leading-tight">どこよりも<br /><strong class="text-teal text-sm">高価買取</strong></p>
         </div>
-        <div class="px-2">
-          <img src={reason2} alt="手数料0円" class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-1" loading="eager" />
-          <p class="text-text text-[10px] md:text-xs leading-tight">手数料すべて<br /><strong class="text-teal">0円</strong></p>
+        <div class="px-3">
+          <div class="w-12 h-12 mx-auto mb-2 bg-teal/10 rounded-full flex items-center justify-center">
+            <span class="text-teal font-black text-lg">0<span class="text-xs">円</span></span>
+          </div>
+          <p class="text-text text-xs leading-tight">手数料すべて<br /><strong class="text-teal text-sm">0円</strong></p>
         </div>
-        <div class="px-2">
-          <img src={reason3} alt="即日対応" class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-1" loading="eager" />
-          <p class="text-text text-[10px] md:text-xs leading-tight">最短即日<br /><strong class="text-teal">スピード対応</strong></p>
+        <div class="px-3">
+          <div class="w-12 h-12 mx-auto mb-2 bg-teal/10 rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <p class="text-text text-xs leading-tight">最短即日<br /><strong class="text-teal text-sm">スピード対応</strong></p>
         </div>
       </div>
     </div>
 
-    <!-- CTA -->
-    <div class="flex flex-col sm:flex-row gap-3 mb-4">
-      <a href="tel:052-990-3968" class="bg-orange hover:bg-orange-light text-white font-black text-base md:text-lg px-8 py-4 rounded-xl text-center transition-colors shadow-lg">
-        今すぐ電話 052-990-3968
-      </a>
-      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="bg-line hover:opacity-90 text-white font-bold text-base md:text-lg px-8 py-4 rounded-xl text-center transition-opacity shadow-lg">
-        LINEで写真査定
-      </a>
+    <!-- キズあり訳ありOKバッジ -->
+    <div class="inline-block bg-orange text-white font-black text-sm px-4 py-2 rounded-lg mb-6 shadow">
+      キズあり・訳あり品もOK!
     </div>
-    <p class="text-white/40 text-[10px] md:text-xs">受付 9:00–21:00 年中無休 / 出張費・査定費0円 / キャンセル無料</p>
+
+    <!-- CTA -->
+    <div class="flex flex-col sm:flex-row gap-3">
+      <a href="tel:052-990-3968" class="bg-orange hover:bg-orange-light text-white font-black text-lg px-8 py-4 rounded-xl text-center transition-colors shadow-lg">今すぐ電話 052-990-3968</a>
+      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="bg-line hover:opacity-90 text-white font-bold text-lg px-8 py-4 rounded-xl text-center transition-opacity shadow-lg">LINEで写真査定</a>
+    </div>
+    <p class="text-white/40 text-xs mt-3">受付 9:00–21:00 年中無休 / 出張費・査定費0円</p>
   </div>
 </section>
 
 <!-- ═══ 信頼バー ═══ -->
-<section class="bg-[#f5efe5] py-4 md:py-6 border-b border-border">
-  <div class="max-w-4xl mx-auto px-5 flex flex-wrap justify-center gap-6 md:gap-14 items-center">
-    <div class="text-center">
-      <p class="text-teal-dark font-black text-lg md:text-xl">累計1,200件+</p>
-      <p class="text-text-lighter text-[10px]">買取実績</p>
-    </div>
-    <div class="text-center">
-      <p class="text-teal-dark font-black text-lg md:text-xl">満足度98%</p>
-      <p class="text-text-lighter text-[10px]">自社調べ</p>
-    </div>
-    <div class="text-center">
-      <p class="text-teal-dark font-black text-lg md:text-xl">古物商許可取得済</p>
-      <p class="text-text-lighter text-[10px]">第541042309800号</p>
+<section class="bg-[#f5efe5] py-5 border-y border-[#e0d8ca]">
+  <div class="max-w-4xl mx-auto px-5 flex flex-wrap justify-center gap-6 md:gap-14">
+    <div class="text-center"><p class="text-teal-dark font-black text-lg">累計1,200件+</p><p class="text-text-lighter text-[10px]">買取実績</p></div>
+    <div class="text-center"><p class="text-teal-dark font-black text-lg">満足度98%</p><p class="text-text-lighter text-[10px]">自社調べ</p></div>
+    <div class="text-center"><p class="text-teal-dark font-black text-lg">古物商許可取得済</p><p class="text-text-lighter text-[10px]">第541042309800号</p></div>
+  </div>
+</section>
+
+<!-- ═══ 品物を処分する前に（参考サイトの構成を再現） ═══ -->
+<section class="py-14 md:py-20 bg-[#f0ece4]">
+  <div class="max-w-5xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-center text-text mb-3">
+      品物を<span class="text-red">処分する前に</span>徳丸商会の出張買取で査定しませんか？
+    </h2>
+    <div class="md:flex md:gap-10 mt-8">
+      <div class="md:flex-1 mb-6 md:mb-0">
+        <p class="text-text text-sm leading-[2]">
+          「徳丸商会」では、宝石／時計／金／古銭／記念硬貨／骨董品／お酒／着物／切手など、様々な品物をまとめてお買取することが可能です。不用品として処分する前に、一度「徳丸商会」の出張買取で査定金額をご確認ください。思い出の詰まった大切なお品物を一つ一つ丁寧に査定させていただきます。
+        </p>
+      </div>
+      <div class="md:w-80 flex-shrink-0">
+        <div class="border-2 border-teal rounded-lg p-5 bg-bg-white space-y-3">
+          {[
+            "ブランド品から骨董品まで幅広くお買取り",
+            "ご自宅で無料査定。当日売る物を追加してもOK",
+            "品物の持ち運び不要！ご自宅で現金にてお支払い",
+          ].map(t => (
+            <div class="flex items-start gap-2">
+              <span class="bg-teal text-white w-5 h-5 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">✓</span>
+              <p class="text-text text-sm font-bold leading-snug">{t}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CTA帯（大蔵屋スタイル） ═══ -->
-<section class="relative py-8 md:py-10 overflow-hidden">
-  <img src={ctaBg} alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+<!-- ═══ CTA帯 ═══ -->
+<section class="relative py-8 md:py-10 overflow-hidden bg-[#6b6334]">
   <div class="relative max-w-4xl mx-auto px-5 md:flex md:items-center md:justify-between">
-    <div class="mb-4 md:mb-0">
-      <p class="text-white font-black text-lg md:text-xl">まずはお気軽にご相談ください！</p>
-      <p class="text-white/70 text-xs">出張費・査定費・キャンセル料すべて無料</p>
+    <div class="mb-4 md:mb-0 text-center md:text-left">
+      <p class="text-white/80 text-sm mb-1">お手持ちの品物の買取金額、知りたくありませんか？</p>
+      <p class="text-white font-black text-lg md:text-xl">出張買取専門の「徳丸商会」が<span class="text-orange-light">無料で出張査定</span>します！</p>
     </div>
-    <div class="flex gap-3">
+    <div class="flex gap-3 justify-center">
       <a href="tel:052-990-3968" class="bg-orange hover:bg-orange-light text-white font-bold text-sm px-6 py-3 rounded-lg shadow transition-colors">052-990-3968</a>
       <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="bg-line text-white font-bold text-sm px-6 py-3 rounded-lg shadow hover:opacity-90 transition-opacity">LINE査定</a>
     </div>
@@ -136,90 +174,59 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
   <div class="max-w-4xl mx-auto px-5">
     <h2 class="text-lg md:text-2xl font-black text-center text-teal-dark mb-8">生前整理・遺品の処分にお悩みではありませんか？</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      {[
-        "遺品が大量にあり何から手をつけていいかわからない",
-        "骨董品や貴金属の価値がわからず処分できない",
-        "遺品整理業者の費用が高くて困っている",
-        "故人の家が遠方で立ち会えない",
-        "形見分けの後、残ったものの処分に困っている",
-        "生前のうちに持ち物を整理しておきたい",
-      ].map(p => (
+      {["遺品が大量にあり何から手をつけていいかわからない","骨董品や貴金属の価値がわからず処分できない","遺品整理業者の費用が高くて困っている","故人の家が遠方で立ち会えない","形見分けの後、残ったものの処分に困っている","生前のうちに持ち物を整理しておきたい"].map(p => (
         <div class="flex items-start gap-3 bg-bg-white rounded-lg p-4 border border-border shadow-sm">
           <span class="bg-orange text-white w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">✓</span>
           <p class="text-text text-sm leading-relaxed">{p}</p>
         </div>
       ))}
     </div>
-    <p class="text-teal-dark font-bold text-sm text-center mt-6">すべて徳丸商会が解決します</p>
   </div>
 </section>
 
-<!-- ═══ 整理業者との違い ═══ -->
-<section class="py-14 md:py-20 bg-bg-white">
+<!-- ═══ 買取品目（製品画像グリッド） ═══ -->
+<section id="items" class="py-14 md:py-20 bg-bg-white">
   <div class="max-w-5xl mx-auto px-5">
-    <h2 class="text-lg md:text-2xl font-black text-center text-teal-dark mb-3">品物を処分する前に徳丸商会の出張買取で査定しませんか？</h2>
-    <p class="text-text-light text-sm mb-10 max-w-2xl mx-auto">遺品整理業者に依頼する前に、まず買取査定を。価値あるお品物を現金に換え、整理費用に充てられます。</p>
-    <div class="overflow-x-auto mb-6">
-      <table class="w-full text-sm border-collapse max-w-2xl mx-auto">
-        <thead>
-          <tr>
-            <th class="bg-[#4a5568] text-white px-4 py-3 text-left rounded-tl-lg w-24"></th>
-            <th class="bg-[#718096] text-white px-4 py-3 text-center">遺品整理業者</th>
-            <th class="bg-teal text-white px-4 py-3 text-center rounded-tr-lg">徳丸商会の買取</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            ["費用","数万〜数十万円","無料（現金を受取）"],
-            ["内容","片付け・処分","査定して現金買取"],
-            ["お品物","まとめて処分","価値を見極め買取"],
-            ["順序","2番目に依頼","最初に依頼 ★"],
-          ].map(([l,a,b],i) => (
-            <tr class={i%2===0?"bg-bg":"bg-bg-white"}>
-              <td class="px-4 py-3 font-bold text-text border-r border-border">{l}</td>
-              <td class="px-4 py-3 text-center text-text-light border-r border-border">{a}</td>
-              <td class="px-4 py-3 text-center text-teal font-bold">{b}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-    <div class="bg-teal-bg border border-teal/20 rounded-lg p-4 max-w-2xl mx-auto">
-      <p class="text-teal-dark text-sm font-bold text-center">→ まず徳丸商会で買取 → その後に整理業者へ = 最もお得</p>
-    </div>
-  </div>
-</section>
+    <h2 class="text-xl md:text-3xl font-black text-center text-text mb-3">様々な遺品・品物を買い取ります</h2>
+    <p class="text-text-light text-sm mb-10 max-w-lg mx-auto">徳丸商会には様々な遺品・品物を買い取った実績があります。</p>
 
-<!-- ═══ CTA帯2 ═══ -->
-<section class="relative py-8 md:py-10 overflow-hidden">
-  <img src={ctaBg} alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-  <div class="relative max-w-3xl mx-auto px-5 text-center">
-    <p class="text-white font-black text-base md:text-lg mb-3">処分する前に、まず無料査定を。</p>
-    <div class="flex flex-wrap justify-center gap-3">
-      <a href="tel:052-990-3968" class="bg-orange hover:bg-orange-light text-white font-bold text-sm px-6 py-3 rounded-lg shadow transition-colors">052-990-3968</a>
-      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="bg-line text-white font-bold text-sm px-6 py-3 rounded-lg shadow hover:opacity-90 transition-opacity">LINE査定</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 買取品目 ═══ -->
-<section id="items" class="py-14 md:py-20 bg-bg">
-  <div class="max-w-5xl mx-auto px-5">
-    <h2 class="text-lg md:text-2xl font-black text-center text-teal-dark mb-3">様々な遺品・お品物を買い取ります</h2>
-    <p class="text-text-light text-sm mb-8 max-w-lg mx-auto">「こんなものでも売れるの？」——実は値段がつくものは多いです</p>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-      {buyItems.map(item => (
-        <div class="bg-bg-white rounded-lg p-3 border border-border text-sm text-text font-medium text-center shadow-sm">{item}</div>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      {itemImages.map(item => (
+        <div class="text-center">
+          <div class="bg-bg rounded-lg p-4 mb-2 aspect-square flex items-center justify-center">
+            <img src={item.img} alt={item.name} class="w-full h-full object-contain" loading="lazy" />
+          </div>
+          <p class="text-text text-xs font-bold">{item.name}</p>
+        </div>
       ))}
     </div>
+
+    <p class="text-text-lighter text-xs mt-6">仏壇・仏具、着物、骨董品、食器、カメラ、古銭、お酒、掛軸、茶道具なども買取可能です。</p>
+
     <div class="mt-6 bg-orange/5 border border-orange/20 rounded-lg p-4 max-w-2xl mx-auto">
       <p class="text-text text-sm"><strong class="text-orange">キズあり・訳あり品もOK：</strong>シミのある着物、箱なしの食器、動かない時計など、まずはご相談ください。</p>
     </div>
   </div>
 </section>
 
+<!-- ═══ ラクチン買取（参考サイト構成再現） ═══ -->
+<section class="py-10 md:py-14 bg-teal text-white">
+  <div class="max-w-5xl mx-auto px-5 md:flex md:items-center md:gap-8">
+    <div class="mb-4 md:mb-0">
+      <div class="inline-block bg-[#e8e03a] text-text font-black text-sm px-4 py-2 rounded mb-3">徳丸商会の出張買取なら</div>
+      <p class="text-white font-black text-xl md:text-2xl leading-tight">
+        売るものを持っていく手間が無いから<br />
+        <span class="text-[#e8e03a] text-2xl md:text-3xl">待っているだけのラクチン買取!</span>
+      </p>
+    </div>
+    <p class="text-white/70 text-sm leading-relaxed max-w-md">
+      「徳丸商会」の出張買取ではお家まで査定員が伺いますので、売りたい商品を持ち運ぶ手間は一切ありません！たくさんの商品をまとめて売りたい方は、ぜひ出張買取をご利用ください。
+    </p>
+  </div>
+</section>
+
 <!-- ═══ 選ばれる理由 ═══ -->
-<section class="py-14 md:py-20 bg-bg-white">
+<section class="py-14 md:py-20 bg-bg">
   <div class="max-w-5xl mx-auto px-5">
     <h2 class="text-lg md:text-2xl font-black text-center text-teal-dark mb-10">徳丸商会が選ばれる理由</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -229,7 +236,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
         { n: "03", t: "出張費・査定費 完全無料", d: "費用は一切かかりません。査定だけ・相談だけでもお気軽に。" },
         { n: "04", t: "買取額で整理費用を軽減", d: "思わぬお品物に値段がつき、遺品整理費用をまかなえたケースも多数。" },
       ].map(r => (
-        <div class="flex gap-4 bg-bg rounded-lg p-5 border border-border shadow-sm">
+        <div class="flex gap-4 bg-bg-white rounded-lg p-5 border border-border shadow-sm">
           <div class="w-12 h-12 bg-teal rounded-full flex items-center justify-center flex-shrink-0">
             <span class="text-white font-black text-sm">{r.n}</span>
           </div>
@@ -249,8 +256,8 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <h2 class="text-lg md:text-2xl font-black text-center mb-10">出張買取の流れ</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {[
-        { n: "01", t: "お電話・LINEで相談", d: "お品物の内容と訪問日時をお伝えください。写真での事前査定も可能。" },
-        { n: "02", t: "訪問・査定・現金払い", d: "スタッフがお伺いし丁寧に査定。その場で現金をお渡しします。" },
+        { n: "01", t: "お電話・LINEで相談", d: "お品物の内容と訪問日時をお伝えください。" },
+        { n: "02", t: "訪問・査定・現金払い", d: "スタッフがお伺いし丁寧に査定。その場で現金をお渡し。" },
         { n: "03", t: "搬出・お片付け完了", d: "買取品はそのまま搬出。重い物もスタッフにお任せ。" },
       ].map(s => (
         <div class="bg-white/10 rounded-xl p-6 text-center">
@@ -266,7 +273,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 </section>
 
 <!-- ═══ ビフォーアフター ═══ -->
-<section class="py-14 md:py-20 bg-bg">
+<section class="py-14 md:py-20 bg-bg-white">
   <div class="max-w-4xl mx-auto px-5">
     <h2 class="text-lg md:text-2xl font-black text-center text-teal-dark mb-10">まるっと回収の実例</h2>
     <div class="grid grid-cols-2 gap-3 md:gap-6 max-w-3xl mx-auto">
@@ -283,49 +290,45 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 </section>
 
 <!-- ═══ お客様の声 ═══ -->
-<section class="py-14 md:py-20 bg-bg-white">
+<section class="py-14 md:py-20 bg-bg">
   <div class="max-w-5xl mx-auto px-5">
     <h2 class="text-lg md:text-2xl font-black text-center text-teal-dark mb-10">お客様の声</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       {voices.map(v => (
-        <div class="bg-bg rounded-xl p-5 border border-border shadow-sm">
+        <div class="bg-bg-white rounded-xl p-5 border border-border shadow-sm">
           <div class="flex gap-0.5 mb-3">{Array.from({length:5}).map(() => <span class="text-orange text-sm">★</span>)}</div>
           <p class="text-text text-sm leading-relaxed mb-3">{v.text}</p>
           <p class="text-text-lighter text-xs">{v.who}</p>
         </div>
       ))}
     </div>
-    <p class="text-text-lighter text-xs mt-6">お客様満足度 <strong class="text-text">98%</strong>（自社調べ）</p>
   </div>
 </section>
 
 <!-- ═══ 対応エリア ═══ -->
-<section id="area" class="py-14 md:py-20 bg-bg">
+<section id="area" class="py-14 md:py-20 bg-bg-white">
   <div class="max-w-5xl mx-auto px-5">
     <h2 class="text-lg md:text-2xl font-black text-center text-teal-dark mb-10">出張買取対応エリア</h2>
-    <div class="md:flex md:gap-12 md:items-start">
-      <div class="mb-6 md:mb-0 md:flex-1">
+    <div class="md:flex md:gap-12">
+      <div class="mb-6 md:mb-0">
         <h3 class="text-teal font-bold text-sm mb-3">名古屋市（16区）</h3>
         <div class="flex flex-wrap gap-x-3 gap-y-1 text-text-light text-sm">{areas.map(w => <span>{w}</span>)}</div>
       </div>
-      <div class="md:flex-1">
+      <div>
         <h3 class="text-teal font-bold text-sm mb-3">近郊エリア</h3>
         <div class="flex flex-wrap gap-x-3 gap-y-1 text-text-light text-sm">{nearby.map(a => <span>{a}</span>)}</div>
-      </div>
-      <div class="mt-6 md:mt-0 md:w-32 flex-shrink-0">
-        <img src={car} alt="出張車" class="w-full" loading="lazy" />
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ FAQ ═══ -->
-<section id="faq" class="py-14 md:py-20 bg-bg-white">
+<section id="faq" class="py-14 md:py-20 bg-bg">
   <div class="max-w-3xl mx-auto px-5">
     <h2 class="text-lg md:text-2xl font-black text-center text-teal-dark mb-10">生前整理・遺品買取のよくあるご質問</h2>
     <div class="space-y-3">
       {faqItems.map(faq => (
-        <div x-data="{ open: false }" class="bg-bg rounded-xl border border-border shadow-sm overflow-hidden">
+        <div x-data="{ open: false }" class="bg-bg-white rounded-xl border border-border shadow-sm overflow-hidden">
           <button x-on:click="open = !open" class="w-full flex items-start justify-between gap-4 p-5 text-left" x-bind:aria-expanded="open.toString()">
             <div class="flex items-start gap-3">
               <span class="bg-teal text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">Q</span>
@@ -346,20 +349,20 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 </section>
 
 <!-- ═══ 最終CTA: オペレーター付き ═══ -->
-<section id="contact" class="relative py-14 md:py-20 overflow-hidden">
-  <img src={ctaBg} alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-  <div class="relative max-w-4xl mx-auto px-5 md:flex md:items-center md:gap-8">
+<section id="contact" class="py-14 md:py-20 bg-[#6b6334]">
+  <div class="max-w-4xl mx-auto px-5 md:flex md:items-center md:gap-8">
     <div class="md:flex-1 text-center md:text-left mb-6 md:mb-0">
-      <h2 class="text-white text-lg md:text-2xl font-black mb-3">処分する前に、<br />まずはお電話を。</h2>
-      <p class="text-white/70 text-sm mb-6">「こんなものでも売れるの？」というご質問だけでも大歓迎です。</p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+      <p class="text-white/80 text-sm mb-2">お手持ちの品物の買取金額、知りたくありませんか？</p>
+      <p class="text-white font-black text-xl md:text-2xl mb-1">出張買取専門の「徳丸商会」が</p>
+      <p class="text-orange-light font-black text-2xl md:text-3xl mb-4">無料で出張査定します！</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start mb-3">
         <a href="tel:052-990-3968" class="bg-orange hover:bg-orange-light text-white font-black text-lg px-8 py-4 rounded-xl shadow-lg transition-colors text-center">052-990-3968</a>
         <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="bg-line hover:opacity-90 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition-opacity text-center">LINEで無料査定</a>
       </div>
-      <p class="text-white/40 text-xs mt-3">受付 9:00–21:00 年中無休 ｜ 古物商許可 第541042309800号</p>
+      <p class="text-white/40 text-xs">受付 9:00–21:00 年中無休 ｜ 古物商許可 第541042309800号</p>
     </div>
-    <div class="hidden md:block w-40 flex-shrink-0">
-      <img src={operator} alt="電話受付スタッフ" class="w-full" loading="lazy" />
+    <div class="hidden md:block w-44 flex-shrink-0">
+      <img src={operatorImg} alt="電話受付スタッフ" class="w-full rounded-xl shadow-lg object-cover aspect-[3/4]" loading="lazy" />
     </div>
   </div>
 </section>
@@ -370,27 +373,12 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 <footer class="bg-text text-white/40 py-12">
   <div class="max-w-6xl mx-auto px-5 md:flex md:justify-between gap-10">
     <div class="mb-6 md:mb-0">
-      <div class="flex items-center gap-2 mb-2">
-        <img src={logo} alt="徳丸商会" width="24" height="24" class="w-6 h-6" />
-        <span class="text-white/60 font-bold text-sm">徳丸商会</span>
-      </div>
-      <p class="text-xs">名古屋の生前整理・遺品買取</p>
-      <p class="text-xs">古物商許可 第541042309800号</p>
+      <div class="flex items-center gap-2 mb-2"><img src={logo} alt="徳丸商会" width="24" height="24" class="w-6 h-6" /><span class="text-white/60 font-bold text-sm">徳丸商会</span></div>
+      <p class="text-xs">名古屋の生前整理・遺品買取</p><p class="text-xs">古物商許可 第541042309800号</p>
     </div>
     <div class="flex gap-10 text-xs">
-      <div>
-        <p class="text-white/50 text-xs mb-2">Contact</p>
-        <a href="tel:052-990-3968" class="block hover:text-white/60 mb-1">052-990-3968</a>
-        <p>9:00–21:00（年中無休）</p>
-      </div>
-      <div>
-        <p class="text-white/50 text-xs mb-2">Menu</p>
-        <nav class="flex flex-col gap-1">
-          <a href={sectionPath("items")} class="hover:text-white/60">買取品目</a>
-          <a href={sectionPath("faq")} class="hover:text-white/60">FAQ</a>
-          <a href={privacyPolicyPath} class="hover:text-white/60">プライバシーポリシー</a>
-        </nav>
-      </div>
+      <div><p class="text-white/50 text-xs mb-2">Contact</p><a href="tel:052-990-3968" class="block hover:text-white/60 mb-1">052-990-3968</a><p>9:00–21:00</p></div>
+      <div><p class="text-white/50 text-xs mb-2">Menu</p><nav class="flex flex-col gap-1"><a href={sectionPath("items")} class="hover:text-white/60">買取品目</a><a href={sectionPath("faq")} class="hover:text-white/60">FAQ</a><a href={privacyPolicyPath} class="hover:text-white/60">プライバシーポリシー</a></nav></div>
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-5 mt-8 pt-6 border-t border-white/8 pb-16 md:pb-0 text-center text-xs text-white/15">&copy; {new Date().getFullYear()} 徳丸商会</div>
