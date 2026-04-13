@@ -1,26 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* 不用品回収・遺品整理業界カラー */
-  /* メインブルー — 信頼・清潔感 */
-  --color-main: #1a5c8a;
-  --color-main-light: #2474a8;
-  --color-main-dark: #0f4268;
+  --color-teal: #2a8f96;
+  --color-teal-light: #38a5ad;
+  --color-teal-dark: #1d7078;
+  --color-teal-bg: #eef8f9;
 
-  /* オレンジ — 行動・元気・即対応 */
-  --color-hot: #e87c1e;
-  --color-hot-light: #f09438;
+  --color-orange: #e8941e;
+  --color-orange-light: #f0a838;
+  --color-orange-dark: #c47a10;
 
-  /* 明るい背景 */
-  --color-bg: #f8f8f6;
-  --color-bg-dark: #eeeee8;
+  --color-bg: #f7f7f5;
   --color-bg-white: #ffffff;
+  --color-bg-gray: #f0efeb;
+  --color-border: #e0ddd6;
 
-  /* テキスト */
-  --color-text: #2a2a2a;
+  --color-text: #333333;
   --color-text-light: #666660;
   --color-text-lighter: #999990;
 
+  --color-red: #cc3333;
   --color-line: #06c755;
 
   --font-sans: "Noto Sans JP", sans-serif;
@@ -28,23 +27,20 @@
 
 html { font-size: 16px; }
 @media (min-width: 768px) { html { font-size: 17px; } }
-
 html.scroll-ready { scroll-behavior: smooth; }
 section[id] { scroll-margin-top: 4rem; }
 
 body {
   font-family: var(--font-sans);
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: var(--color-bg-white);
   line-height: 1.8;
-  letter-spacing: 0.02em;
   word-break: auto-phrase;
   overflow-wrap: anywhere;
   -webkit-font-smoothing: antialiased;
 }
 
-::selection { background-color: rgba(232, 124, 30, 0.15); }
-
+::selection { background-color: rgba(42,143,150,0.15); }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
