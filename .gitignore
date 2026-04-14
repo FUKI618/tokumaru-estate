@@ -4,5 +4,12 @@ dist/
 .claude/
 .harness-mem/
 .playwright-mcp/
-*.png
-*.jpg
+# Debug screenshots only
+/check-*.png
+/debug-*.png
+/mob-*.png
+/pc-*.png
+/txt-*.png
+/final-*.png
+/*.png
+/*.jpg
