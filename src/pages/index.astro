@@ -119,9 +119,9 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
   <!-- PC版: 左テキスト + 右に大きな人物写真 -->
   <div class="hidden md:block relative overflow-hidden">
     <img src={hero} alt="名古屋の遺品整理・生前整理スタッフ" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
-    <div class="absolute inset-0 bg-gradient-to-r from-teal-dark via-teal-dark/85 via-55% to-teal-dark/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-l from-teal-dark via-teal-dark/80 via-50% to-teal-dark/10"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-teal-dark/50 to-transparent"></div>
-    <div class="relative max-w-6xl mx-auto px-5 py-24">
+    <div class="relative max-w-6xl mx-auto px-5 py-24 flex justify-end">
       <div class="max-w-xl">
         <div class="flex flex-wrap gap-2 mb-5">
           {["出張費0円","明朗会計","立会い不要OK","即日対応"].map(b => (
@@ -145,7 +145,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 
   <!-- モバイル版: 画像をフルスクリーン背景、テキスト重ね -->
   <div class="md:hidden relative min-h-[75svh] flex flex-col overflow-hidden">
-    <img src={hero} alt="名古屋の遺品整理・生前整理スタッフ" class="absolute inset-0 w-full h-full object-cover object-[60%_30%]" loading="eager" />
+    <img src={hero} alt="名古屋の遺品整理・生前整理スタッフ" class="absolute inset-0 w-full h-full object-cover object-[30%_30%]" loading="eager" />
     <div class="absolute inset-0 bg-gradient-to-b from-teal-dark/85 from-5% via-teal-dark/30 via-35% to-transparent"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-teal-dark/90 from-5% via-teal-dark/40 via-30% to-transparent"></div>
 
@@ -225,7 +225,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
         "業者の選び方がわからない",
       ].map(p => (
         <div class="reveal card-hover flex items-center gap-3 bg-white/10 backdrop-blur border border-white/20 rounded-xl p-4 text-white">
-          <span class="bg-orange text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-black shrink-0">✓</span>
+          <span class="bg-orange text-white w-7 h-7 rounded-full flex items-center justify-center shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
           <p class="font-bold text-sm leading-snug">{p}</p>
         </div>
       ))}
@@ -456,16 +456,18 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <p class="text-text-light text-sm text-center mb-12 reveal">遺品整理・生前整理の実績と信頼</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 stagger-children">
       {[
-        { n: "01", title: "遺品に寄り添う丁寧な対応", desc: "故人の大切なお品物を一つひとつ敬意を持って扱います。ご遺族の気持ちに寄り添いながら丁寧に作業を進めます。", icon: "🤝" },
-        { n: "02", title: "仕分けから買取・供養まで一括", desc: "複数業者に連絡する手間なし。整理・仕分け・買取・搬出・供養まで全てワンストップで対応します。", icon: "📦" },
-        { n: "03", title: "出張費・査定費完全無料", desc: "費用は一切かかりません。査定だけでも、相談だけでもお気軽に。買取しなくてもOKです。", icon: "💴" },
-        { n: "04", title: "古物商許可取得の信頼業者", desc: "古物商許可（第541042309800号）を取得した正規の買取業者です。安心してお任せいただけます。", icon: "🏛️" },
+        { n: "01", title: "遺品に寄り添う丁寧な対応", desc: "故人の大切なお品物を一つひとつ敬意を持って扱います。ご遺族の気持ちに寄り添いながら丁寧に作業を進めます。", iconPath: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M12 7a4 4 0 1 0-8 0 4 4 0 0 0 8 0 M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" },
+        { n: "02", title: "仕分けから買取・供養まで一括", desc: "複数業者に連絡する手間なし。整理・仕分け・買取・搬出・供養まで全てワンストップで対応します。", iconPath: "M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z M3.27 6.96L12 12.01l8.73-5.05 M12 22.08V12" },
+        { n: "03", title: "出張費・査定費完全無料", desc: "費用は一切かかりません。査定だけでも、相談だけでもお気軽に。買取しなくてもOKです。", iconPath: "M12 1v22 M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" },
+        { n: "04", title: "古物商許可取得の信頼業者", desc: "古物商許可（第541042309800号）を取得した正規の買取業者です。安心してお任せいただけます。", iconPath: "M9 12l2 2 4-4 M22 12A10 10 0 1 1 12 2a10 10 0 0 1 10 10z" },
       ].map(r => (
-        <div class="reveal card-hover bg-white rounded-2xl p-6 shadow-md border border-border flex gap-4">
-          <div class="shrink-0 w-12 h-12 bg-teal rounded-full flex items-center justify-center text-xl">{r.icon}</div>
+        <div class="reveal card-hover bg-white rounded-2xl p-6 shadow-md border border-border flex gap-5">
+          <div class="shrink-0 w-14 h-14 bg-gradient-to-br from-teal to-teal-dark rounded-2xl flex items-center justify-center shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d={r.iconPath}/></svg>
+          </div>
           <div>
             <div class="text-teal text-xs font-black mb-1">{r.n}</div>
-            <h3 class="text-teal-dark font-black text-sm mb-2">{r.title}</h3>
+            <h3 class="text-teal-dark font-black text-base mb-2">{r.title}</h3>
             <p class="text-text-light text-sm leading-relaxed">{r.desc}</p>
           </div>
         </div>
