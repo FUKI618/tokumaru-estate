@@ -70,6 +70,16 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 <Layout
   title="名古屋の遺品整理・生前整理なら徳丸商会｜出張費無料"
   description="名古屋市・近郊エリアの遺品整理・生前整理・福祉施設入居前の片付けなら徳丸商会。骨董品・着物・貴金属など価値ある品をその場で現金買取。出張費・査定費0円、立会い不要OK。052-990-3968"
+  extraJsonLd={[
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "徳丸商会トップ", "item": "https://tokumaru-shokai.com/" },
+        { "@type": "ListItem", "position": 2, "name": "遺品整理・生前整理", "item": "https://tokumaru-shokai.com/estate/" }
+      ]
+    }
+  ]}
 >
 
 <!-- ══════════════════════════════════════════
@@ -331,7 +341,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 stagger-children">
       {results.map(r => (
         <div class="reveal card-hover bg-bg rounded-xl overflow-hidden shadow-sm border border-border">
-          <img src={r.img} alt={`${r.name}の買取実績`} class="w-full aspect-[3/2] object-cover" loading="lazy" />
+          <img src={r.img} alt={`${r.name} ${r.area}での遺品買取実績 ${r.price}円`} class="w-full aspect-[3/2] object-cover" loading="lazy" />
           <div class="p-2 md:p-3">
             <div class="flex items-center gap-1 mb-0.5">
               <span class="bg-orange text-white text-[8px] font-black px-1.5 py-0.5 rounded whitespace-nowrap">買取価格</span>
@@ -358,7 +368,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 md:gap-4 stagger-children">
       {items.map(item => (
         <div class="reveal card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-border text-center">
-          <img src={item.img} alt={`名古屋の遺品整理・${item.name}買取`} class="w-full aspect-square object-cover" loading="lazy" />
+          <img src={item.img} alt={`名古屋で${item.name}を高価買取・遺品整理の徳丸商会`} class="w-full aspect-square object-cover" loading="lazy" />
           <p class="text-text font-bold text-[10px] md:text-sm py-2 whitespace-nowrap">{item.name}</p>
         </div>
       ))}
@@ -462,6 +472,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
         { n: "02", title: "仕分けから買取・供養まで一括", desc: "複数業者に連絡する手間なし。整理・仕分け・買取・搬出・供養まで全てワンストップで対応します。", iconPath: "M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z M3.27 6.96L12 12.01l8.73-5.05 M12 22.08V12" },
         { n: "03", title: "出張費・査定費完全無料", desc: "費用は一切かかりません。査定だけでも、相談だけでもお気軽に。買取しなくてもOKです。", iconPath: "M12 1v22 M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" },
         { n: "04", title: "古物商許可取得の信頼業者", desc: "古物商許可（第541042309800号）を取得した正規の買取業者です。安心してお任せいただけます。", iconPath: "M9 12l2 2 4-4 M22 12A10 10 0 1 1 12 2a10 10 0 0 1 10 10z" },
+        { n: "05", title: "プライバシーに最大限配慮", desc: "店名ロゴのない一般車両で訪問。近隣の目を気にせずご依頼いただけます。作業中の情報管理も徹底しています。", iconPath: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
       ].map(r => (
         <div class="reveal card-hover bg-white rounded-2xl p-6 shadow-md border border-border flex gap-5">
           <div class="shrink-0 w-14 h-14 bg-gradient-to-br from-teal to-teal-dark rounded-2xl flex items-center justify-center shadow-lg">
