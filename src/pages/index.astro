@@ -328,17 +328,16 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
       <h2 class="text-xl md:text-3xl font-black text-text">生前整理・遺品の買取実績</h2>
     </div>
     <p class="text-text-light text-sm text-center mb-10 reveal">「徳丸商会」には様々な遺品・品物を買い取った実績があります。</p>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 stagger-children">
+    <div class="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3 stagger-children">
       {results.map(r => (
-        <div class="reveal card-hover bg-bg rounded-xl overflow-hidden shadow-sm border border-border">
-          <img src={r.img} alt={`${r.name}の買取実績`} class="w-full aspect-[4/3] object-cover" loading="lazy" />
-          <div class="p-2.5">
-            <div class="flex items-center gap-1 mb-0.5">
-              <span class="bg-orange text-white text-[8px] font-black px-1.5 py-0.5 rounded whitespace-nowrap">買取価格</span>
-              <span class="text-orange font-black text-sm whitespace-nowrap">{r.price}円</span>
+        <div class="reveal card-hover bg-bg rounded-lg overflow-hidden shadow-sm border border-border">
+          <img src={r.img} alt={`${r.name}の買取実績`} class="w-full aspect-square object-cover" loading="lazy" />
+          <div class="p-1.5 md:p-2">
+            <div class="flex items-center gap-1">
+              <span class="bg-orange text-white text-[7px] md:text-[8px] font-black px-1 py-px rounded whitespace-nowrap">買取価格</span>
+              <span class="text-orange font-black text-[11px] md:text-sm whitespace-nowrap">{r.price}円</span>
             </div>
-            <p class="text-text-lighter text-[9px]">{r.area}</p>
-            <p class="text-text text-[10px] leading-snug mt-0.5 line-clamp-2">{r.desc}</p>
+            <p class="text-text-lighter text-[8px] md:text-[9px] mt-0.5 truncate">{r.area}</p>
           </div>
         </div>
       ))}
