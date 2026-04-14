@@ -233,18 +233,12 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 stagger-children">
       {[
         { img: serviceSorting, alt: "名古屋の遺品整理・仕分け作業", title: "仕分け・整理", desc: "故人の遺品を丁寧に仕分け。必要なものと不要なものを整理し、ご遺族の意向を尊重しながら作業を進めます。" },
-        { img: "NOPHOTO_BUYOUT",  alt: "名古屋の遺品買取・価値ある品の現金買取", title: "価値ある品の買取", desc: "骨董品・貴金属・着物など価値あるお品物はその場で査定・現金買取。整理費用の大幅な軽減につながります。", nophoto: true },
+        { img: cashPayment,  alt: "名古屋の遺品買取・価値ある品の現金買取", title: "価値ある品の買取", desc: "骨董品・貴金属・着物など価値あるお品物はその場で査定・現金買取。整理費用の大幅な軽減につながります。" },
         { img: serviceCarry, alt: "名古屋の遺品整理・搬出・回収作業", title: "搬出・回収", desc: "不用品の搬出・回収を一括で対応。重い家具・大型品もスタッフにお任せください。お部屋の養生も丁寧に行います。" },
         { img: serviceKuyo,  alt: "名古屋の仏壇・位牌供養・処分", title: "供養・処分", desc: "仏壇・位牌・神棚など、適切な供養を行った上で処分いたします。提携寺院での合同供養に対応しています。" },
       ].map(s => (
         <div class={`reveal card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-border`}>
-          {!s.nophoto ? (
-            <img src={s.img} alt={s.alt} class="w-full aspect-[4/3] object-cover" loading="lazy" />
-          ) : (
-            <div class="w-full aspect-[4/3] bg-teal/10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-teal/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-          )}
+          <img src={s.img} alt={s.alt} class="w-full aspect-[4/3] object-cover" loading="lazy" />
           <div class="p-5">
             <h3 class="text-teal-dark font-black text-base mb-2">{s.title}</h3>
             <p class="text-text-light text-sm leading-relaxed">{s.desc}</p>
