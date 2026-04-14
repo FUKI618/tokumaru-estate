@@ -21,13 +21,13 @@ const items = [
   { name: "宝石", img: assetPath("images/estate/item-gemstone.jpg") },
   { name: "金・プラチナ", img: assetPath("images/estate/item-gold-platinum.jpg") },
   { name: "ブランド品", img: assetPath("images/estate/item-brand-bag.jpg") },
-  { name: "ブランド服・毛皮", img: assetPath("images/estate/item-fur.jpg") },
+  { name: "服・毛皮", img: assetPath("images/estate/item-fur.jpg") },
   { name: "骨董品", img: assetPath("images/estate/item-antique.jpg") },
-  { name: "アクセサリー", img: assetPath("images/estate/item-accessory.jpg") },
+  { name: "装飾品", img: assetPath("images/estate/item-accessory.jpg") },
   { name: "カメラ", img: assetPath("images/estate/item-camera.jpg") },
   { name: "楽器", img: assetPath("images/estate/item-instrument.jpg") },
   { name: "お酒", img: assetPath("images/estate/item-alcohol.jpg") },
-  { name: "古銭・記念硬貨", img: assetPath("images/estate/item-coins.jpg") },
+  { name: "古銭・硬貨", img: assetPath("images/estate/item-coins.jpg") },
   { name: "着物", img: assetPath("images/estate/item-kimono.jpg") },
   { name: "切手", img: assetPath("images/estate/item-stamps.jpg") },
   { name: "金券", img: assetPath("images/estate/item-giftcard.jpg") },
@@ -111,12 +111,11 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
       </nav>
       <!-- CTA -->
       <div class="flex items-center gap-2 shrink-0">
-        <a href="tel:052-990-3968" class="flex items-center gap-1.5 bg-orange hover:bg-orange-light text-white font-bold text-xs px-3 py-2 rounded-lg transition-colors whitespace-nowrap cta-glow">
+        <a href="tel:052-990-3968" class="flex items-center justify-center gap-1.5 bg-orange hover:bg-orange-light text-white font-bold text-[11px] px-3 py-2 rounded-lg transition-colors whitespace-nowrap cta-glow">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span class="hidden sm:inline">052-990-3968</span>
-          <span class="sm:hidden">電話</span>
+          電話
         </a>
-        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="bg-line hover:opacity-90 text-white font-bold text-xs px-3 py-2 rounded-lg transition-opacity whitespace-nowrap cta-glow-line">LINE無料相談</a>
+        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="bg-line hover:opacity-90 text-white font-bold text-[11px] px-3 py-2 rounded-lg transition-opacity whitespace-nowrap cta-glow-line">LINE</a>
       </div>
     </div>
   </div>
@@ -147,7 +146,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
           遺品整理・生前整理・福祉施設入居前の片付けまで対応。故人の大切なお品物を丁寧に仕分け・査定し、価値ある品はその場で現金買取いたします。
         </p>
         <div class="flex flex-row gap-3 mb-4">
-          <a href="tel:052-990-3968" class="cta-glow bg-orange hover:bg-orange-light text-white font-black text-lg px-8 py-4 rounded-xl text-center transition-colors shadow-xl whitespace-nowrap"><span class="text-[10px] block mb-0.5 opacity-80">今日中に来てほしい方</span>電話で無料相談</a>
+          <a href="tel:052-990-3968" class="cta-glow bg-orange hover:bg-orange-light text-white font-black text-lg px-8 py-4 rounded-xl text-center transition-colors shadow-xl whitespace-nowrap"><span class="text-[10px] hidden md:block mb-0.5 opacity-80">今日中に来てほしい方</span>電話で無料相談</a>
           <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line bg-line hover:brightness-110 text-white font-bold text-lg px-8 py-4 rounded-xl text-center transition-all shadow-xl whitespace-nowrap">LINEで無料査定</a>
         </div>
         <p class="text-white/40 text-xs">受付 9:00〜21:00 年中無休 ／ 出張費・査定費0円</p>
@@ -181,7 +180,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <!-- 下部: CTA -->
     <div class="relative px-5 pb-6">
       <div class="flex gap-2.5 mb-2">
-        <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange text-white font-black text-[13px] py-3 rounded-xl text-center shadow-lg whitespace-nowrap"><span class="text-[9px] block opacity-80">最短30分で訪問</span>電話で相談</a>
+        <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange text-white font-black text-[13px] py-3 rounded-xl text-center shadow-lg whitespace-nowrap">電話で相談する</a>
         <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line flex-1 bg-line text-white font-bold text-[13px] py-3 rounded-xl text-center shadow-lg whitespace-nowrap">LINEで査定</a>
       </div>
       <p class="text-white/30 text-[10px] text-center">受付 9:00〜21:00 年中無休 / 出張費・査定費0円</p>
@@ -195,20 +194,20 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 <section class="border-t-4 border-orange bg-white shadow-md">
   <div class="max-w-4xl mx-auto px-5 py-6">
     <div class="grid grid-cols-3 divide-x divide-border stagger-children">
-      <div class="reveal text-center px-4">
-        <p class="text-teal-dark font-black text-2xl md:text-3xl count-up" data-target="30000">0</p>
-        <p class="text-orange font-bold text-xs md:text-sm">件以上</p>
-        <p class="text-text-lighter text-[10px] mt-0.5">累計ご依頼件数</p>
+      <div class="reveal text-center px-2 md:px-4">
+        <p class="text-teal-dark font-black text-xl md:text-3xl count-up whitespace-nowrap" data-target="30000">0</p>
+        <p class="text-orange font-bold text-[10px] md:text-sm">件以上</p>
+        <p class="text-text-lighter text-[9px] md:text-[10px] mt-0.5 whitespace-nowrap">累計ご依頼</p>
       </div>
-      <div class="reveal text-center px-4">
-        <p class="text-teal-dark font-black text-2xl md:text-3xl count-up" data-target="98">0</p>
-        <p class="text-orange font-bold text-xs md:text-sm">%</p>
-        <p class="text-text-lighter text-[10px] mt-0.5">お客様満足度（自社調べ）</p>
+      <div class="reveal text-center px-2 md:px-4">
+        <p class="text-teal-dark font-black text-xl md:text-3xl count-up whitespace-nowrap" data-target="98">0</p>
+        <p class="text-orange font-bold text-[10px] md:text-sm">%</p>
+        <p class="text-text-lighter text-[9px] md:text-[10px] mt-0.5 whitespace-nowrap">お客様満足度</p>
       </div>
-      <div class="reveal text-center px-4">
-        <p class="text-teal-dark font-black text-2xl md:text-3xl whitespace-nowrap">出張費</p>
-        <p class="text-orange font-bold text-xs md:text-sm whitespace-nowrap">査定費も0円</p>
-        <p class="text-text-lighter text-[10px] mt-0.5">完全無料</p>
+      <div class="reveal text-center px-2 md:px-4">
+        <p class="text-teal-dark font-black text-xl md:text-3xl whitespace-nowrap">0円</p>
+        <p class="text-orange font-bold text-[10px] md:text-sm whitespace-nowrap">出張費・査定費</p>
+        <p class="text-text-lighter text-[9px] md:text-[10px] mt-0.5 whitespace-nowrap">完全無料</p>
       </div>
     </div>
   </div>
@@ -244,7 +243,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     </div>
     <div class="text-center mt-10">
       <p class="text-white font-black text-lg mb-4" style="text-shadow:0 1px 6px rgba(0,0,0,0.5)">その悩み、徳丸商会が全て解決します</p>
-      <a href="tel:052-990-3968" class="cta-glow inline-block bg-orange hover:bg-orange-light text-white font-black text-base px-8 py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap"><span class="text-[10px] block mb-0.5 opacity-80">最短30分で訪問</span>電話で無料相談</a>
+      <a href="tel:052-990-3968" class="cta-glow inline-block bg-orange hover:bg-orange-light text-white font-black text-sm md:text-base px-6 md:px-8 py-3.5 md:py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap">電話で無料相談</a>
     </div>
   </div>
 </section>
@@ -310,7 +309,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
         <div class="p-5 space-y-3">
           {[
             { label: "費用", val: "買取金額で整理費用を相殺できるケースも" },
-            { label: "対応範囲", val: "整理・仕分け・買取・搬出・供養まで全対応" },
+            { label: "対応", val: "整理・仕分け・買取・搬出・供養まで全対応" },
             { label: "価値ある品", val: "専門査定員がその場で現金買取" },
             { label: "特徴", val: "出張費・査定費0円、明朗会計" },
           ].map(r => (
@@ -441,12 +440,12 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
   </div>
   <div class="relative max-w-4xl mx-auto px-5 text-center">
     <p class="text-orange-light font-black text-xs md:text-sm uppercase tracking-widest mb-3">On-the-spot Cash Payment</p>
-    <h2 class="text-2xl md:text-4xl font-black text-white mb-4" style="text-shadow:0 2px 10px rgba(0,0,0,0.5)">
-      その場で査定、<br class="sm:hidden" /><span class="text-orange-light">その場で現金</span>
+    <h2 class="text-xl md:text-4xl font-black text-white mb-4" style="text-shadow:0 2px 10px rgba(0,0,0,0.5)">
+      その場で査定、<br class="md:hidden" /><span class="text-orange-light">その場で現金</span>
     </h2>
     <p class="text-white/80 text-sm md:text-base mb-8 max-w-lg mx-auto">後日振込ではなく、査定当日にその場で現金をお渡しします。金額にご不満の場合はキャンセルOK。</p>
     <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="tel:052-990-3968" class="cta-glow bg-orange hover:bg-orange-light text-white font-black text-lg px-8 py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap"><span class="text-[10px] block mb-0.5 opacity-80">いくらになるか聞いてみる</span>電話で無料査定</a>
+      <a href="tel:052-990-3968" class="cta-glow bg-orange hover:bg-orange-light text-white font-black text-base md:text-lg px-6 md:px-8 py-3.5 md:py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap">電話で無料査定</a>
       <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line bg-line hover:opacity-90 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-xl transition-opacity whitespace-nowrap">LINEで無料査定</a>
     </div>
     <p class="text-white/50 text-xs mt-4">受付 9:00〜21:00 年中無休</p>
@@ -469,7 +468,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 stagger-children">
       {[
         { n: "01", title: "遺品に寄り添う丁寧な対応", desc: "故人の大切なお品物を一つひとつ敬意を持って扱います。ご遺族の気持ちに寄り添いながら丁寧に作業を進めます。", iconPath: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M12 7a4 4 0 1 0-8 0 4 4 0 0 0 8 0 M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" },
-        { n: "02", title: "仕分けから買取・供養まで一括", desc: "複数業者に連絡する手間なし。整理・仕分け・買取・搬出・供養まで全てワンストップで対応します。", iconPath: "M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z M3.27 6.96L12 12.01l8.73-5.05 M12 22.08V12" },
+        { n: "02", title: "仕分け〜供養まで一括対応", desc: "複数業者に連絡する手間なし。整理・仕分け・買取・搬出・供養まで全てワンストップで対応します。", iconPath: "M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z M3.27 6.96L12 12.01l8.73-5.05 M12 22.08V12" },
         { n: "03", title: "出張費・査定費完全無料", desc: "費用は一切かかりません。査定だけでも、相談だけでもお気軽に。買取しなくてもOKです。", iconPath: "M12 1v22 M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" },
         { n: "04", title: "古物商許可取得の信頼業者", desc: "古物商許可（第541042309800号）を取得した正規の買取業者です。安心してお任せいただけます。", iconPath: "M9 12l2 2 4-4 M22 12A10 10 0 1 1 12 2a10 10 0 0 1 10 10z" },
         { n: "05", title: "プライバシーに最大限配慮", desc: "店名ロゴのない一般車両で訪問。近隣の目を気にせずご依頼いただけます。作業中の情報管理も徹底しています。", iconPath: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
@@ -510,12 +509,12 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
           </div>
           <h3 class="text-white font-black text-sm mb-3">{s.title}</h3>
           <p class="text-white/70 text-sm leading-relaxed mb-3">{s.desc}</p>
-          <span class="inline-block bg-orange/20 text-orange-light text-xs px-3 py-1 rounded-full">{s.note}</span>
+          <span class="inline-block bg-orange/20 text-orange-light text-[10px] md:text-xs px-3 py-1 rounded-full whitespace-nowrap">{s.note}</span>
         </div>
       ))}
     </div>
     <div class="text-center mt-10">
-      <a href="tel:052-990-3968" class="cta-glow inline-block bg-orange hover:bg-orange-light text-white font-black text-lg px-10 py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap"><span class="text-[10px] block mb-0.5 opacity-80">今すぐ無料見積もり</span>電話で相談する</a>
+      <a href="tel:052-990-3968" class="cta-glow inline-block bg-orange hover:bg-orange-light text-white font-black text-base md:text-lg px-8 md:px-10 py-3.5 md:py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap">電話で無料相談する</a>
     </div>
   </div>
 </section>
@@ -532,12 +531,12 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <p class="text-orange text-xs text-center font-bold mb-8 reveal">※ 料金はあくまで目安です。現地確認後に正式お見積りいたします</p>
     <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-border reveal">
       <div class="bg-teal text-white text-center py-3 font-black text-sm">間取り別 目安料金</div>
-      <table class="w-full text-sm">
+      <table class="w-full text-xs md:text-sm">
         <thead>
-          <tr class="bg-teal/10 text-teal-dark font-bold text-xs">
-            <th class="py-3 px-4 text-left">間取り</th>
-            <th class="py-3 px-4 text-center">目安料金</th>
-            <th class="py-3 px-4 text-center hidden sm:table-cell">作業時間</th>
+          <tr class="bg-teal/10 text-teal-dark font-bold text-[11px] md:text-xs">
+            <th class="py-2.5 px-3 md:px-4 text-left whitespace-nowrap">間取り</th>
+            <th class="py-2.5 px-3 md:px-4 text-center whitespace-nowrap">目安料金</th>
+            <th class="py-2.5 px-3 md:px-4 text-center hidden sm:table-cell whitespace-nowrap">作業時間</th>
           </tr>
         </thead>
         <tbody>
@@ -548,9 +547,9 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
             { size: "3LDK〜4DK", price: "120,000円〜", time: "1〜2日" },
           ].map((r, i) => (
             <tr class={i % 2 === 0 ? "bg-white" : "bg-bg"}>
-              <td class="py-4 px-4 font-bold text-text">{r.size}</td>
-              <td class="py-4 px-4 text-center text-orange font-black">{r.price}</td>
-              <td class="py-4 px-4 text-center text-text-light hidden sm:table-cell">{r.time}</td>
+              <td class="py-3 px-3 md:px-4 font-bold text-text whitespace-nowrap">{r.size}</td>
+              <td class="py-3 px-3 md:px-4 text-center text-orange font-black whitespace-nowrap">{r.price}</td>
+              <td class="py-3 px-3 md:px-4 text-center text-text-light hidden sm:table-cell whitespace-nowrap">{r.time}</td>
             </tr>
           ))}
         </tbody>
@@ -642,7 +641,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
       </div>
     </div>
     <div class="text-center mt-8">
-      <a href="tel:052-990-3968" class="cta-glow inline-block bg-orange hover:bg-orange-light text-white font-black text-base px-8 py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap"><span class="text-[10px] block mb-0.5 opacity-80">お伺いできるかすぐ確認</span>電話で相談する</a>
+      <a href="tel:052-990-3968" class="cta-glow inline-block bg-orange hover:bg-orange-light text-white font-black text-sm md:text-base px-6 md:px-8 py-3.5 md:py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap">電話で相談する</a>
     </div>
   </div>
 </section>
@@ -710,7 +709,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
         </div>
       ))}
     </div>
-    <a href="tel:052-990-3968" class="cta-glow inline-block bg-orange hover:bg-orange-light text-white font-black text-base px-8 py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap"><span class="text-[10px] block mb-0.5 opacity-80">価値が下がる前に</span>電話で無料査定</a>
+    <a href="tel:052-990-3968" class="cta-glow inline-block bg-orange hover:bg-orange-light text-white font-black text-sm md:text-base px-6 md:px-8 py-3.5 md:py-4 rounded-xl shadow-xl transition-colors whitespace-nowrap">電話で無料査定</a>
   </div>
 </section>
 
@@ -724,19 +723,13 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
   </div>
   <div class="relative max-w-3xl mx-auto px-5 text-center">
     <p class="text-orange-light font-black text-sm uppercase tracking-widest mb-3">Free Consultation</p>
-    <h2 class="text-2xl md:text-4xl font-black text-white mb-4" style="text-shadow:0 2px 10px rgba(0,0,0,0.5)">
+    <h2 class="text-xl md:text-4xl font-black text-white mb-4" style="text-shadow:0 2px 10px rgba(0,0,0,0.5)">
       まずはお気軽に<br /><span class="text-orange-light">ご相談ください</span>
     </h2>
     <p class="text-white/80 text-sm md:text-base mb-8 max-w-md mx-auto">出張費・査定費は完全無料。名古屋市・近郊エリアへ即日対応いたします。LINEなら写真を送るだけで事前査定も可能です。</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-      <a href="tel:052-990-3968" class="cta-glow bg-orange hover:bg-orange-light text-white font-black text-xl px-10 py-5 rounded-2xl shadow-2xl transition-colors whitespace-nowrap">
-        <span class="text-xs block mb-1 opacity-80">最短30分で訪問</span>
-        電話で無料相談する
-      </a>
-      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line bg-line hover:opacity-90 text-white font-black text-xl px-10 py-5 rounded-2xl shadow-2xl transition-opacity whitespace-nowrap">
-        <span class="text-xs block mb-1 opacity-80">写真を送るだけ</span>
-        LINEで無料査定
-      </a>
+      <a href="tel:052-990-3968" class="cta-glow bg-orange hover:bg-orange-light text-white font-black text-base md:text-xl px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl shadow-2xl transition-colors whitespace-nowrap">電話で無料相談する</a>
+      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line bg-line hover:opacity-90 text-white font-black text-base md:text-xl px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl shadow-2xl transition-opacity whitespace-nowrap">LINEで無料査定</a>
     </div>
     <p class="text-white/50 text-xs">受付 9:00〜21:00 年中無休 ／ 出張費・査定費0円 ／ 古物商許可 第541042309800号</p>
   </div>
