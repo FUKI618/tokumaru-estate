@@ -155,35 +155,37 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
   </div>
 
   <!-- モバイル版: 画像をフルスクリーン背景、テキスト重ね -->
-  <div class="md:hidden relative min-h-[75svh] flex flex-col overflow-hidden">
-    <img src={hero} alt="名古屋の遺品整理・生前整理スタッフ" class="absolute inset-0 w-full h-full object-cover object-[30%_30%]" loading="eager" />
-    <div class="absolute inset-0 bg-gradient-to-b from-teal-dark/85 from-5% via-teal-dark/30 via-35% to-transparent"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-teal-dark/90 from-5% via-teal-dark/40 via-30% to-transparent"></div>
+  <div class="md:hidden relative overflow-hidden">
+    <img src={hero} alt="名古屋の遺品整理・生前整理スタッフ" class="absolute inset-0 w-full h-full object-cover object-[30%_20%]" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-b from-teal-dark/90 from-0% via-teal-dark/40 via-30% to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-teal-dark from-0% via-teal-dark/50 via-25% to-transparent"></div>
 
-    <!-- 上部: H1 -->
-    <div class="relative px-5 pt-4">
+    <div class="relative px-5 pt-3 pb-5">
+      <!-- バッジ -->
       <div class="flex flex-wrap gap-1.5 mb-3">
         {["出張費0円","明朗会計","立会い不要","即日対応"].map(b => (
           <span class="bg-orange text-white text-[10px] font-black px-2.5 py-1 rounded-full whitespace-nowrap shadow">{b}</span>
         ))}
       </div>
-      <h1 class="text-[1.9rem] font-black leading-[1.2] mb-2" style="text-shadow: 0 2px 10px rgba(0,0,0,0.7);">
+
+      <!-- H1 -->
+      <h1 class="text-[1.7rem] font-black leading-[1.2] mb-2" style="text-shadow: 0 2px 10px rgba(0,0,0,0.7);">
         名古屋の<span class="text-orange-light">遺品整理・<br />生前整理</span>なら<br />徳丸商会
       </h1>
-      <p class="text-white/80 text-[13px] leading-relaxed" style="text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
-        故人の大切なお品物を丁寧に仕分け・査定。<br />価値ある品はその場で現金買取。
+
+      <p class="text-white/80 text-[12px] leading-relaxed mb-3" style="text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
+        遺品を丁寧に仕分け・査定。価値ある品はその場で現金買取。
       </p>
-    </div>
 
-    <div class="flex-1"></div>
+      <!-- 画像が見える余白 -->
+      <div class="h-28"></div>
 
-    <!-- 下部: CTA -->
-    <div class="relative px-5 pb-6">
+      <!-- CTA -->
       <div class="flex gap-2.5 mb-2">
-        <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange text-white font-black text-xs py-3 rounded-xl text-center shadow-lg whitespace-nowrap">電話で相談</a>
-        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line flex-1 bg-line text-white font-bold text-xs py-3 rounded-xl text-center shadow-lg whitespace-nowrap">LINE査定</a>
+        <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange text-white font-black text-xs py-3 rounded-xl text-center shadow-lg whitespace-nowrap leading-none">電話で相談</a>
+        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line flex-1 bg-line text-white font-bold text-xs py-3 rounded-xl text-center shadow-lg whitespace-nowrap leading-none">LINE査定</a>
       </div>
-      <p class="text-white/30 text-[10px] text-center">受付 9:00〜21:00 年中無休 / 出張費・査定費0円</p>
+      <p class="text-white/30 text-[9px] text-center">受付 9:00〜21:00 年中無休 / 出張費・査定費0円</p>
     </div>
   </div>
 </section>
@@ -368,7 +370,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
       {items.map(item => (
         <div class="reveal card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-border text-center">
           <img src={item.img} alt={`名古屋で${item.name}を高価買取・遺品整理の徳丸商会`} class="w-full aspect-square object-cover" loading="lazy" />
-          <p class="text-text font-bold text-[9px] md:text-sm py-1.5 md:py-2 whitespace-nowrap text-center">{item.name}</p>
+          <p class="text-text font-bold text-[9px] md:text-sm py-1.5 md:py-2 whitespace-nowrap text-center leading-none overflow-hidden">{item.name}</p>
         </div>
       ))}
     </div>
@@ -531,25 +533,25 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <p class="text-orange text-xs text-center font-bold mb-8 reveal">※ 料金はあくまで目安です。現地確認後に正式お見積りいたします</p>
     <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-border reveal">
       <div class="bg-teal text-white text-center py-3 font-black text-sm">間取り別 目安料金</div>
-      <table class="w-full text-xs md:text-sm">
+      <table class="w-full text-[11px] md:text-sm">
         <thead>
-          <tr class="bg-teal/10 text-teal-dark font-bold text-[11px] md:text-xs">
-            <th class="py-2.5 px-3 md:px-4 text-left whitespace-nowrap">間取り</th>
-            <th class="py-2.5 px-3 md:px-4 text-center whitespace-nowrap">目安料金</th>
-            <th class="py-2.5 px-3 md:px-4 text-center hidden sm:table-cell whitespace-nowrap">作業時間</th>
+          <tr class="bg-teal/10 text-teal-dark font-bold text-[10px] md:text-xs">
+            <th class="py-2 px-2 md:px-4 text-left whitespace-nowrap">間取り</th>
+            <th class="py-2 px-2 md:px-4 text-center whitespace-nowrap">料金目安</th>
+            <th class="py-2 px-2 md:px-4 text-center whitespace-nowrap">時間</th>
           </tr>
         </thead>
         <tbody>
           {[
-            { size: "1K〜1DK", price: "30,000円〜", time: "2〜4時間" },
-            { size: "1LDK〜2DK", price: "50,000円〜", time: "4〜6時間" },
-            { size: "2LDK〜3DK", price: "80,000円〜", time: "6〜10時間" },
-            { size: "3LDK〜4DK", price: "120,000円〜", time: "1〜2日" },
+            { size: "1K〜1DK", price: "3万円〜", time: "2〜4h" },
+            { size: "1LDK〜2DK", price: "5万円〜", time: "4〜6h" },
+            { size: "2LDK〜3DK", price: "8万円〜", time: "6〜10h" },
+            { size: "3LDK〜4DK", price: "12万円〜", time: "1〜2日" },
           ].map((r, i) => (
             <tr class={i % 2 === 0 ? "bg-white" : "bg-bg"}>
-              <td class="py-3 px-3 md:px-4 font-bold text-text whitespace-nowrap">{r.size}</td>
-              <td class="py-3 px-3 md:px-4 text-center text-orange font-black whitespace-nowrap">{r.price}</td>
-              <td class="py-3 px-3 md:px-4 text-center text-text-light hidden sm:table-cell whitespace-nowrap">{r.time}</td>
+              <td class="py-2.5 px-2 md:px-4 font-bold text-text whitespace-nowrap">{r.size}</td>
+              <td class="py-2.5 px-2 md:px-4 text-center text-orange font-black whitespace-nowrap">{r.price}</td>
+              <td class="py-2.5 px-2 md:px-4 text-center text-text-light whitespace-nowrap">{r.time}</td>
             </tr>
           ))}
         </tbody>
@@ -626,7 +628,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
         <h3 class="text-orange-light font-black text-sm mb-4">名古屋市（全16区）</h3>
         <div class="flex flex-wrap gap-2">
           {areas.map(a => (
-            <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full whitespace-nowrap">{a}</span>
+            <span class="bg-white/20 text-white text-[11px] md:text-xs px-2.5 md:px-3 py-1 rounded-full whitespace-nowrap leading-tight">{a}</span>
           ))}
         </div>
       </div>
@@ -634,7 +636,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
         <h3 class="text-orange-light font-black text-sm mb-4">名古屋市近郊エリア</h3>
         <div class="flex flex-wrap gap-2">
           {nearby.map(a => (
-            <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full whitespace-nowrap">{a}</span>
+            <span class="bg-white/20 text-white text-[11px] md:text-xs px-2.5 md:px-3 py-1 rounded-full whitespace-nowrap leading-tight">{a}</span>
           ))}
         </div>
         <p class="text-white/50 text-xs mt-4">※ 上記以外のエリアもご相談ください</p>
