@@ -1,5 +1,6 @@
 // Keep deployment routing in one place for GitHub Pages base-path hosting.
-export const basePath = "/tokumaru-estate/";
+const rawBase = import.meta.env.BASE_URL;
+export const basePath = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 
 export const homePath = basePath;
 export const privacyPolicyPath = `${basePath}privacy-policy/`;

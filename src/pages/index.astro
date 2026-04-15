@@ -3,46 +3,46 @@ import Layout from "../layouts/Layout.astro";
 import { assetPath, homePath, sectionPath, privacyPolicyPath } from "../lib/site";
 
 const logo     = assetPath("logo.svg");
-const hero     = assetPath("images/estate/hero.jpg");
-const bgWorry  = assetPath("images/estate/bg-worry.jpg");
-const staffTeam = assetPath("images/estate/staff-team.jpg");
-const bgArea   = assetPath("images/estate/bg-area.jpg");
-const cashPayment = assetPath("images/estate/cash-payment.jpg");
-const before   = assetPath("images/estate/before.jpg");
-const after    = assetPath("images/estate/after.jpg");
+const hero     = assetPath("images/estate/hero.webp");
+const bgWorry  = assetPath("images/estate/bg-worry.webp");
+const staffTeam = assetPath("images/estate/staff-team.webp");
+const bgArea   = assetPath("images/estate/bg-area.webp");
+const cashPayment = assetPath("images/estate/cash-payment.webp");
+const before   = assetPath("images/estate/before.webp");
+const after    = assetPath("images/estate/after.webp");
 
-const serviceSorting = assetPath("images/estate/service-sorting.jpg");
-const serviceKuyo    = assetPath("images/estate/service-kuyo.jpg");
-const serviceCarry   = assetPath("images/estate/service-carry.jpg");
+const serviceSorting = assetPath("images/estate/service-sorting.webp");
+const serviceKuyo    = assetPath("images/estate/service-kuyo.webp");
+const serviceCarry   = assetPath("images/estate/service-carry.webp");
 
 const items = [
-  { name: "時計", img: assetPath("images/estate/item-watch.jpg") },
-  { name: "ダイヤ", img: assetPath("images/estate/item-diamond.jpg") },
-  { name: "宝石", img: assetPath("images/estate/item-gemstone.jpg") },
-  { name: "金・プラチナ", img: assetPath("images/estate/item-gold-platinum.jpg") },
-  { name: "ブランド品", img: assetPath("images/estate/item-brand-bag.jpg") },
-  { name: "服・毛皮", img: assetPath("images/estate/item-fur.jpg") },
-  { name: "骨董品", img: assetPath("images/estate/item-antique.jpg") },
-  { name: "装飾品", img: assetPath("images/estate/item-accessory.jpg") },
-  { name: "カメラ", img: assetPath("images/estate/item-camera.jpg") },
-  { name: "楽器", img: assetPath("images/estate/item-instrument.jpg") },
-  { name: "お酒", img: assetPath("images/estate/item-alcohol.jpg") },
-  { name: "古銭・硬貨", img: assetPath("images/estate/item-coins.jpg") },
-  { name: "着物", img: assetPath("images/estate/item-kimono.jpg") },
-  { name: "切手", img: assetPath("images/estate/item-stamps.jpg") },
-  { name: "金券", img: assetPath("images/estate/item-giftcard.jpg") },
-  { name: "茶道具", img: assetPath("images/estate/item-tea.jpg") },
-  { name: "掛軸・絵画", img: assetPath("images/estate/item-scroll.jpg") },
-  { name: "仏具", img: assetPath("images/estate/item-buddhist.jpg") },
+  { name: "時計", img: assetPath("images/estate/item-watch.webp") },
+  { name: "ダイヤ", img: assetPath("images/estate/item-diamond.webp") },
+  { name: "宝石", img: assetPath("images/estate/item-gemstone.webp") },
+  { name: "金・プラチナ", img: assetPath("images/estate/item-gold-platinum.webp") },
+  { name: "ブランド品", img: assetPath("images/estate/item-brand-bag.webp") },
+  { name: "服・毛皮", img: assetPath("images/estate/item-fur.webp") },
+  { name: "骨董品", img: assetPath("images/estate/item-antique.webp") },
+  { name: "装飾品", img: assetPath("images/estate/item-accessory.webp") },
+  { name: "カメラ", img: assetPath("images/estate/item-camera.webp") },
+  { name: "楽器", img: assetPath("images/estate/item-instrument.webp") },
+  { name: "お酒", img: assetPath("images/estate/item-alcohol.webp") },
+  { name: "古銭・硬貨", img: assetPath("images/estate/item-coins.webp") },
+  { name: "着物", img: assetPath("images/estate/item-kimono.webp") },
+  { name: "切手", img: assetPath("images/estate/item-stamps.webp") },
+  { name: "金券", img: assetPath("images/estate/item-giftcard.webp") },
+  { name: "茶道具", img: assetPath("images/estate/item-tea.webp") },
+  { name: "掛軸・絵画", img: assetPath("images/estate/item-scroll.webp") },
+  { name: "仏具", img: assetPath("images/estate/item-buddhist.webp") },
 ];
 
 const results = [
-  { name: "エメラルドの指輪 Pt900", price: "364,000", area: "愛知県名古屋市中区", desc: "エメラルド0.80ct、ダイヤモンド取り巻き、Pt900 10.4g。故人様の遺品整理にてお買取り。鑑別書付きで高額査定に。", img: assetPath("images/estate/result-emerald-ring.jpg") },
-  { name: "オパールの指輪 Pt900", price: "124,000", area: "愛知県名古屋市千種区", desc: "ウォーターオパール、ダイヤ0.83ct、Pt900 11.95g。生前整理のご依頼でお買取り。遊色効果が美しい逸品。", img: assetPath("images/estate/result-opal-ring.jpg") },
-  { name: "イエローダイヤモンドの指輪 K18", price: "94,000", area: "愛知県名古屋市緑区", desc: "イエローダイヤモンド、K18 15.0g。遺品整理にてお買取り。ファンシーカラーで希少価値あり。", img: assetPath("images/estate/result-yellow-diamond.jpg") },
-  { name: "金のネックレス K18", price: "200,000", area: "愛知県あま市", desc: "K18喜平チェーンネックレス。生前整理にてお買取り。金相場高騰中のタイミングで高額査定を実現。", img: assetPath("images/estate/result-gold-necklace.jpg") },
-  { name: "掛軸 江戸期 山水画", price: "180,000", area: "愛知県名古屋市東区", desc: "江戸時代後期の山水画掛軸。遺品整理にてお買取り。保存状態良好、落款・箱書き付きで骨董価値を評価。", img: assetPath("images/estate/result-antique-scroll.jpg") },
-  { name: "伊万里焼 大皿 明治期", price: "156,000", area: "愛知県清須市", desc: "明治期の伊万里焼染付大皿。生前整理にてお買取り。直径42cm、金彩残り良好。蔵から出てきた逸品を専門査定。", img: assetPath("images/estate/result-imari.jpg") },
+  { name: "エメラルドの指輪 Pt900", price: "364,000", area: "愛知県名古屋市中区", desc: "エメラルド0.80ct、ダイヤモンド取り巻き、Pt900 10.4g。故人様の遺品整理にてお買取り。鑑別書付きで高額査定に。", img: assetPath("images/estate/result-emerald-ring.webp") },
+  { name: "オパールの指輪 Pt900", price: "124,000", area: "愛知県名古屋市千種区", desc: "ウォーターオパール、ダイヤ0.83ct、Pt900 11.95g。生前整理のご依頼でお買取り。遊色効果が美しい逸品。", img: assetPath("images/estate/result-opal-ring.webp") },
+  { name: "イエローダイヤモンドの指輪 K18", price: "94,000", area: "愛知県名古屋市緑区", desc: "イエローダイヤモンド、K18 15.0g。遺品整理にてお買取り。ファンシーカラーで希少価値あり。", img: assetPath("images/estate/result-yellow-diamond.webp") },
+  { name: "金のネックレス K18", price: "200,000", area: "愛知県あま市", desc: "K18喜平チェーンネックレス。生前整理にてお買取り。金相場高騰中のタイミングで高額査定を実現。", img: assetPath("images/estate/result-gold-necklace.webp") },
+  { name: "掛軸 江戸期 山水画", price: "180,000", area: "愛知県名古屋市東区", desc: "江戸時代後期の山水画掛軸。遺品整理にてお買取り。保存状態良好、落款・箱書き付きで骨董価値を評価。", img: assetPath("images/estate/result-antique-scroll.webp") },
+  { name: "伊万里焼 大皿 明治期", price: "156,000", area: "愛知県清須市", desc: "明治期の伊万里焼染付大皿。生前整理にてお買取り。直径42cm、金彩残り良好。蔵から出てきた逸品を専門査定。", img: assetPath("images/estate/result-imari.webp") },
 ];
 
 const faqs = [
@@ -95,7 +95,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
   <div class="bg-white/95 backdrop-blur-md border-b border-teal/10">
     <div class="max-w-6xl mx-auto px-4 h-[60px] md:h-[72px] flex items-center justify-between">
       <a href={homePath} class="flex items-center gap-2.5 shrink-0">
-        <img src={logo} alt="徳丸商会ロゴ" width="48" height="48" class="w-11 h-11 md:w-14 md:h-14" />
+        <img src={logo} alt="徳丸商会ロゴ" width="48" height="48" class="w-11 h-11 md:w-14 md:h-14" loading="eager" />
         <div>
           <div class="text-teal-dark font-black text-base md:text-xl leading-tight whitespace-nowrap">徳丸商会</div>
           <div class="text-text-lighter text-[9px] md:text-xs font-bold leading-tight whitespace-nowrap">遺品整理・生前整理専門</div>
@@ -174,9 +174,9 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
         ))}
       </div>
 
-      <h1 class="text-[1.7rem] font-black leading-[1.15] mb-2">
+      <p class="text-[1.7rem] font-black leading-[1.15] mb-2" role="heading" aria-level="1">
         名古屋の<span class="text-orange-light">遺品整理・<br />生前整理</span>なら徳丸商会
-      </h1>
+      </p>
 
       <p class="text-white/70 text-[12px] leading-relaxed mb-5">
         遺品整理・生前整理・福祉施設入居前の片付けまで対応。<br />価値ある品はその場で現金買取いたします。
@@ -263,7 +263,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 stagger-children">
       {[
         { img: serviceSorting, alt: "名古屋の遺品整理・仕分け作業", title: "仕分け・整理", desc: "故人の遺品を丁寧に仕分け。必要なものと不要なものを整理し、ご遺族の意向を尊重しながら作業を進めます。" },
-        { img: assetPath("images/estate/service-buyout.jpg"),  alt: "名古屋の遺品買取・価値ある品の現金買取", title: "価値ある品の買取", desc: "骨董品・貴金属・着物など価値あるお品物はその場で査定・現金買取。整理費用の大幅な軽減につながります。" },
+        { img: assetPath("images/estate/service-buyout.webp"),  alt: "名古屋の遺品買取・価値ある品の現金買取", title: "価値ある品の買取", desc: "骨董品・貴金属・着物など価値あるお品物はその場で査定・現金買取。整理費用の大幅な軽減につながります。" },
         { img: serviceCarry, alt: "名古屋の遺品整理・搬出・回収作業", title: "搬出・回収", desc: "不用品の搬出・回収を一括で対応。重い家具・大型品もスタッフにお任せください。お部屋の養生も丁寧に行います。" },
         { img: serviceKuyo,  alt: "名古屋の仏壇・位牌供養・処分", title: "供養・処分", desc: "仏壇・位牌・神棚など、適切な供養を行った上で処分いたします。提携寺院での合同供養に対応しています。" },
       ].map(s => (
@@ -388,9 +388,9 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <h2 class="text-xl md:text-2xl font-black text-text mb-8 reveal">こんな状態でも査定いたします</h2>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 stagger-children">
       {[
-        { img: assetPath("images/estate/condition-old.jpg"), label: "古くても", desc: "江戸・明治時代の品でも高値がつくことがあります" },
-        { img: assetPath("images/estate/condition-damaged.jpg"), label: "傷があっても", desc: "シミ・割れ・欠け・動作不良でもご相談ください" },
-        { img: assetPath("images/estate/condition-unknown.jpg"), label: "価値がわからなくても", desc: "専門査定員が無料で鑑定します" },
+        { img: assetPath("images/estate/condition-old.webp"), label: "古くても", desc: "江戸・明治時代の品でも高値がつくことがあります" },
+        { img: assetPath("images/estate/condition-damaged.webp"), label: "傷があっても", desc: "シミ・割れ・欠け・動作不良でもご相談ください" },
+        { img: assetPath("images/estate/condition-unknown.webp"), label: "価値がわからなくても", desc: "専門査定員が無料で鑑定します" },
       ].map(c => (
         <div class="reveal card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-border">
           <img src={c.img} alt={c.label} class="w-full aspect-square object-cover" loading="lazy" />
@@ -416,9 +416,9 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     <p class="text-text-light text-sm text-center mb-12 reveal">専門知識と独自ネットワークで、他社より高くお買取します</p>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
       {[
-        { n: "01", img: assetPath("images/estate/reason-expert.jpg"), title: "専門知識を持つ査定員", desc: "骨董品・貴金属・着物それぞれに精通した専門査定員が担当。見た目ではわからない価値も正確に評価します。" },
-        { n: "02", img: assetPath("images/estate/reason-network.jpg"), title: "独自の販売ネットワーク", desc: "国内外のオークション・コレクター・専門店と直接取引。市場価値を最大限に反映した買取価格を実現します。" },
-        { n: "03", img: assetPath("images/estate/reason-direct.jpg"), title: "中間マージンカット", desc: "仲介業者を介さず直接買取・販売。無駄なコストを省くことで、お客様により多くの買取金額をお渡しできます。" },
+        { n: "01", img: assetPath("images/estate/reason-expert.webp"), title: "専門知識を持つ査定員", desc: "骨董品・貴金属・着物それぞれに精通した専門査定員が担当。見た目ではわからない価値も正確に評価します。" },
+        { n: "02", img: assetPath("images/estate/reason-network.webp"), title: "独自の販売ネットワーク", desc: "国内外のオークション・コレクター・専門店と直接取引。市場価値を最大限に反映した買取価格を実現します。" },
+        { n: "03", img: assetPath("images/estate/reason-direct.webp"), title: "中間マージンカット", desc: "仲介業者を介さず直接買取・販売。無駄なコストを省くことで、お客様により多くの買取金額をお渡しできます。" },
       ].map(r => (
         <div class="reveal card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-border">
           <img src={r.img} alt={r.title} class="w-full aspect-[4/3] object-cover" loading="lazy" />
@@ -699,9 +699,9 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
     </p>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 stagger-children">
       {[
-        { img: assetPath("images/estate/item-kimono.jpg"), item: "着物・帯", risk: "虫食い・変色・カビ" },
-        { img: assetPath("images/estate/item-antique.jpg"), item: "骨董品・陶磁器", risk: "欠け・ひび・シミ" },
-        { img: assetPath("images/estate/item-scroll.jpg"), item: "掛軸・絵画", risk: "カビ・変色・破れ" },
+        { img: assetPath("images/estate/item-kimono.webp"), item: "着物・帯", risk: "虫食い・変色・カビ" },
+        { img: assetPath("images/estate/item-antique.webp"), item: "骨董品・陶磁器", risk: "欠け・ひび・シミ" },
+        { img: assetPath("images/estate/item-scroll.webp"), item: "掛軸・絵画", risk: "カビ・変色・破れ" },
       ].map(r => (
         <div class="reveal bg-white rounded-xl overflow-hidden border border-red/20 shadow-sm">
           <img src={r.img} alt={r.item} class="w-full aspect-[3/2] object-cover" loading="lazy" />
@@ -722,7 +722,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 <!-- PC版: 背景画像+オーバーレイ -->
 <section id="contact" class="hidden md:block relative py-28 overflow-hidden">
   <div class="absolute inset-0">
-    <img src={assetPath("images/estate/bg-consultation.jpg")} alt="名古屋の遺品整理・生前整理の無料相談" class="w-full h-full object-cover" loading="lazy" />
+    <img src={assetPath("images/estate/bg-consultation.webp")} alt="名古屋の遺品整理・生前整理の無料相談" class="w-full h-full object-cover" loading="lazy" />
     <div class="absolute inset-0 bg-teal-dark/75"></div>
   </div>
   <div class="relative max-w-3xl mx-auto px-5 text-center">
@@ -741,7 +741,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 <!-- モバイル版: 画像を上部に表示 -->
 <section id="contact" class="md:hidden bg-teal-dark text-white">
   <div class="relative">
-    <img src={assetPath("images/estate/bg-consultation.jpg")} alt="名古屋の遺品整理・生前整理の無料相談" class="w-full aspect-[16/9] object-cover object-[50%_30%]" loading="lazy" />
+    <img src={assetPath("images/estate/bg-consultation.webp")} alt="名古屋の遺品整理・生前整理の無料相談" class="w-full aspect-[16/9] object-cover object-[50%_30%]" loading="lazy" />
     <div class="absolute inset-0 bg-gradient-to-t from-teal-dark via-transparent to-transparent"></div>
   </div>
   <div class="px-5 -mt-6 relative pb-8 text-center">
@@ -767,7 +767,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
   <div class="max-w-6xl mx-auto px-5 md:flex md:justify-between gap-10">
     <div class="mb-8 md:mb-0">
       <div class="flex items-center gap-2 mb-3">
-        <img src={logo} alt="徳丸商会" width="32" height="32" class="w-8 h-8" />
+        <img src={logo} alt="徳丸商会" width="32" height="32" class="w-8 h-8" loading="lazy" />
         <span class="text-white/80 font-black text-base">徳丸商会</span>
       </div>
       <p class="text-xs mb-1">名古屋の遺品整理・生前整理専門</p>

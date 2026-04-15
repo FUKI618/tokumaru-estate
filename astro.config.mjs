@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://fuki618.github.io",
-  base: "/tokumaru-estate",
+  base: process.env.PUBLIC_SITE_BASE ?? "/tokumaru-estate",
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
