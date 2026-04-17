@@ -59,20 +59,28 @@ const faviconUrl = assetPath("favicon.svg");
     <!-- LCP Hero画像のプリロード -->
     <link rel="preload" as="image" type="image/webp" href={assetPath("images/estate/hero.webp")} fetchpriority="high" />
 
-    <!-- Fonts: JS非同期読み込み（レンダリングブロック完全回避） -->
+    <!-- Fonts: 最小限のウェイトのみ + 遅延読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script is:inline>
-      (function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Shippori+Mincho:wght@400;700&display=swap';document.head.appendChild(l);})();
+      (function(){
+        // Noto Sans JP 400,700 のみ即座に読み込み（900やMincho は不要 — CSSで代替）
+        var l=document.createElement('link');l.rel='stylesheet';
+        l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap';
+        document.head.appendChild(l);
+      })();
     </script>
 
-    <!-- Google Tag Manager -->
+    <!-- Google Tag Manager: 3秒遅延で読み込み（FCP/LCP改善） -->
     <script is:inline>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-W493L98W');
+      window.dataLayer=window.dataLayer||[];
+      setTimeout(function(){
+        (function(w,d,s,l,i){w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-W493L98W');
+      },3000);
     </script>
 
     <!-- JSON-LD: LocalBusiness -->

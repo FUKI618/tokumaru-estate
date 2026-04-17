@@ -108,6 +108,9 @@ body {
   animation: marquee-scroll 12s linear infinite;
 }
 
+/* ── font-weight 900 を 700 で代替（フォント読み込み削減） ── */
+.font-black { font-weight: 700 !important; letter-spacing: -0.01em; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition-duration: 0.01ms !important;
