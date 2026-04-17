@@ -13,7 +13,7 @@ const { title, description, extraJsonLd = [] } = Astro.props;
 const canonicalUrl = Astro.url.href;
 const siteUrl = Astro.site ?? new URL(Astro.url.origin);
 const homeUrl = new URL(homePath, siteUrl).toString();
-const ogImage = new URL(assetPath("og-image.png"), siteUrl).toString();
+const ogImage = new URL(assetPath("og-image.webp"), siteUrl).toString();
 const faviconUrl = assetPath("favicon.svg");
 ---
 
@@ -24,6 +24,11 @@ const faviconUrl = assetPath("favicon.svg");
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="keywords" content="遺品整理,名古屋,生前整理,遺品買取,骨董品買取,着物買取,貴金属買取,遺品整理業者,福祉施設入居,仏壇処分" />
+    <meta name="theme-color" content="#1d7078" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com; connect-src 'self' https://www.google-analytics.com https://www.google.com https://googleads.g.doubleclick.net; frame-src https://www.googletagmanager.com" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <title>{title}</title>
 
     <!-- Canonical -->
@@ -41,15 +46,15 @@ const faviconUrl = assetPath("favicon.svg");
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="徳丸商会の出張買取LP。名古屋の家電・家具買取、出張費無料。" />
-    <meta property="og:site_name" content="徳丸商会｜名古屋の出張買取" />
+    <meta property="og:image:alt" content="徳丸商会の遺品整理・生前整理。名古屋の骨董品・着物・貴金属を出張買取。" />
+    <meta property="og:site_name" content="徳丸商会｜名古屋の遺品整理・生前整理" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="徳丸商会の出張買取LP。名古屋の家電・家具買取、出張費無料。" />
+    <meta name="twitter:image:alt" content="徳丸商会の遺品整理・生前整理。名古屋の骨董品・着物・貴金属を出張買取。" />
 
     <!-- LCP Hero画像のプリロード -->
     <link rel="preload" as="image" type="image/webp" href={assetPath("images/estate/hero.webp")} fetchpriority="high" />
@@ -111,6 +116,24 @@ const faviconUrl = assetPath("favicon.svg");
         { "@type": "City", "name": "豊明市" },
         { "@type": "City", "name": "四日市市", "containedInPlace": { "@type": "State", "name": "三重県" } }
       ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "35.1709",
+        "longitude": "136.8815"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "387",
+        "bestRating": "5"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "telephone": "052-990-3968",
+        "availableLanguage": ["ja"],
+        "areaServed": "JP"
+      },
       "sameAs": ["https://lin.ee/j4wK9IM"],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -122,7 +145,8 @@ const faviconUrl = assetPath("favicon.svg");
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "骨董品・貴金属・着物の買取" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "仏壇・位牌の供養・処分" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "家電・家具の出張買取" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "不用品回収・搬出" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "不用品回収・搬出" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "形見分けの相談・支援" } }
         ]
       }
     })} />
@@ -134,8 +158,8 @@ const faviconUrl = assetPath("favicon.svg");
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": "名古屋で出張買取を依頼する方法",
-      "description": "徳丸商会の出張買取サービスを利用する手順です。お電話またはLINEでのお問い合わせから、訪問査定、現金お支払いまでかんたん3ステップで完了します。",
+      "name": "名古屋で遺品整理・生前整理を依頼する方法",
+      "description": "徳丸商会の遺品整理サービスを利用する手順です。お電話またはLINEでのお問い合わせから、訪問・仕分け・査定・買取・搬出までワンストップで完了します。",
       "totalTime": "PT1H",
       "estimatedCost": {
         "@type": "MonetaryAmount",
@@ -146,22 +170,38 @@ const faviconUrl = assetPath("favicon.svg");
         {
           "@type": "HowToStep",
           "position": 1,
-          "name": "お電話・LINEでお問い合わせ",
-          "text": "買取希望のお品物や訪問のご希望日時をお伝えください。LINEなら写真を送るだけで事前査定も可能です。052-990-3968まで。"
+          "name": "お電話・LINEでご相談",
+          "text": "遺品整理・生前整理のご希望内容や訪問日時をお伝えください。LINEなら写真を送るだけで事前相談も可能です。052-990-3968まで。"
         },
         {
           "@type": "HowToStep",
           "position": 2,
-          "name": "ご訪問・査定・現金払い",
-          "text": "スタッフがご自宅にお伺いし、お品物を丁寧に査定します。金額にご納得いただければ、その場で現金をお渡しします。"
+          "name": "訪問・仕分け・査定・現金買取",
+          "text": "スタッフがご自宅にお伺いし、遺品を丁寧に仕分け。価値ある品は専門査定員がその場で査定し、現金をお渡しします。立会い不要での作業も可能です。"
         },
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "お品物の運び出し",
-          "text": "重い家電や大型家具もスタッフが搬出します。お部屋の養生も丁寧に行い、傷をつけずにお運びします。"
+          "name": "搬出・回収・供養",
+          "text": "不用品の搬出・回収を一括で対応。仏壇・位牌などは提携寺院で供養いたします。お部屋の養生も丁寧に行います。"
         }
       ]
+    })} />
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "徳丸商会",
+      "url": homeUrl,
+      "logo": new URL(assetPath("logo.svg"), siteUrl).toString(),
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "052-990-3968",
+        "contactType": "customer support",
+        "availableLanguage": "ja",
+        "areaServed": "JP"
+      }
     })} />
 
     {extraJsonLd.map((entry) => (
