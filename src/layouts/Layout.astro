@@ -59,21 +59,12 @@ const faviconUrl = assetPath("favicon.svg");
     <!-- LCP Hero画像のプリロード -->
     <link rel="preload" as="image" type="image/webp" href={assetPath("images/estate/hero.webp")} fetchpriority="high" />
 
-    <!-- Fonts: 非同期読み込み（レンダリングブロック回避） -->
+    <!-- Fonts: JS非同期読み込み（レンダリングブロック完全回避） -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Shippori+Mincho:wght@400;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Shippori+Mincho:wght@400;700&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
+    <script is:inline>
+      (function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Shippori+Mincho:wght@400;700&display=swap';document.head.appendChild(l);})();
+    </script>
 
     <!-- Google Tag Manager -->
     <script is:inline>
