@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { assetPath, homePath, sectionPath, privacyPolicyPath } from "../lib/site";
+import { faqs } from "../data/faq";
 
 const logo     = assetPath("logo.svg");
 const hero     = assetPath("images/estate/hero.webp");
@@ -50,17 +51,6 @@ const results = [
   { name: "伊万里焼 大皿 明治期", price: "156,000", area: "愛知県清須市", desc: "明治期の伊万里焼染付大皿。生前整理にてお買取り。直径42cm、金彩残り良好。蔵から出てきた逸品を専門査定。", img: assetPath("images/estate/result-imari.webp") },
 ];
 
-const faqs = [
-  { q: "遺品の仕分けから全てお任せできますか？", a: "はい、お任せいただけます。何から手をつければよいかわからない場合でも、スタッフが丁寧にご対応します。仕分け・整理・搬出・買取まで一括でご依頼いただけます。" },
-  { q: "遺品の中に売れるものがあれば買い取ってもらえますか？", a: "もちろんです。整理作業と同時に査定を行い、価値のあるお品物はその場で現金買取いたします。買取金額が整理費用から差し引かれるケースも多く、お客様の負担を軽減できます。" },
-  { q: "仏壇や位牌の供養もお願いできますか？", a: "はい、提携寺院での合同供養に対応しています。大切な仏壇・位牌を適切に供養・処分いたしますのでご安心ください。個別供養のご相談も承ります。" },
-  { q: "遠方に住んでいて立ち会えないのですが…", a: "立会い不要で対応いたします。鍵の受け渡し方法をご相談いただければ、作業前後に写真付きのご報告をお送りしますので、遠方にお住まいの方も安心してお任せいただけます。" },
-  { q: "特殊清掃が必要な場合も対応できますか？", a: "提携業者をご紹介することが可能です。まずはお電話またはLINEでご相談ください。状況に応じて最適な方法をご提案いたします。" },
-  { q: "見積もり後に追加費用が発生しますか？", a: "見積もり後の追加費用は一切発生しません。作業前にお見積もりをお出しし、ご納得いただいてから作業を開始します。明朗会計を徹底しております。" },
-  { q: "生前整理も対応していますか？", a: "はい、生前整理にも対応しています。ご自身が元気なうちに持ち物を整理したい方のご相談も歓迎です。買取を活用することで、スッキリ整理しながら現金化もできます。" },
-  { q: "骨董品や宝石の価値がわからないのですが鑑定できますか？", a: "はい、専門の査定員が丁寧に鑑定いたします。価値がわからないものでもご遠慮なくご提示ください。思わぬ高値がつくケースも多数ございます。査定・鑑定は無料です。" },
-  { q: "福祉施設への入居前の片付けも対応していますか？", a: "はい、福祉施設入居前のお片付けにも対応しています。ご本人様やご家族様と相談しながら、残すもの・処分するもの・買取するものを丁寧に仕分けいたします。お急ぎの場合も柔軟に対応可能です。" },
-];
 
 const voices = [
   { text: "母の遺品整理をお願いしました。思い出の品を丁寧に仕分けてくださり、価値のある着物は買い取っていただけました。費用も想定より安く済みました。", who: "名古屋市千種区 K.M様" },
@@ -74,7 +64,7 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
 
 <Layout
   title="名古屋の遺品整理・生前整理なら徳丸商会｜出張費無料"
-  description="名古屋市・近郊エリアの遺品整理・生前整理・福祉施設入居前の片付けなら徳丸商会。骨董品・着物・貴金属など価値ある品をその場で現金買取。出張費・査定費0円、立会い不要OK。052-990-3968"
+  description="名古屋市・近郊エリアの遺品整理・生前整理・福祉施設入居前の片付けなら徳丸商会。骨董品・着物・貴金属・掛軸・茶道具など価値ある品をその場で現金買取。仕分けから供養まで一括対応。出張費・査定費0円、立会い不要OK。古物商許可業者。052-990-3968"
   extraJsonLd={[
     {
       "@context": "https://schema.org",
@@ -746,14 +736,14 @@ const nearby = ["あま市","清須市","北名古屋市","津島市","愛西市
           >
             <div class="flex items-start gap-3">
               <span class="bg-teal text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0 mt-0.5">Q</span>
-              <span class="text-text font-bold text-sm leading-relaxed">{faq.q}</span>
+              <span class="text-text font-bold text-sm leading-relaxed">{faq.question}</span>
             </div>
             <span class="text-teal text-xl shrink-0 transition-transform duration-200 leading-none mt-0.5" x-bind:class="open && 'rotate-45'">+</span>
           </button>
           <div x-show="open" x-transition class="px-5 pb-5" style="display:none">
             <div class="flex items-start gap-3 border-t border-border pt-4">
               <span class="bg-orange text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0 mt-0.5">A</span>
-              <p class="text-text-light text-sm leading-relaxed">{faq.a}</p>
+              <p class="text-text-light text-sm leading-relaxed">{faq.answer}</p>
             </div>
           </div>
         </div>
