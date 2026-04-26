@@ -83,26 +83,54 @@ const faviconUrl = assetPath("favicon.svg");
       },3000);
     </script>
 
-    <!-- JSON-LD: LocalBusiness -->
+    <!-- JSON-LD: LocalBusiness (遺品整理・生前整理専門事業者) -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "ProfessionalService"],
       "@id": `${homeUrl}#localbusiness`,
       "name": "徳丸商会",
-      "description": "名古屋市・近郊エリアの出張買取サービス。家電・家具・ブランド品をその場で現金買取。出張費・査定費0円。",
+      "alternateName": "徳丸商会 遺品整理・生前整理",
+      "description": "名古屋市・愛知県全域の遺品整理・生前整理・福祉施設入居前の片付けに対応。骨董品・着物・貴金属・掛軸・茶道具をその場で現金買取し、整理費用を軽減。出張費・査定費0円、立会い不要OK。古物商許可第541042309800号。",
       "telephone": "052-990-3968",
       "url": homeUrl,
       "image": ogImage,
-      "priceRange": "$$",
-      "openingHours": "Mo-Su 09:00-21:00",
+      "logo": new URL(assetPath("logo.svg"), siteUrl).toString(),
+      "priceRange": "¥30,000〜¥200,000",
+      "currenciesAccepted": "JPY",
+      "paymentAccepted": "Cash, Bank Transfer",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "名古屋市中区",
+        "streetAddress": "横井2丁目71番地",
+        "addressLocality": "名古屋市中村区",
         "addressRegion": "愛知県",
+        "postalCode": "453-0863",
         "addressCountry": "JP"
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "09:00",
+          "closes": "21:00"
+        }
+      ],
       "areaServed": [
-        { "@type": "City", "name": "名古屋市", "containedInPlace": { "@type": "State", "name": "愛知県" } },
+        { "@type": "City", "name": "名古屋市千種区" },
+        { "@type": "City", "name": "名古屋市東区" },
+        { "@type": "City", "name": "名古屋市北区" },
+        { "@type": "City", "name": "名古屋市西区" },
+        { "@type": "City", "name": "名古屋市中村区" },
+        { "@type": "City", "name": "名古屋市中区" },
+        { "@type": "City", "name": "名古屋市昭和区" },
+        { "@type": "City", "name": "名古屋市瑞穂区" },
+        { "@type": "City", "name": "名古屋市熱田区" },
+        { "@type": "City", "name": "名古屋市中川区" },
+        { "@type": "City", "name": "名古屋市港区" },
+        { "@type": "City", "name": "名古屋市南区" },
+        { "@type": "City", "name": "名古屋市守山区" },
+        { "@type": "City", "name": "名古屋市緑区" },
+        { "@type": "City", "name": "名古屋市名東区" },
+        { "@type": "City", "name": "名古屋市天白区" },
         { "@type": "City", "name": "あま市" },
         { "@type": "City", "name": "清須市" },
         { "@type": "City", "name": "北名古屋市" },
@@ -113,26 +141,88 @@ const faviconUrl = assetPath("favicon.svg");
         { "@type": "City", "name": "大府市" },
         { "@type": "City", "name": "刈谷市" },
         { "@type": "City", "name": "豊明市" },
-        { "@type": "City", "name": "四日市市", "containedInPlace": { "@type": "State", "name": "三重県" } }
+        { "@type": "City", "name": "日進市" },
+        { "@type": "City", "name": "長久手市" },
+        { "@type": "City", "name": "尾張旭市" },
+        { "@type": "City", "name": "瀬戸市" },
+        { "@type": "City", "name": "春日井市" },
+        { "@type": "City", "name": "小牧市" },
+        { "@type": "City", "name": "稲沢市" },
+        { "@type": "City", "name": "一宮市" },
+        { "@type": "City", "name": "犬山市" },
+        { "@type": "City", "name": "江南市" },
+        { "@type": "City", "name": "岩倉市" },
+        { "@type": "City", "name": "知多市" },
+        { "@type": "City", "name": "常滑市" },
+        { "@type": "City", "name": "半田市" },
+        { "@type": "City", "name": "東浦町" },
+        { "@type": "City", "name": "阿久比町" },
+        { "@type": "City", "name": "美浜町" },
+        { "@type": "City", "name": "武豊町" },
+        { "@type": "City", "name": "南知多町" },
+        { "@type": "City", "name": "豊田市" },
+        { "@type": "City", "name": "岡崎市" },
+        { "@type": "City", "name": "安城市" },
+        { "@type": "City", "name": "西尾市" },
+        { "@type": "City", "name": "知立市" },
+        { "@type": "City", "name": "高浜市" },
+        { "@type": "City", "name": "碧南市" },
+        { "@type": "City", "name": "みよし市" },
+        { "@type": "City", "name": "豊川市" },
+        { "@type": "City", "name": "豊橋市" },
+        { "@type": "City", "name": "蒲郡市" },
+        { "@type": "City", "name": "新城市" },
+        { "@type": "City", "name": "田原市" },
+        { "@type": "City", "name": "大治町" },
+        { "@type": "City", "name": "蟹江町" },
+        { "@type": "City", "name": "飛島村" },
+        { "@type": "City", "name": "扶桑町" },
+        { "@type": "City", "name": "大口町" },
+        { "@type": "City", "name": "豊山町" },
+        { "@type": "City", "name": "東郷町" },
+        { "@type": "City", "name": "幸田町" },
+        { "@type": "City", "name": "四日市市" },
+        { "@type": "City", "name": "桑名市" }
       ],
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "35.1709",
-        "longitude": "136.8815"
+        "latitude": "35.1779",
+        "longitude": "136.8533"
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "387",
-        "bestRating": "5"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer support",
-        "telephone": "052-990-3968",
-        "availableLanguage": ["ja"],
-        "areaServed": "JP"
-      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "telephone": "052-990-3968",
+          "availableLanguage": ["ja"],
+          "areaServed": "JP",
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "09:00",
+            "closes": "21:00"
+          }
+        }
+      ],
+      "knowsAbout": [
+        "遺品整理",
+        "生前整理",
+        "福祉施設入居前の片付け",
+        "骨董品買取",
+        "貴金属買取",
+        "着物買取",
+        "掛軸買取",
+        "茶道具買取",
+        "ブランド品買取",
+        "仏壇供養",
+        "立会い不要の遺品整理",
+        "遺品の合同供養手配"
+      ],
+      "slogan": "気持ちと実務の両方を整える、名古屋の遺品整理。",
+      "isicV4": "9609",
+      "identifier": [
+        { "@type": "PropertyValue", "name": "古物商許可番号", "value": "第541042309800号" }
+      ],
       "sameAs": ["https://lin.ee/j4wK9IM"]
     })} />
 
