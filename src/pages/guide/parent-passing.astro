@@ -1,0 +1,349 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { assetPath, basePath, homePath } from "../../lib/site";
+
+const logo = assetPath("logo.svg");
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(`${basePath}guide/parent-passing/`, siteUrl).toString();
+const homeUrl = new URL(homePath, siteUrl).toString();
+const guideIndexUrl = new URL(`${basePath}guide/`, siteUrl).toString();
+
+const title = "親が亡くなった後の遺品整理｜葬儀後〜10ヶ月のやることカレンダー｜徳丸商会";
+const description = "親が亡くなった後にやるべきこと10ヶ月分を時系列で解説。葬儀直後・四十九日・相続放棄期限（3ヶ月）・相続税申告期限（10ヶ月）など各タイミングでの手続きと、遺品整理を始めるベストな時期を、名古屋の徳丸商会が整理しました。";
+
+const timeline = [
+  {
+    period: "0日〜1週間",
+    label: "葬儀・死亡届",
+    color: "bg-red/80",
+    accentColor: "text-red",
+    items: [
+      "死亡届の提出（7日以内・市役所）",
+      "葬儀・火葬の手配",
+      "故人の口座・カードの一時停止連絡",
+    ],
+    advice: "悲しみの最中ですが、死亡届と火葬許可は法的期限あり。遺品整理はまだ着手しなくて大丈夫です。",
+  },
+  {
+    period: "1週間〜1ヶ月",
+    label: "各種解約・手続き",
+    color: "bg-orange/80",
+    accentColor: "text-orange",
+    items: [
+      "年金受給停止（厚生年金10日／国民年金14日以内）",
+      "健康保険の資格喪失届",
+      "公共料金・携帯・サブスクの解約",
+      "生命保険の請求準備",
+    ],
+    advice: "故人宛の郵便物が手続きの手がかりになります。重要書類は遺品整理時にも探し続けてください。",
+  },
+  {
+    period: "約49日（四十九日）",
+    label: "形見分け・遺品整理開始の目安",
+    color: "bg-teal",
+    accentColor: "text-teal",
+    items: [
+      "四十九日法要",
+      "親族で集まり形見分けの相談",
+      "遺品整理を本格的に開始する最適タイミング",
+      "賃貸の場合は退去日と並行して進行",
+    ],
+    advice: "親族が集まる機会を活かして、何を残し何を処分するか決めるのが理想。徳丸商会では、形見分けの相談から仕分け・買取・処分まで一括対応します。",
+    isHighlight: true,
+  },
+  {
+    period: "3ヶ月以内（最重要期限）",
+    label: "相続放棄の期限",
+    color: "bg-red",
+    accentColor: "text-red",
+    items: [
+      "相続放棄の申述期限（民法915条）",
+      "故人の借金・負債の有無を確認",
+      "預貯金・不動産・有価証券の把握",
+      "相続放棄する場合は家庭裁判所へ",
+    ],
+    advice: "ここを過ぎると単純承認とみなされ借金も相続することに。遺品整理を始める前に重要書類（通帳・契約書・保険証券など）を必ず先に確保してください。",
+    isWarning: true,
+  },
+  {
+    period: "4〜6ヶ月",
+    label: "本格的な遺品整理・住居の処理",
+    color: "bg-teal-dark/80",
+    accentColor: "text-teal-dark",
+    items: [
+      "残りの遺品の処分・買取",
+      "賃貸の解約・原状回復",
+      "持ち家の場合は売却・賃貸・空き家管理の判断",
+      "仏壇・位牌の供養手配",
+    ],
+    advice: "持ち家のまま放置すると固定資産税が継続発生。早めの処分判断が家計を守ります。",
+  },
+  {
+    period: "7〜10ヶ月",
+    label: "相続税の申告・納付",
+    color: "bg-graphite/80",
+    accentColor: "text-graphite",
+    items: [
+      "相続税申告期限（10ヶ月以内）",
+      "遺産分割協議書の作成",
+      "不動産・口座の名義変更",
+      "司法書士・税理士への相談",
+    ],
+    advice: "相続税が発生する場合は申告必須。基礎控除（3,000万円＋600万円×法定相続人数）以下なら申告不要です。",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "徳丸商会トップ", "item": homeUrl },
+      { "@type": "ListItem", "position": 2, "name": "ガイド", "item": guideIndexUrl },
+      { "@type": "ListItem", "position": 3, "name": "親が亡くなった後の遺品整理", "item": pageUrl },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "親が亡くなった後の遺品整理｜葬儀後〜10ヶ月のやることカレンダー",
+    "description": description,
+    "author": { "@id": `${homeUrl}#localbusiness` },
+    "publisher": { "@id": `${homeUrl}#localbusiness` },
+    "mainEntityOfPage": pageUrl,
+    "datePublished": "2026-04-26",
+    "dateModified": "2026-04-26",
+    "about": [
+      { "@type": "Thing", "name": "遺品整理" },
+      { "@type": "Thing", "name": "相続放棄" },
+      { "@type": "Thing", "name": "相続税申告" },
+      { "@type": "Thing", "name": "四十九日" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "親が亡くなった後の遺品整理の進め方",
+    "description": "親が亡くなった後、葬儀から相続税申告までの10ヶ月で行うべき手続きと遺品整理のタイミングを時系列で解説。",
+    "totalTime": "P10M",
+    "step": timeline.map((t, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": `${t.period}：${t.label}`,
+      "text": `${t.items.join("／")} ${t.advice}`,
+    })),
+  },
+];
+---
+
+<Layout title={title} description={description} extraJsonLd={structuredData}>
+
+<header class="fixed top-0 inset-x-0 z-50 shadow-lg">
+  <div class="hidden md:flex bg-teal-dark text-white text-xs py-1 px-5 justify-end items-center gap-6">
+    <span class="whitespace-nowrap">受付 9:00〜21:00 年中無休</span>
+    <span class="whitespace-nowrap">古物商許可 第541042309800号</span>
+  </div>
+  <div class="bg-white/95 backdrop-blur-md border-b border-teal/10">
+    <div class="max-w-6xl mx-auto px-4 h-[60px] md:h-[72px] flex items-center justify-between">
+      <a href={homePath} class="flex items-center gap-2.5 shrink-0">
+        <img src={logo} alt="徳丸商会ロゴ" width="48" height="48" class="w-11 h-11 md:w-14 md:h-14" loading="eager" />
+        <div>
+          <div class="text-teal-dark font-black text-base md:text-xl leading-tight whitespace-nowrap">徳丸商会</div>
+          <div class="text-text-lighter text-[9px] md:text-xs font-bold leading-tight whitespace-nowrap">遺品整理ガイド</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="tel:052-990-3968" class="flex items-center justify-center gap-1.5 bg-orange hover:bg-orange-light text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl whitespace-nowrap shadow-sm transition-colors">電話</a>
+        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 bg-line hover:brightness-110 text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl whitespace-nowrap shadow-sm transition-all">LINE</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pt-[60px] md:pt-[calc(1.75rem+4.5rem)]">
+
+<nav aria-label="パンくず" class="bg-bg border-b border-border py-3">
+  <div class="max-w-6xl mx-auto px-5 text-xs text-text-light">
+    <a href={homePath} class="hover:text-teal">トップ</a>
+    <span class="mx-2 text-text-lighter">/</span>
+    <a href={`${basePath}guide/`} class="hover:text-teal">ガイド</a>
+    <span class="mx-2 text-text-lighter">/</span>
+    <span class="text-text">親が亡くなった後の遺品整理</span>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="bg-teal-dark text-white py-16 md:py-24">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="text-orange-light text-xs md:text-sm font-bold mb-3 tracking-wider">遺品整理ガイド</p>
+    <h1 class="text-2xl md:text-4xl lg:text-5xl font-black leading-[1.2] mb-5">
+      親が亡くなった後の<br class="md:hidden" /><span class="text-orange-light">遺品整理</span>
+      <br />
+      <span class="text-lg md:text-2xl font-bold text-white/85">葬儀後〜10ヶ月のやることカレンダー</span>
+    </h1>
+    <p class="text-white/85 text-sm md:text-base leading-relaxed mb-7">
+      親が亡くなった直後から相続税申告までの10ヶ月間、何を・いつ・どう進めればいいか。<br />
+      法的な期限と遺品整理を始めるベストな時期を、名古屋の徳丸商会が時系列で整理しました。
+    </p>
+    <div class="bg-white/10 border border-white/20 rounded-xl p-4 md:p-5">
+      <p class="text-orange-light text-xs md:text-sm font-bold mb-2">⚠️ この記事で分かる3つのこと</p>
+      <ul class="text-white/85 text-sm md:text-base space-y-1.5 leading-relaxed list-disc pl-5">
+        <li>10ヶ月間に必要な手続きと法的期限（民法915条の相続放棄など）</li>
+        <li>遺品整理を始めるベストタイミング（一般的には四十九日前後）</li>
+        <li>遺品整理の前に必ず確保すべき重要書類</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 結論先出し -->
+<section class="py-12 md:py-16 bg-white border-b border-border">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="bg-teal/5 border-l-4 border-teal rounded-r-2xl p-5 md:p-6">
+      <p class="text-teal-dark font-black text-base md:text-lg mb-3">📌 結論</p>
+      <p class="text-text leading-[1.9] text-sm md:text-base">
+        遺品整理を始めるベストタイミングは <strong class="text-teal-dark">四十九日（約49日）の前後</strong>。<br />
+        ただし <strong class="text-red">相続放棄の期限（3ヶ月）が最重要</strong> なため、それまでに通帳・保険証券・不動産関係書類など<strong class="text-text">財産確認に必要なもの</strong>を確保してから本格整理に入るのが安全です。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- タイムライン -->
+<section class="py-14 md:py-20 bg-bg">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-center text-teal-dark mb-3">
+      葬儀後〜10ヶ月の<span class="text-orange">やることタイムライン</span>
+    </h2>
+    <p class="text-text-light text-sm text-center mb-10 md:mb-14">
+      法的期限と遺品整理の最適タイミングを時系列で
+    </p>
+
+    <div class="relative pl-6 md:pl-8 border-l-2 border-teal-dark/15 space-y-8 md:space-y-10">
+      {timeline.map((step, i) => (
+        <article class={`relative ${step.isHighlight ? "bg-teal/5 border border-teal/20 rounded-2xl p-5 md:p-6" : ""} ${step.isWarning ? "bg-red/5 border border-red/20 rounded-2xl p-5 md:p-6" : ""}`}>
+          <div class={`absolute -left-[33px] md:-left-[37px] top-0 w-6 h-6 md:w-7 md:h-7 rounded-full ${step.color} border-4 border-bg shadow-md flex items-center justify-center text-white text-[10px] md:text-xs font-black`}>{i + 1}</div>
+          <p class={`text-xs md:text-sm font-bold ${step.accentColor} mb-1 tracking-wider`}>{step.period}</p>
+          <h3 class={`text-lg md:text-2xl font-black text-text mb-4 ${step.isHighlight ? "text-teal-dark" : ""} ${step.isWarning ? "text-red" : ""}`}>
+            {step.label}
+            {step.isWarning && <span class="ml-2 text-xs md:text-sm bg-red text-white px-2 py-0.5 rounded font-bold align-middle">最重要</span>}
+            {step.isHighlight && <span class="ml-2 text-xs md:text-sm bg-teal text-white px-2 py-0.5 rounded font-bold align-middle">遺品整理の目安</span>}
+          </h3>
+          <ul class="space-y-2 mb-4">
+            {step.items.map(item => (
+              <li class="flex items-start gap-2 text-sm md:text-base text-text leading-relaxed">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <div class="bg-white/60 border border-border/50 rounded-lg p-3 md:p-4">
+            <p class="text-text-light text-xs md:text-sm leading-relaxed">
+              <span class="font-bold text-text">💡 ポイント：</span>{step.advice}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 重要書類リスト -->
+<section class="py-14 md:py-20 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-teal-dark mb-3 text-center">
+      遺品整理の前に<span class="text-red">必ず確保</span>する重要書類
+    </h2>
+    <p class="text-text-light text-sm text-center mb-10">
+      相続手続きと相続放棄判断のために、整理を始める前にチェック
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {[
+        { cat: "金融", items: ["通帳・キャッシュカード", "クレジットカード", "印鑑（実印・銀行印）", "有価証券・株式関係書類", "保険証券（生命・損害）"] },
+        { cat: "不動産", items: ["不動産権利証", "土地・家屋の登記簿", "賃貸契約書", "固定資産税の通知書"] },
+        { cat: "法的", items: ["遺言書（自筆/公正証書）", "戸籍謄本・住民票", "年金手帳", "マイナンバーカード"] },
+        { cat: "負債確認", items: ["借用書・ローン契約書", "請求書・督促状", "クレジット利用明細"] },
+      ].map(g => (
+        <div class="border border-border rounded-2xl p-5 bg-bg-light">
+          <p class="text-orange font-black text-sm mb-3">{g.cat}</p>
+          <ul class="space-y-1.5">
+            {g.items.map(it => (
+              <li class="text-text text-xs md:text-sm flex items-start gap-1.5">
+                <span class="text-teal mt-0.5">□</span>{it}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 徳丸商会の対応 -->
+<section class="py-14 md:py-20 bg-bg">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-teal-dark mb-3 text-center">
+      四十九日以降の遺品整理は<br class="md:hidden" /><span class="text-orange">徳丸商会</span>へ
+    </h2>
+    <p class="text-text-light text-sm text-center mb-10">
+      仕分け・買取・搬出・供養手配まで、ワンストップで対応
+    </p>
+    <div class="bg-white border border-border rounded-2xl p-6 md:p-8 shadow-sm">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {[
+          { title: "重要書類の捜索も対応", text: "仕分け作業中に通帳・印鑑・保険証券などを発見した場合は、必ずご家族にお戻しします" },
+          { title: "立会い不要で進行可能", text: "遠方にお住まいで実家に通えない場合も、鍵の受け渡しと写真報告で完結" },
+          { title: "骨董品・着物・貴金属の専門査定", text: "価値ある遺品はその場で現金買取し、整理費用から差し引きます" },
+          { title: "仏壇・位牌の供養手配", text: "提携寺院での合同供養に対応。個別供養のご相談も可" },
+        ].map(p => (
+          <div>
+            <p class="text-teal-dark font-black text-base mb-2 flex items-start gap-2">
+              <span class="text-orange shrink-0">●</span>{p.title}
+            </p>
+            <p class="text-text-light text-sm leading-relaxed pl-5">{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-14 md:py-20 bg-teal-dark text-white">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <h2 class="text-xl md:text-3xl font-black mb-4">
+      まずはお電話・LINEで<br class="md:hidden" />お気軽にご相談ください
+    </h2>
+    <p class="text-white/85 text-sm md:text-base mb-8 leading-relaxed">
+      遺品整理を始めるベストタイミング、必要な手続き、費用相場まで<br />
+      お電話・LINEで丁寧にご案内します。
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange hover:bg-orange-light text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap transition-colors">電話で無料相談</a>
+      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line flex-1 bg-line hover:brightness-110 text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap transition-all">LINEで査定</a>
+    </div>
+    <p class="text-white/65 text-xs mt-3">受付 9:00〜21:00 年中無休 ／ 出張費・査定費0円</p>
+  </div>
+</section>
+
+<!-- 関連ガイド -->
+<section class="py-12 md:py-16 bg-white border-t border-border">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="text-base md:text-xl font-black text-teal-dark mb-6 text-center">関連ガイド</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <a href={`${basePath}guide/cost/`} class="block bg-bg hover:bg-teal hover:text-white rounded-xl p-5 transition-colors group">
+        <p class="text-teal-dark group-hover:text-white font-bold text-sm md:text-base mb-1">遺品整理の費用相場</p>
+        <p class="text-text-light group-hover:text-white/80 text-xs">名古屋市の間取り別目安と買取相殺の仕組み →</p>
+      </a>
+      <a href={`${basePath}guide/scam-check/`} class="block bg-bg hover:bg-teal hover:text-white rounded-xl p-5 transition-colors group">
+        <p class="text-teal-dark group-hover:text-white font-bold text-sm md:text-base mb-1">悪徳業者の見分け方</p>
+        <p class="text-text-light group-hover:text-white/80 text-xs">許認可と見積書の10チェックポイント →</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+</Layout>

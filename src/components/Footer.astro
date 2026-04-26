@@ -1,5 +1,5 @@
 ---
-import { privacyPolicyPath, sectionPath, assetPath } from "../lib/site";
+import { privacyPolicyPath, sectionPath, assetPath, basePath } from "../lib/site";
 const logoUrl = assetPath("logo.webp");
 ---
 <footer class="bg-ink-light text-white/60 py-14 md:py-16">
@@ -41,6 +41,8 @@ const logoUrl = assetPath("logo.webp");
           <a href={sectionPath("items")} class="hover:text-white transition-colors">買取品目</a>
           <a href={sectionPath("area")} class="hover:text-white transition-colors">対応エリア</a>
           <a href={sectionPath("faq")} class="hover:text-white transition-colors">FAQ</a>
+          <a href={`${basePath}guide/`} class="hover:text-white transition-colors">遺品整理ガイド</a>
+          <a href={`${basePath}area/`} class="hover:text-white transition-colors">対応エリア一覧</a>
           <a href={privacyPolicyPath} class="hover:text-white transition-colors">プライバシーポリシー</a>
         </nav>
       </div>

@@ -1,0 +1,152 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { assetPath, basePath, homePath } from "../../lib/site";
+
+const logo = assetPath("logo.svg");
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(`${basePath}guide/`, siteUrl).toString();
+const homeUrl = new URL(homePath, siteUrl).toString();
+
+const title = "遺品整理ガイド｜親の死後の手続き・費用相場・業者選び｜徳丸商会";
+const description = "親が亡くなった後の遺品整理に関するガイド集。葬儀後〜相続税申告までの10ヶ月カレンダー、名古屋市の費用相場、悪徳業者の見分け方など、検討段階で必要な情報を網羅。徳丸商会が監修。";
+
+const guides = [
+  {
+    slug: "parent-passing",
+    title: "親が亡くなった後の遺品整理",
+    subtitle: "葬儀後〜10ヶ月のやることカレンダー",
+    description: "葬儀直後・四十九日・相続放棄期限（3ヶ月）・相続税申告期限（10ヶ月）など、各タイミングでやるべき手続きと遺品整理を始めるベストな時期を時系列で解説。",
+    tags: ["親が亡くなった", "やることリスト", "相続放棄", "四十九日"],
+  },
+  {
+    slug: "cost",
+    title: "遺品整理の費用相場",
+    subtitle: "名古屋市の間取り別実勢価格と内訳の見方",
+    description: "1K〜4LDK以上の間取り別相場、料金の内訳（基本作業費／車両費／処分費／オプション）、安すぎる見積もりに潜む4つの罠、費用を抑える3つの方法。",
+    tags: ["費用相場", "1LDK", "見積書", "内訳"],
+  },
+  {
+    slug: "scam-check",
+    title: "悪徳業者の見分け方",
+    subtitle: "10チェックと許認可の確認",
+    description: "古物商許可・一般廃棄物収集運搬業の確認方法、見積書の読み方、不法投棄リスクの回避まで。徳丸商会自身の許認可ステータスも自己開示。",
+    tags: ["業者選び", "悪徳業者", "古物商許可", "見積書"],
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "徳丸商会トップ", "item": homeUrl },
+      { "@type": "ListItem", "position": 2, "name": "ガイド", "item": pageUrl },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "徳丸商会 遺品整理ガイド",
+    "numberOfItems": guides.length,
+    "itemListElement": guides.map((g, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": g.title,
+      "url": new URL(`${basePath}guide/${g.slug}/`, siteUrl).toString(),
+    })),
+  },
+];
+---
+
+<Layout title={title} description={description} extraJsonLd={structuredData}>
+
+<header class="fixed top-0 inset-x-0 z-50 shadow-lg">
+  <div class="hidden md:flex bg-teal-dark text-white text-xs py-1 px-5 justify-end items-center gap-6">
+    <span class="whitespace-nowrap">受付 9:00〜21:00 年中無休</span>
+    <span class="whitespace-nowrap">古物商許可 第541042309800号</span>
+  </div>
+  <div class="bg-white/95 backdrop-blur-md border-b border-teal/10">
+    <div class="max-w-6xl mx-auto px-4 h-[60px] md:h-[72px] flex items-center justify-between">
+      <a href={homePath} class="flex items-center gap-2.5 shrink-0">
+        <img src={logo} alt="徳丸商会ロゴ" width="48" height="48" class="w-11 h-11 md:w-14 md:h-14" loading="eager" />
+        <div>
+          <div class="text-teal-dark font-black text-base md:text-xl leading-tight whitespace-nowrap">徳丸商会</div>
+          <div class="text-text-lighter text-[9px] md:text-xs font-bold leading-tight whitespace-nowrap">遺品整理ガイド一覧</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="tel:052-990-3968" class="flex items-center justify-center gap-1.5 bg-orange hover:bg-orange-light text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl whitespace-nowrap shadow-sm transition-colors">電話</a>
+        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 bg-line hover:brightness-110 text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl whitespace-nowrap shadow-sm transition-all">LINE</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pt-[60px] md:pt-[calc(1.75rem+4.5rem)]">
+
+<nav aria-label="パンくず" class="bg-bg border-b border-border py-3">
+  <div class="max-w-6xl mx-auto px-5 text-xs text-text-light">
+    <a href={homePath} class="hover:text-teal">トップ</a>
+    <span class="mx-2 text-text-lighter">/</span>
+    <span class="text-text">ガイド</span>
+  </div>
+</nav>
+
+<section class="py-14 md:py-20 bg-teal-dark text-white">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <p class="text-orange-light text-xs md:text-sm font-bold mb-3 tracking-wider">GUIDE</p>
+    <h1 class="text-2xl md:text-4xl font-black mb-4 leading-tight">
+      <span class="text-orange-light">遺品整理ガイド</span>
+    </h1>
+    <p class="text-white/85 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+      親が亡くなった後の手続き、費用相場、業者選びまで。<br />
+      検討段階で知っておきたい情報を、徳丸商会の視点で整理しました。
+    </p>
+  </div>
+</section>
+
+<section class="py-14 md:py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="grid grid-cols-1 gap-5 md:gap-7">
+      {guides.map((g, i) => (
+        <a href={`${basePath}guide/${g.slug}/`} class="block bg-bg-light border border-border hover:border-teal hover:shadow-lg rounded-2xl p-6 md:p-8 transition-all group">
+          <div class="flex items-start gap-4 md:gap-6">
+            <div class="shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full bg-teal-dark text-white flex items-center justify-center font-black text-base md:text-2xl">{`0${i + 1}`}</div>
+            <div class="flex-1">
+              <p class="text-orange font-bold text-xs md:text-sm mb-1 tracking-wider">{g.subtitle}</p>
+              <h2 class="text-lg md:text-2xl font-black text-teal-dark group-hover:text-teal mb-3 leading-tight">{g.title}</h2>
+              <p class="text-text-light text-sm md:text-base leading-relaxed mb-4">{g.description}</p>
+              <div class="flex flex-wrap gap-2">
+                {g.tags.map(t => (
+                  <span class="bg-teal/10 text-teal text-[10px] md:text-xs font-bold px-2 py-1 rounded-full">#{t}</span>
+                ))}
+              </div>
+            </div>
+            <div class="shrink-0 hidden md:flex items-center text-teal text-2xl group-hover:translate-x-1 transition-transform">→</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="py-14 md:py-20 bg-teal-dark text-white">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <h2 class="text-xl md:text-2xl font-black mb-4">
+      ガイドを読んでも判断に迷ったら<br class="md:hidden" />お気軽にご相談を
+    </h2>
+    <p class="text-white/85 text-sm md:text-base mb-8 leading-relaxed">
+      徳丸商会では、相談だけのご連絡も大歓迎。<br />
+      他社見積書の確認・状況のご相談もお電話・LINEで承ります。
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange hover:bg-orange-light text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap transition-colors">電話で無料相談</a>
+      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line flex-1 bg-line hover:brightness-110 text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap transition-all">LINEで査定</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+</Layout>

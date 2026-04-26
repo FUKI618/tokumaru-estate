@@ -1,0 +1,282 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { assetPath, basePath, homePath } from "../../lib/site";
+
+const logo = assetPath("logo.svg");
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(`${basePath}guide/scam-check/`, siteUrl).toString();
+const homeUrl = new URL(homePath, siteUrl).toString();
+const guideIndexUrl = new URL(`${basePath}guide/`, siteUrl).toString();
+
+const title = "悪徳遺品整理業者の見分け方｜10チェックと許認可の確認｜徳丸商会";
+const description = "悪徳な遺品整理業者を避けるための10のチェックリスト。古物商許可・一般廃棄物収集運搬業の確認方法、見積書の読み方、不法投棄リスクの回避まで。徳丸商会の透明性開示も併載。";
+
+const checkItems = [
+  {
+    no: "01",
+    title: "見積書の内訳が項目別に書かれているか",
+    detail: "「作業一式◯◯円」だけの丸見積もりは追加請求の温床。基本料金・車両費・処分費・オプションが分けて書かれていることが必須。",
+    flag: "✘ 一式表記のみ｜✓ 内訳明確",
+  },
+  {
+    no: "02",
+    title: "現地確認なしで電話だけで即決していないか",
+    detail: "正規業者は荷物量を見ないと正確な見積もりができません。電話だけで「絶対この金額」と確約するのは危険信号。",
+    flag: "✘ 電話即決｜✓ 現地確認後に見積",
+  },
+  {
+    no: "03",
+    title: "古物商許可証を持っているか",
+    detail: "遺品の買取を伴う業務には古物商許可（公安委員会届出）が必要。許可番号をWebサイトに明記しているかが目安。",
+    flag: "✘ 番号非掲載｜✓ 許可番号明記",
+  },
+  {
+    no: "04",
+    title: "一般廃棄物収集運搬業の許可があるか",
+    detail: "市区町村ごとの許可。これがないと遺品の処分は法的にグレー。提携業者経由でも可だが、その契約関係を説明できるべき。",
+    flag: "✘ 許可なし無自覚｜✓ 自社保有 or 提携明示",
+  },
+  {
+    no: "05",
+    title: "追加料金の発生条件を書面で説明するか",
+    detail: "「想定外の重量物が出た場合のみ◯◯円」のように条件を事前明記する業者は信頼性が高い。",
+    flag: "✘ 口頭のみ｜✓ 書面明記",
+  },
+  {
+    no: "06",
+    title: "現金前払いを強要しないか",
+    detail: "正規業者は作業完了後の精算が標準。前払いを強要する業者は、作業放棄や手抜きのリスクがあります。",
+    flag: "✘ 前払い強要｜✓ 後払い・カード可",
+  },
+  {
+    no: "07",
+    title: "市場相場から極端に外れていないか",
+    detail: "1K¥10,000〜のように相場の半額以下は、不法投棄や追加請求のサイン。1K¥30,000〜が名古屋の標準的相場。",
+    flag: "✘ 相場の半額以下｜✓ 相場帯内",
+  },
+  {
+    no: "08",
+    title: "処分先・リサイクル先を説明できるか",
+    detail: "「どこに運ぶのか」を聞いて答えられない業者は不法投棄リスクあり。具体的な処分施設名や提携先を答えられるかが目安。",
+    flag: "✘ 答えられない｜✓ 処分先を明示",
+  },
+  {
+    no: "09",
+    title: "貴重品の取り扱いルールを説明するか",
+    detail: "通帳・印鑑・現金・貴金属が見つかった場合のルール（必ず家族へ返却・写真記録 等）を事前に説明する業者は安全。",
+    flag: "✘ ルールなし｜✓ 取扱手順を明示",
+  },
+  {
+    no: "10",
+    title: "事業所の所在地と連絡先が確認できるか",
+    detail: "WebサイトやGoogleマップで実在の事業所が確認できることが基本。携帯番号のみ・住所非公開は要警戒。",
+    flag: "✘ 住所不明｜✓ 所在地公開",
+  },
+];
+
+const tokumaruStatus = [
+  { label: "古物商許可", status: "保有", num: "第541042309800号", note: "名古屋市公安委員会届出済み", positive: true },
+  { label: "事業所の住所", status: "公開", num: "〒453-0863 名古屋市中村区横井2丁目71番地", note: "Webサイト・JSON-LDに明示", positive: true },
+  { label: "見積書の内訳", status: "提示", num: "基本料金・車両費・処分費を分けて記載", note: "追加料金の条件も書面で明示", positive: true },
+  { label: "貴重品取扱ルール", status: "明示", num: "発見時は必ずご家族へ返却", note: "作業前に取扱手順をご説明", positive: true },
+  { label: "支払い方法", status: "後払い対応", num: "現金・銀行振込", note: "作業完了確認後の精算が原則", positive: true },
+  { label: "一般廃棄物収集運搬業許可", status: "未保有（提携対応）", num: "—", note: "提携先の許可業者を経由して適正処理。お問い合わせ時に説明します", positive: false },
+  { label: "遺品整理士認定", status: "未取得", num: "—", note: "資格は未取得ですが、古物商許可と専門査定知識でご対応します", positive: false },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "徳丸商会トップ", "item": homeUrl },
+      { "@type": "ListItem", "position": 2, "name": "ガイド", "item": guideIndexUrl },
+      { "@type": "ListItem", "position": 3, "name": "悪徳業者の見分け方", "item": pageUrl },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "悪徳遺品整理業者の見分け方｜10チェックと許認可の確認",
+    "description": description,
+    "author": { "@id": `${homeUrl}#localbusiness` },
+    "publisher": { "@id": `${homeUrl}#localbusiness` },
+    "mainEntityOfPage": pageUrl,
+    "datePublished": "2026-04-26",
+    "dateModified": "2026-04-26",
+    "about": [
+      { "@type": "Thing", "name": "悪徳業者" },
+      { "@type": "Thing", "name": "遺品整理 業者選び" },
+      { "@type": "Thing", "name": "古物商許可" },
+      { "@type": "Thing", "name": "一般廃棄物収集運搬業" },
+    ],
+  },
+];
+---
+
+<Layout title={title} description={description} extraJsonLd={structuredData}>
+
+<header class="fixed top-0 inset-x-0 z-50 shadow-lg">
+  <div class="hidden md:flex bg-teal-dark text-white text-xs py-1 px-5 justify-end items-center gap-6">
+    <span class="whitespace-nowrap">受付 9:00〜21:00 年中無休</span>
+    <span class="whitespace-nowrap">古物商許可 第541042309800号</span>
+  </div>
+  <div class="bg-white/95 backdrop-blur-md border-b border-teal/10">
+    <div class="max-w-6xl mx-auto px-4 h-[60px] md:h-[72px] flex items-center justify-between">
+      <a href={homePath} class="flex items-center gap-2.5 shrink-0">
+        <img src={logo} alt="徳丸商会ロゴ" width="48" height="48" class="w-11 h-11 md:w-14 md:h-14" loading="eager" />
+        <div>
+          <div class="text-teal-dark font-black text-base md:text-xl leading-tight whitespace-nowrap">徳丸商会</div>
+          <div class="text-text-lighter text-[9px] md:text-xs font-bold leading-tight whitespace-nowrap">遺品整理ガイド</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="tel:052-990-3968" class="flex items-center justify-center gap-1.5 bg-orange hover:bg-orange-light text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl whitespace-nowrap shadow-sm transition-colors">電話</a>
+        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 bg-line hover:brightness-110 text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl whitespace-nowrap shadow-sm transition-all">LINE</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pt-[60px] md:pt-[calc(1.75rem+4.5rem)]">
+
+<nav aria-label="パンくず" class="bg-bg border-b border-border py-3">
+  <div class="max-w-6xl mx-auto px-5 text-xs text-text-light">
+    <a href={homePath} class="hover:text-teal">トップ</a>
+    <span class="mx-2 text-text-lighter">/</span>
+    <a href={`${basePath}guide/`} class="hover:text-teal">ガイド</a>
+    <span class="mx-2 text-text-lighter">/</span>
+    <span class="text-text">悪徳業者の見分け方</span>
+  </div>
+</nav>
+
+<section class="bg-teal-dark text-white py-16 md:py-24">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="text-orange-light text-xs md:text-sm font-bold mb-3 tracking-wider">遺品整理ガイド</p>
+    <h1 class="text-2xl md:text-4xl lg:text-5xl font-black leading-[1.2] mb-5">
+      <span class="text-orange-light">悪徳遺品整理業者</span>の見分け方<br />
+      <span class="text-lg md:text-2xl font-bold text-white/85">10チェックと許認可の確認</span>
+    </h1>
+    <p class="text-white/85 text-sm md:text-base leading-relaxed mb-7">
+      遺品整理業界には、不法投棄や追加請求などのトラブルを起こす業者が少なからず存在します。<br />
+      本ガイドでは、業者選定の前に必ず確認すべき10項目と、徳丸商会自身の許認可ステータスを公開します。
+    </p>
+    <div class="bg-orange/15 border border-orange/30 rounded-xl p-4 md:p-5">
+      <p class="text-orange-light text-xs md:text-sm font-bold mb-2">⚠️ 国民生活センターに寄せられる主なトラブル</p>
+      <ul class="text-white/90 text-sm md:text-base space-y-1 leading-relaxed list-disc pl-5">
+        <li>「一式◯万円」と言われ、当日に追加で◯万円を請求された</li>
+        <li>不法投棄され、後から廃棄物処理法違反で依頼者にも責任が及んだ</li>
+        <li>貴重品が紛失したが「知らない」と取り合われない</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 10チェック -->
+<section class="py-14 md:py-20 bg-bg">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-center text-teal-dark mb-3">
+      契約前に確認すべき<span class="text-orange">10チェックリスト</span>
+    </h2>
+    <p class="text-text-light text-sm text-center mb-10">8項目以上クリアしている業者を選ぶのが安全の目安</p>
+
+    <div class="space-y-4">
+      {checkItems.map(c => (
+        <article class="bg-white border border-border rounded-2xl p-5 md:p-6 shadow-sm">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-teal-dark text-white flex items-center justify-center font-black text-base md:text-lg">{c.no}</div>
+            <div class="flex-1">
+              <h3 class="text-teal-dark font-black text-base md:text-lg mb-2 leading-tight">{c.title}</h3>
+              <p class="text-text-light text-sm md:text-base leading-relaxed mb-3">{c.detail}</p>
+              <p class="text-text-lighter text-xs md:text-sm bg-bg-light border border-border rounded-lg px-3 py-2 inline-block">{c.flag}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 徳丸商会の透明性 -->
+<section class="py-14 md:py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-center text-teal-dark mb-3">
+      <span class="text-orange">徳丸商会</span>の許認可ステータス（自己開示）
+    </h2>
+    <p class="text-text-light text-sm text-center mb-10">「持っているもの」だけでなく「持っていないもの」も正直にお伝えします</p>
+
+    <div class="bg-bg-light border border-border rounded-2xl overflow-hidden">
+      <table class="w-full text-sm md:text-base">
+        <thead>
+          <tr class="bg-teal text-white">
+            <th class="py-3 px-3 md:px-4 text-left font-bold">項目</th>
+            <th class="py-3 px-3 md:px-4 text-center font-bold whitespace-nowrap">徳丸商会</th>
+            <th class="py-3 px-3 md:px-4 text-left font-bold hidden md:table-cell">補足</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tokumaruStatus.map((s, i) => (
+            <tr class={`${i % 2 === 0 ? "bg-white" : "bg-bg-light"} border-b border-border last:border-0`}>
+              <td class="py-3 px-3 md:px-4 font-bold text-text">{s.label}</td>
+              <td class="py-3 px-3 md:px-4 text-center">
+                <span class={`text-xs md:text-sm font-black px-2 py-1 rounded ${s.positive ? "bg-teal/15 text-teal" : "bg-orange/15 text-orange"}`}>{s.status}</span>
+                {s.num !== "—" && (
+                  <p class="text-text-lighter text-[10px] md:text-xs mt-1">{s.num}</p>
+                )}
+              </td>
+              <td class="py-3 px-3 md:px-4 text-text-light text-xs md:text-sm hidden md:table-cell">{s.note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 bg-orange/5 border border-orange/30 rounded-xl p-5">
+      <p class="text-orange font-black text-sm md:text-base mb-2">📝 「持っていないもの」も伝える理由</p>
+      <p class="text-text text-sm md:text-base leading-relaxed">
+        遺品整理士認定や一般廃棄物収集運搬業の許可は、業界での信頼指標として重要です。
+        徳丸商会はこれらを <strong>未保有</strong> ですが、その代わり <strong>古物商許可と専門査定の知識・提携処理ルートの活用</strong>でご対応します。
+        虚偽表示は景品表示法違反にあたるため、当社は持つもの・持たないものを <strong>正直に開示</strong> しています。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-14 md:py-20 bg-teal-dark text-white">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <h2 class="text-xl md:text-3xl font-black mb-4">
+      気になる点は<br class="md:hidden" />お電話・LINEでお気軽に
+    </h2>
+    <p class="text-white/85 text-sm md:text-base mb-8 leading-relaxed">
+      許認可・処分先・見積書の内訳について、ご納得いただくまで丁寧にご説明します。<br />
+      他社見積書をお持ちの方は、内容を一緒に確認することも可能です。
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange hover:bg-orange-light text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap transition-colors">電話で無料相談</a>
+      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line flex-1 bg-line hover:brightness-110 text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap transition-all">LINEで査定</a>
+    </div>
+  </div>
+</section>
+
+<!-- 関連ガイド -->
+<section class="py-12 md:py-16 bg-white border-t border-border">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="text-base md:text-xl font-black text-teal-dark mb-6 text-center">関連ガイド</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <a href={`${basePath}guide/parent-passing/`} class="block bg-bg hover:bg-teal hover:text-white rounded-xl p-5 transition-colors group">
+        <p class="text-teal-dark group-hover:text-white font-bold text-sm md:text-base mb-1">親が亡くなった後の遺品整理</p>
+        <p class="text-text-light group-hover:text-white/80 text-xs">葬儀後〜10ヶ月のやることカレンダー →</p>
+      </a>
+      <a href={`${basePath}guide/cost/`} class="block bg-bg hover:bg-teal hover:text-white rounded-xl p-5 transition-colors group">
+        <p class="text-teal-dark group-hover:text-white font-bold text-sm md:text-base mb-1">遺品整理の費用相場</p>
+        <p class="text-text-light group-hover:text-white/80 text-xs">名古屋市の間取り別目安と買取相殺の仕組み →</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+</Layout>
