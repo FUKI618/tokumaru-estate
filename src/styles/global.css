@@ -22,7 +22,14 @@
   --color-red: #cc3333;
   --color-line: #06c755;
 
-  --font-sans: "Noto Sans JP", sans-serif;
+  /* 本文：システムフォントスタックでネットワーク負荷ゼロ・OS最適表示 */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+  /* 見出し用：Webフォント（Layout.astroで必要文字のみsubset読み込み） */
+  --font-heading: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", sans-serif;
+}
+
+h1, h2, h3, .font-heading {
+  font-family: var(--font-heading);
 }
 
 html { font-size: 16px; }

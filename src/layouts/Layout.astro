@@ -59,15 +59,28 @@ const faviconUrl = assetPath("favicon.svg");
     <!-- LCP Hero画像のプリロード -->
     <link rel="preload" as="image" type="image/webp" href={assetPath("images/estate/hero.webp")} fetchpriority="high" />
 
-    <!-- Fonts: 最小限のウェイトのみ + 遅延読み込み -->
+    <!-- Fonts (ハイブリッド戦略):
+         - 本文 = システムフォント（ネットワーク負荷0KB、OS最適化）
+         - 見出し = Noto Sans JP 700のみ + display:optional で遅延・非ブロッキング
+         font-display:optional により、フォントが100ms以内に取得できない場合
+         fallback固定（FOUC回避）。subset chunksは表示文字種に応じて取得 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script is:inline>
       (function(){
-        // Noto Sans JP 400,700 のみ即座に読み込み（900やMincho は不要 — CSSで代替）
-        var l=document.createElement('link');l.rel='stylesheet';
-        l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap';
-        document.head.appendChild(l);
+        // 見出し用：Noto Sans JP 700のみ・display:optional・遅延読み込み
+        // requestIdleCallback で TTI 後に取得開始（FCP/LCPに影響させない）
+        var loadHeadingFont = function(){
+          var l = document.createElement('link');
+          l.rel = 'stylesheet';
+          l.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=optional';
+          document.head.appendChild(l);
+        };
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadHeadingFont, { timeout: 2000 });
+        } else {
+          setTimeout(loadHeadingFont, 1500);
+        }
       })();
     </script>
 
