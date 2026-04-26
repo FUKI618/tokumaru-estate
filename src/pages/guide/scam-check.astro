@@ -76,13 +76,13 @@ const checkItems = [
 ];
 
 const tokumaruStatus = [
-  { label: "古物商許可", status: "保有", num: "第541042309800号", note: "名古屋市公安委員会届出済み", positive: true },
-  { label: "事業所の住所", status: "公開", num: "〒453-0863 名古屋市中村区横井2丁目71番地", note: "Webサイト・JSON-LDに明示", positive: true },
-  { label: "見積書の内訳", status: "提示", num: "基本料金・車両費・処分費を分けて記載", note: "追加料金の条件も書面で明示", positive: true },
-  { label: "貴重品取扱ルール", status: "明示", num: "発見時は必ずご家族へ返却", note: "作業前に取扱手順をご説明", positive: true },
-  { label: "支払い方法", status: "後払い対応", num: "現金・銀行振込", note: "作業完了確認後の精算が原則", positive: true },
-  { label: "一般廃棄物収集運搬業許可", status: "未保有（提携対応）", num: "—", note: "提携先の許可業者を経由して適正処理。お問い合わせ時に説明します", positive: false },
-  { label: "遺品整理士認定", status: "未取得", num: "—", note: "資格は未取得ですが、古物商許可と専門査定知識でご対応します", positive: false },
+  { label: "古物商許可", status: "保有", num: "第541042309800号", note: "名古屋市公安委員会届出済み（古物営業法に基づく法的許可）", positive: true, lawRef: "古物営業法 第3条" },
+  { label: "事業所の住所", status: "公開", num: "〒453-0863 名古屋市中村区横井2丁目71番地", note: "Webサイト・JSON-LD・Googleマップで実在所在地を明示", positive: true },
+  { label: "見積書の内訳", status: "提示", num: "基本料金・車両費・処分費を項目別に記載", note: "追加料金が発生する条件は書面で事前明示", positive: true },
+  { label: "貴重品取扱ルール", status: "明示", num: "発見時は必ずご家族へ返却・写真記録あり", note: "作業前に取扱手順を書面でご説明", positive: true },
+  { label: "支払い方法", status: "後払い対応", num: "現金・銀行振込", note: "作業完了確認後の精算が原則（前払い強要なし）", positive: true },
+  { label: "一般廃棄物収集運搬業許可", status: "自社未保有 / 正規業者と提携", num: "提携業者の許可番号は書面で開示", note: "名古屋市内の許可業者と契約。回収から処分まで廃棄物処理法に準拠した適正ルートで処理。お見積もり時に提携先の許可番号を書面でご提示します。", positive: false, lawRef: "廃棄物処理法 第7条" },
+  { label: "遺品整理士認定", status: "未取得（民間任意資格）", num: "代わりに古物商許可と専門査定で対応", note: "遺品整理士は一般社団法人遺品整理士認定協会の任意資格（法的義務なし）。徳丸商会は資格取得より、買取相殺で実費を軽減できる「専門査定の体制」に投資しています。", positive: false },
 ];
 
 const structuredData = [
@@ -202,9 +202,30 @@ const structuredData = [
 <section class="py-14 md:py-20 bg-white">
   <div class="max-w-4xl mx-auto px-5">
     <h2 class="text-xl md:text-3xl font-black text-center text-teal-dark mb-3">
-      <span class="text-orange">徳丸商会</span>の許認可ステータス（自己開示）
+      <span class="text-orange">徳丸商会</span>の許認可・体制を正直に開示
     </h2>
-    <p class="text-text-light text-sm text-center mb-10">「持っているもの」だけでなく「持っていないもの」も正直にお伝えします</p>
+    <p class="text-text-light text-sm text-center mb-10">
+      法的に必要な許可は保有・任意の民間資格は未取得。<br class="hidden sm:block" />
+      その理由と代替体制をすべてお伝えします
+    </p>
+
+    <!-- 法的位置づけの説明 -->
+    <div class="mb-7 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+      <div class="bg-teal/5 border border-teal/30 rounded-2xl p-4 md:p-5">
+        <p class="text-teal-dark font-black text-xs md:text-sm mb-2">⚖️ 法的に必要な許可</p>
+        <ul class="text-text text-xs md:text-sm leading-relaxed space-y-1">
+          <li>● <strong>古物商許可</strong>（古物営業法）— 遺品買取に必須</li>
+          <li>● <strong>一般廃棄物収集運搬業許可</strong>（廃棄物処理法）— 廃棄物運搬に必須</li>
+        </ul>
+      </div>
+      <div class="bg-bg-gray border border-border rounded-2xl p-4 md:p-5">
+        <p class="text-text-light font-black text-xs md:text-sm mb-2">📜 任意の民間資格</p>
+        <ul class="text-text text-xs md:text-sm leading-relaxed space-y-1">
+          <li>● <strong>遺品整理士認定</strong>（一般社団法人 遺品整理士認定協会）</li>
+          <li class="text-text-lighter text-[11px] md:text-xs">— 法的義務なし。取得しなくても業務は適法に可能</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="bg-bg-light border border-border rounded-2xl overflow-hidden">
       <table class="w-full text-sm md:text-base">
@@ -218,7 +239,10 @@ const structuredData = [
         <tbody>
           {tokumaruStatus.map((s, i) => (
             <tr class={`${i % 2 === 0 ? "bg-white" : "bg-bg-light"} border-b border-border last:border-0`}>
-              <td class="py-3 px-3 md:px-4 font-bold text-text">{s.label}</td>
+              <td class="py-3 px-3 md:px-4 font-bold text-text">
+                {s.label}
+                {s.lawRef && <span class="block text-text-lighter text-[10px] md:text-xs font-normal mt-0.5">📖 {s.lawRef}</span>}
+              </td>
               <td class="py-3 px-3 md:px-4 text-center">
                 <span class={`text-xs md:text-sm font-black px-2 py-1 rounded ${s.positive ? "bg-teal/15 text-teal" : "bg-orange/15 text-orange"}`}>{s.status}</span>
                 {s.num !== "—" && (
@@ -232,12 +256,60 @@ const structuredData = [
       </table>
     </div>
 
-    <div class="mt-6 bg-orange/5 border border-orange/30 rounded-xl p-5">
-      <p class="text-orange font-black text-sm md:text-base mb-2">📝 「持っていないもの」も伝える理由</p>
+    <!-- モバイル：補足を表外に -->
+    <div class="mt-4 md:hidden space-y-2">
+      {tokumaruStatus.map(s => (
+        <details class="bg-bg-light rounded-xl border border-border">
+          <summary class="px-4 py-3 text-sm font-bold text-text cursor-pointer">{s.label}の詳細</summary>
+          <p class="px-4 pb-4 text-xs text-text-light leading-relaxed">{s.note}</p>
+        </details>
+      ))}
+    </div>
+
+    <!-- なぜこの体制を選んだか -->
+    <div class="mt-8 bg-teal/5 border border-teal/30 rounded-2xl p-5 md:p-7">
+      <p class="text-teal-dark font-black text-base md:text-lg mb-3">💡 なぜ「資格中心」ではなく「実利中心」を選んだか</p>
+      <p class="text-text text-sm md:text-base leading-relaxed mb-4">
+        遺品整理士認定は<strong class="text-text">取得しなくても業務に支障のない民間資格</strong>です。
+        一方、 <strong class="text-teal-dark">古物商許可は遺品買取に法的に必要な許可</strong>であり、
+        これがないと「価値ある品をその場で買取して整理費用と相殺する」ことが法律上できません。
+      </p>
+      <div class="bg-white border border-border rounded-xl p-4 mb-4">
+        <p class="text-text-light text-xs md:text-sm leading-relaxed">
+          <span class="text-orange font-bold">事実：</span>
+          多くの遺品整理士認定業者は、古物商許可を保有していません。
+          つまり遺品の買取相殺ができず、整理費用は「全額お客様負担」になりがちです。
+        </p>
+      </div>
       <p class="text-text text-sm md:text-base leading-relaxed">
-        遺品整理士認定や一般廃棄物収集運搬業の許可は、業界での信頼指標として重要です。
-        徳丸商会はこれらを <strong>未保有</strong> ですが、その代わり <strong>古物商許可と専門査定の知識・提携処理ルートの活用</strong>でご対応します。
-        虚偽表示は景品表示法違反にあたるため、当社は持つもの・持たないものを <strong>正直に開示</strong> しています。
+        徳丸商会は、 <strong class="text-teal-dark">買取相殺で実費を10〜30%軽減できる「専門査定の体制」</strong>に
+        投資する方を選びました。骨董品・貴金属・着物・茶道具など、ご家族が「処分扱い」と思っていた遺品にも
+        <strong class="text-text">市場価値を見いだせる査定知識</strong>を備えています。
+      </p>
+    </div>
+
+    <!-- 廃棄物処理の透明性 -->
+    <div class="mt-5 bg-orange/5 border border-orange/30 rounded-2xl p-5 md:p-7">
+      <p class="text-orange font-black text-base md:text-lg mb-3">🚛 廃棄物処理について（不法投棄リスクへの回答）</p>
+      <p class="text-text text-sm md:text-base leading-relaxed mb-3">
+        一般廃棄物収集運搬業許可は <strong class="text-text">市町村ごとの個別許可</strong>で、
+        中小規模の遺品整理業者では自社保有が困難なケースが多いのが実情です。
+        徳丸商会では <strong class="text-teal-dark">名古屋市の正規許可業者と提携契約</strong>を締結し、
+        廃棄物処理法に準拠した適正ルートで処理しています。
+      </p>
+      <ul class="text-text text-sm md:text-base leading-relaxed space-y-2 list-disc pl-5">
+        <li><strong>提携先の許可番号は、お見積もり時に書面で開示</strong>します</li>
+        <li>処分先・リサイクル先の経路もご質問いただければ具体的にお答えします</li>
+        <li>不法投棄や中間処理場以外への持ち込みは <strong class="text-red">一切行いません</strong></li>
+      </ul>
+    </div>
+
+    <!-- 信頼の総括 -->
+    <div class="mt-5 bg-bg-light border border-border rounded-2xl p-5 md:p-6 text-center">
+      <p class="text-text text-sm md:text-base leading-relaxed">
+        持つもの・持たないものを <strong class="text-teal-dark">虚偽なく開示</strong> し、
+        持たないものは <strong class="text-teal-dark">代替体制で適法かつ実利的に補完</strong> する。<br />
+        これが徳丸商会の許認可方針です。
       </p>
     </div>
   </div>
