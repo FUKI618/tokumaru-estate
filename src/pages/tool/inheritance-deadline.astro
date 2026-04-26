@@ -1,0 +1,511 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { assetPath, basePath, homePath } from "../../lib/site";
+
+const logo = assetPath("logo.svg");
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(`${basePath}tool/inheritance-deadline/`, siteUrl).toString();
+const homeUrl = new URL(homePath, siteUrl).toString();
+
+const title = "相続放棄期限カウンター｜あと何日で間に合う？無料計算ツール｜徳丸商会";
+const description = "故人の死亡日（相続を知った日）を入力するだけで、相続放棄期限（3ヶ月）・準確定申告（4ヶ月）・相続税申告（10ヶ月）の残り日数を自動計算する無料ツール。法的根拠付きで遺品整理のタイミング判断にも活用できます。名古屋の徳丸商会が無料提供。";
+
+const deadlines = [
+  {
+    id: "inheritance-rejection",
+    months: 3,
+    totalDays: 90,
+    label: "相続放棄の期限",
+    short: "相続放棄",
+    lawRef: "民法915条1項",
+    description: "故人の借金・負債を引き継がないために必要な手続きの期限",
+    color: "red",
+    procedure: [
+      "被相続人の財産・負債を確認",
+      "相続放棄するか単純承認するかを判断",
+      "家庭裁判所に「相続放棄申述書」を提出",
+      "受理されれば最初から相続人でなかったことになる",
+    ],
+    warning: "期限を過ぎると単純承認とみなされ、借金も含めて相続することになります。",
+  },
+  {
+    id: "quasi-tax",
+    months: 4,
+    totalDays: 120,
+    label: "準確定申告の期限",
+    short: "準確定申告",
+    lawRef: "所得税法125条",
+    description: "故人の死亡年の1月1日〜死亡日までの所得税申告期限",
+    color: "orange",
+    procedure: [
+      "故人の所得（給与・年金・事業など）を整理",
+      "源泉徴収票・支払調書を入手",
+      "相続人が連名で税務署に申告",
+      "納税または還付を受ける",
+    ],
+    warning: "故人が個人事業主・不動産所得・年金受給者だった場合は特に注意。サラリーマンのみの場合は不要なケースも。",
+  },
+  {
+    id: "inheritance-tax",
+    months: 10,
+    totalDays: 300,
+    label: "相続税申告の期限",
+    short: "相続税申告",
+    lawRef: "相続税法27条1項",
+    description: "相続税の申告・納付期限。基礎控除超なら必須",
+    color: "teal",
+    procedure: [
+      "相続財産の評価（不動産・預貯金・有価証券など）",
+      "基礎控除の確認（3,000万円＋600万円×法定相続人数）",
+      "遺産分割協議書の作成",
+      "税務署へ申告書を提出・納税",
+    ],
+    warning: "基礎控除以下なら申告不要。超える場合は10ヶ月以内に申告・納付しないと延滞税・加算税のペナルティ。",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "徳丸商会トップ", "item": homeUrl },
+      { "@type": "ListItem", "position": 2, "name": "相続放棄期限カウンター", "item": pageUrl },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "相続放棄期限カウンター",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "description": description,
+    "url": pageUrl,
+    "publisher": { "@id": `${homeUrl}#localbusiness` },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+    "browserRequirements": "Requires JavaScript",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "相続放棄期限カウンター｜あと何日で間に合う？",
+    "description": description,
+    "author": { "@id": `${homeUrl}#localbusiness` },
+    "publisher": { "@id": `${homeUrl}#localbusiness` },
+    "mainEntityOfPage": pageUrl,
+    "datePublished": "2026-04-27",
+    "dateModified": "2026-04-27",
+    "about": [
+      { "@type": "Thing", "name": "相続放棄" },
+      { "@type": "Thing", "name": "民法915条" },
+      { "@type": "Thing", "name": "準確定申告" },
+      { "@type": "Thing", "name": "相続税申告" },
+    ],
+  },
+];
+---
+
+<Layout title={title} description={description} extraJsonLd={structuredData}>
+
+<header class="fixed top-0 inset-x-0 z-50 shadow-lg">
+  <div class="hidden md:flex bg-teal-dark text-white text-xs py-1 px-5 justify-end items-center gap-6">
+    <span class="whitespace-nowrap">受付 9:00〜21:00 年中無休</span>
+    <span class="whitespace-nowrap">古物商許可 第541042309800号</span>
+  </div>
+  <div class="bg-white/95 backdrop-blur-md border-b border-teal/10">
+    <div class="max-w-6xl mx-auto px-4 h-[60px] md:h-[72px] flex items-center justify-between">
+      <a href={homePath} class="flex items-center gap-2.5 shrink-0">
+        <img src={logo} alt="徳丸商会ロゴ" width="48" height="48" class="w-11 h-11 md:w-14 md:h-14" loading="eager" />
+        <div>
+          <div class="text-teal-dark font-black text-base md:text-xl leading-tight whitespace-nowrap">徳丸商会</div>
+          <div class="text-text-lighter text-[9px] md:text-xs font-bold leading-tight whitespace-nowrap">無料ツール</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="tel:052-990-3968" class="flex items-center justify-center gap-1.5 bg-orange hover:bg-orange-light text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl whitespace-nowrap shadow-sm transition-colors">電話</a>
+        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 bg-line hover:brightness-110 text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl whitespace-nowrap shadow-sm transition-all">LINE</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pt-[60px] md:pt-[calc(1.75rem+4.5rem)]">
+
+<nav aria-label="パンくず" class="bg-bg border-b border-border py-3">
+  <div class="max-w-6xl mx-auto px-5 text-xs text-text-light">
+    <a href={homePath} class="hover:text-teal">トップ</a>
+    <span class="mx-2 text-text-lighter">/</span>
+    <span class="text-text">相続放棄期限カウンター</span>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="bg-teal-dark text-white py-12 md:py-16">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <p class="text-orange-light text-xs md:text-sm font-bold mb-3 tracking-wider">FREE TOOL</p>
+    <h1 class="text-2xl md:text-4xl font-black leading-[1.2] mb-4">
+      相続放棄期限<span class="text-orange-light">カウンター</span>
+    </h1>
+    <p class="text-white/85 text-sm md:text-base leading-relaxed mb-2">
+      故人の死亡日を入力するだけで、<br class="md:hidden" />
+      <strong class="text-orange-light">相続放棄（3ヶ月）</strong>・<strong class="text-orange-light">準確定申告（4ヶ月）</strong>・<strong class="text-orange-light">相続税申告（10ヶ月）</strong>
+      <br class="md:hidden" />の残り日数を自動計算します。
+    </p>
+    <p class="text-white/65 text-xs md:text-sm">完全無料・登録不要・データはご自身の端末にのみ保存</p>
+  </div>
+</section>
+
+<!-- 入力フォーム -->
+<section class="py-10 md:py-14 bg-bg">
+  <div class="max-w-2xl mx-auto px-5">
+    <div class="bg-white border border-border rounded-2xl p-6 md:p-8 shadow-sm">
+      <label for="death-date" class="block text-teal-dark font-black text-base md:text-lg mb-2">
+        故人が亡くなった日を入力してください
+      </label>
+      <p class="text-text-light text-xs md:text-sm leading-relaxed mb-5">
+        ※ 厳密には「相続の開始があったことを知った日」が起算日（民法915条）。<br />
+        通常は死亡日と一致しますが、後から知った場合は<strong>実際に知った日</strong>を入力してください。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input
+          type="date"
+          id="death-date"
+          class="flex-1 border-2 border-border focus:border-teal rounded-xl px-4 py-3 text-base md:text-lg font-bold text-text outline-none transition-colors"
+          aria-label="故人が亡くなった日"
+        />
+        <button
+          id="calculate-btn"
+          class="bg-teal hover:bg-teal-dark text-white font-black text-base md:text-lg px-6 py-3 rounded-xl shadow-md transition-colors whitespace-nowrap"
+        >
+          残り日数を計算
+        </button>
+      </div>
+      <p id="reset-hint" class="text-text-lighter text-xs mt-3 hidden">
+        💾 前回入力した日付が自動入力されています — <button id="reset-btn" class="text-teal underline">リセット</button>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 結果表示 -->
+<section id="result-section" class="py-10 md:py-14 bg-white hidden">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-center text-teal-dark mb-3">
+      期限まで<span class="text-orange">残り日数</span>
+    </h2>
+    <p class="text-text-light text-sm text-center mb-10">緑＝余裕あり／黄＝注意／赤＝緊急対応推奨</p>
+
+    <div class="space-y-5 md:space-y-6">
+      {deadlines.map(d => (
+        <article id={d.id} class="deadline-card relative bg-bg-light border-2 border-border rounded-2xl p-5 md:p-7 transition-colors">
+          <!-- ヘッダー部 -->
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="bg-teal/15 text-teal text-[10px] md:text-xs font-black px-2 py-0.5 rounded">{d.months}ヶ月期限</span>
+                <span class="text-text-lighter text-[10px] md:text-xs">📖 {d.lawRef}</span>
+              </div>
+              <h3 class="text-lg md:text-2xl font-black text-text leading-tight">{d.label}</h3>
+              <p class="text-text-light text-xs md:text-sm mt-1">{d.description}</p>
+            </div>
+          </div>
+
+          <!-- 残日数表示 -->
+          <div class="bg-white rounded-xl border border-border p-4 md:p-5 mb-4">
+            <div class="flex items-baseline justify-between gap-3 mb-2">
+              <p class="text-text-light text-xs md:text-sm">残り日数</p>
+              <p class="deadline-date text-text-lighter text-xs md:text-sm">期限：—</p>
+            </div>
+            <div class="flex items-baseline justify-center gap-2 mb-3">
+              <span class="days-remaining text-teal-dark font-black text-5xl md:text-7xl leading-none">—</span>
+              <span class="days-unit text-teal-dark font-black text-xl md:text-2xl">日</span>
+            </div>
+            <!-- プログレスバー -->
+            <div class="bg-bg-gray h-3 rounded-full overflow-hidden">
+              <div class="progress-bar h-full bg-teal transition-all duration-500" style="width: 0%"></div>
+            </div>
+            <p class="status text-text-light text-xs text-center mt-2">日付を入力してください</p>
+          </div>
+
+          <!-- 必要な手続き -->
+          <details class="bg-white border border-border rounded-xl">
+            <summary class="px-4 py-3 text-sm md:text-base font-bold text-teal-dark cursor-pointer">
+              📋 {d.short}に必要な手続きを見る
+            </summary>
+            <div class="px-4 pb-4">
+              <ol class="text-text text-xs md:text-sm leading-relaxed space-y-1.5 list-decimal pl-5 mb-3">
+                {d.procedure.map(p => <li>{p}</li>)}
+              </ol>
+              <div class="bg-orange/10 border-l-4 border-orange rounded-r-lg p-3 mt-3">
+                <p class="text-text text-xs md:text-sm leading-relaxed">
+                  <span class="text-orange font-bold">⚠️ 注意：</span>{d.warning}
+                </p>
+              </div>
+            </div>
+          </details>
+        </article>
+      ))}
+    </div>
+
+    <!-- シェア促進 -->
+    <div class="mt-8 bg-teal/5 border border-teal/30 rounded-2xl p-5 text-center">
+      <p class="text-teal-dark font-bold text-sm md:text-base mb-3">📲 ご家族と期限を共有</p>
+      <p class="text-text-light text-xs md:text-sm mb-4">
+        親族間での期限共有はLINEのスクリーンショットが便利です。<br class="hidden sm:block" />
+        本ページのURLをそのままシェアもOK。
+      </p>
+      <button id="copy-url-btn" class="inline-block bg-teal hover:bg-teal-dark text-white font-bold text-xs md:text-sm px-5 py-2.5 rounded-lg shadow-sm transition-colors">
+        ページURLをコピー
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- 法的根拠の詳しい説明 -->
+<section class="py-12 md:py-16 bg-bg">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-xl md:text-2xl font-black text-teal-dark mb-3 text-center">
+      期限の<span class="text-orange">法的根拠</span>と注意点
+    </h2>
+    <p class="text-text-light text-sm text-center mb-8">本ツールは法的助言ではありません。具体的な対応は弁護士・税理士にご相談ください。</p>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-border rounded-2xl p-5 md:p-6">
+        <p class="text-red font-black text-sm md:text-base mb-2">📖 民法915条1項（相続放棄・3ヶ月）</p>
+        <p class="text-text text-xs md:text-sm leading-relaxed">
+          「相続人は、自己のために相続の開始があったことを知った時から3箇月以内に、相続について、単純若しくは限定の承認又は放棄をしなければならない」
+        </p>
+        <p class="text-text-light text-xs mt-2">
+          → 期限を過ぎると単純承認となり、借金等の負債も相続することになります。
+          ただし、後から多額の負債が判明した場合などは家庭裁判所が特別な事情を認めることもあります（最高裁昭和59年4月27日判決）。
+        </p>
+      </div>
+
+      <div class="bg-white border border-border rounded-2xl p-5 md:p-6">
+        <p class="text-orange font-black text-sm md:text-base mb-2">📖 所得税法125条（準確定申告・4ヶ月）</p>
+        <p class="text-text text-xs md:text-sm leading-relaxed">
+          故人の死亡年の1月1日から死亡日までに発生した所得について、相続人が代わりに確定申告を行う義務があります。
+          相続を知った日の翌日から4ヶ月以内が期限です。
+        </p>
+        <p class="text-text-light text-xs mt-2">
+          → サラリーマンで給与所得のみの場合は不要なケースも多いです。年金受給者・個人事業主・不動産所得がある場合は注意。
+        </p>
+      </div>
+
+      <div class="bg-white border border-border rounded-2xl p-5 md:p-6">
+        <p class="text-teal font-black text-sm md:text-base mb-2">📖 相続税法27条1項（相続税申告・10ヶ月）</p>
+        <p class="text-text text-xs md:text-sm leading-relaxed">
+          相続財産が基礎控除（3,000万円＋600万円×法定相続人数）を超える場合、相続税の申告・納付が必要です。
+          相続を知った日の翌日から10ヶ月以内が期限です。
+        </p>
+        <p class="text-text-light text-xs mt-2">
+          → 期限経過は延滞税・無申告加算税のペナルティ対象。基礎控除以下なら申告不要。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 遺品整理のタイミング案内 -->
+<section class="py-12 md:py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="bg-teal-dark text-white rounded-2xl p-6 md:p-8">
+      <p class="text-orange-light text-xs font-bold mb-2 tracking-wider">REMINDER</p>
+      <h2 class="text-lg md:text-2xl font-black mb-4 leading-tight">
+        遺品整理を始めるなら<br class="md:hidden" />
+        <span class="text-orange-light">相続放棄期限の前に重要書類を確保</span>
+      </h2>
+      <p class="text-white/85 text-sm md:text-base leading-relaxed mb-5">
+        遺品整理を本格的に始めるベストタイミングは <strong class="text-orange-light">四十九日（約49日）</strong>ですが、
+        その前に <strong class="text-white">通帳・印鑑・保険証券・不動産権利証など財産確認に必要な書類</strong> を
+        必ず確保してから本格整理に入ってください。
+      </p>
+      <p class="text-white/85 text-sm md:text-base leading-relaxed mb-6">
+        徳丸商会では作業中に重要書類が見つかった場合は<strong class="text-white">必ずご家族へお戻し</strong>します。
+        遠方で立ち会えない場合も、写真報告で安心してお任せいただけます。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange hover:bg-orange-light text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap text-center transition-colors">電話で無料相談</a>
+        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line flex-1 bg-line hover:brightness-110 text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap text-center transition-all">LINEで査定</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 関連ガイド -->
+<section class="py-12 md:py-16 bg-bg border-t border-border">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="text-base md:text-xl font-black text-teal-dark mb-6 text-center">関連ガイド</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href={`${basePath}guide/parent-passing/`} class="block bg-white hover:bg-teal hover:text-white border border-border rounded-xl p-5 transition-colors group">
+        <p class="text-teal-dark group-hover:text-white font-bold text-sm md:text-base mb-1">親が亡くなった後の遺品整理</p>
+        <p class="text-text-light group-hover:text-white/80 text-xs">葬儀後〜10ヶ月のやることカレンダー →</p>
+      </a>
+      <a href={`${basePath}guide/cost/`} class="block bg-white hover:bg-teal hover:text-white border border-border rounded-xl p-5 transition-colors group">
+        <p class="text-teal-dark group-hover:text-white font-bold text-sm md:text-base mb-1">遺品整理の費用相場</p>
+        <p class="text-text-light group-hover:text-white/80 text-xs">名古屋市の間取り別目安と買取相殺の仕組み →</p>
+      </a>
+      <a href={`${basePath}guide/scam-check/`} class="block bg-white hover:bg-teal hover:text-white border border-border rounded-xl p-5 transition-colors group">
+        <p class="text-teal-dark group-hover:text-white font-bold text-sm md:text-base mb-1">悪徳業者の見分け方</p>
+        <p class="text-text-light group-hover:text-white/80 text-xs">許認可と見積書の10チェックポイント →</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- カウンタロジック -->
+<script is:inline define:vars={{ deadlinesData: deadlines }}>
+  (function() {
+    const dateInput = document.getElementById('death-date');
+    const calcBtn = document.getElementById('calculate-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const resetHint = document.getElementById('reset-hint');
+    const resultSection = document.getElementById('result-section');
+    const copyBtn = document.getElementById('copy-url-btn');
+    const STORAGE_KEY = 'tokumaru-inheritance-known-date';
+
+    function calculate() {
+      if (!dateInput.value) {
+        alert('日付を入力してください');
+        return;
+      }
+      const knownDate = new Date(dateInput.value);
+      knownDate.setHours(0, 0, 0, 0);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      // 各期限を計算（民法上は応当日基準）
+      function addMonths(date, months) {
+        const d = new Date(date);
+        d.setMonth(d.getMonth() + months);
+        return d;
+      }
+
+      deadlinesData.forEach(d => {
+        const deadline = addMonths(knownDate, d.months);
+        const msPerDay = 1000 * 60 * 60 * 24;
+        const days = Math.ceil((deadline - today) / msPerDay);
+        const totalDays = d.totalDays;
+        const card = document.getElementById(d.id);
+        if (!card) return;
+        const daysEl = card.querySelector('.days-remaining');
+        const unitEl = card.querySelector('.days-unit');
+        const dateEl = card.querySelector('.deadline-date');
+        const statusEl = card.querySelector('.status');
+        const progressEl = card.querySelector('.progress-bar');
+
+        // 状態クラスをリセット
+        card.classList.remove('border-red', 'border-orange', 'border-teal', 'expired-card');
+        progressEl.classList.remove('bg-red', 'bg-orange', 'bg-teal');
+
+        // 期限日表示
+        dateEl.textContent = '期限：' + deadline.toLocaleDateString('ja-JP', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        if (days < 0) {
+          // 期限超過
+          daysEl.textContent = '期限超過';
+          unitEl.textContent = '';
+          daysEl.classList.add('text-red');
+          daysEl.classList.remove('text-teal-dark', 'text-orange', 'text-teal');
+          progressEl.style.width = '100%';
+          progressEl.classList.add('bg-red');
+          card.classList.add('border-red', 'expired-card');
+          statusEl.innerHTML = '⚠️ <strong>' + Math.abs(days) + '日経過しています</strong>。早急に弁護士・税理士へご相談を';
+          statusEl.classList.add('text-red', 'font-bold');
+        } else {
+          daysEl.textContent = days;
+          unitEl.textContent = '日';
+          const elapsed = totalDays - days;
+          const percent = Math.max(0, Math.min(100, (elapsed / totalDays) * 100));
+          progressEl.style.width = percent + '%';
+
+          // 緊急度判定
+          if (days <= 30) {
+            // 赤：緊急
+            daysEl.classList.add('text-red');
+            daysEl.classList.remove('text-teal-dark', 'text-orange', 'text-teal');
+            progressEl.classList.add('bg-red');
+            card.classList.add('border-red');
+            statusEl.innerHTML = '🚨 <strong>緊急</strong>：残り' + days + '日です。早めに対応してください';
+            statusEl.classList.add('text-red', 'font-bold');
+          } else if (days <= 60) {
+            // 黄：注意
+            daysEl.classList.add('text-orange');
+            daysEl.classList.remove('text-teal-dark', 'text-red', 'text-teal');
+            progressEl.classList.add('bg-orange');
+            card.classList.add('border-orange');
+            statusEl.innerHTML = '⚠️ 注意：残り' + days + '日。準備を進めましょう';
+            statusEl.classList.add('text-orange', 'font-bold');
+            statusEl.classList.remove('text-red');
+          } else {
+            // 緑：余裕あり
+            daysEl.classList.add('text-teal-dark');
+            daysEl.classList.remove('text-red', 'text-orange', 'text-teal');
+            progressEl.classList.add('bg-teal');
+            card.classList.add('border-teal');
+            statusEl.innerHTML = '✅ 余裕あり：残り' + days + '日です';
+            statusEl.classList.remove('text-red', 'text-orange', 'font-bold');
+            statusEl.classList.add('text-teal-dark');
+          }
+        }
+      });
+
+      resultSection.classList.remove('hidden');
+      resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      try { localStorage.setItem(STORAGE_KEY, dateInput.value); } catch (e) {}
+    }
+
+    function loadSaved() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          dateInput.value = saved;
+          if (resetHint) resetHint.classList.remove('hidden');
+          calculate();
+        }
+      } catch (e) {}
+    }
+
+    calcBtn.addEventListener('click', calculate);
+    dateInput.addEventListener('change', () => {
+      if (dateInput.value) calculate();
+    });
+    if (resetBtn) {
+      resetBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+        dateInput.value = '';
+        resultSection.classList.add('hidden');
+        if (resetHint) resetHint.classList.add('hidden');
+      });
+    }
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          copyBtn.textContent = '✓ コピーしました';
+          setTimeout(() => { copyBtn.textContent = 'ページURLをコピー'; }, 2000);
+        } catch (e) {
+          copyBtn.textContent = 'コピー失敗';
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadSaved);
+    } else {
+      loadSaved();
+    }
+  })();
+</script>
+
+<style>
+  .deadline-card.expired-card { background-color: #ffebeb; }
+</style>
+
+</Layout>
