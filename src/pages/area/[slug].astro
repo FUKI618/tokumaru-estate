@@ -1,0 +1,365 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { faqs } from "../../data/faq";
+import { areas } from "../../data/areas";
+import { assetPath, basePath, homePath } from "../../lib/site";
+
+export async function getStaticPaths() {
+  return areas.map((area) => ({
+    params: { slug: area.slug },
+    props: { area },
+  }));
+}
+
+const { area } = Astro.props;
+
+const logo = assetPath("logo.svg");
+const heroImage = assetPath("images/estate/hero.webp");
+const hero800 = assetPath("images/estate/hero-800.webp");
+const hero480 = assetPath("images/estate/hero-480.webp");
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(`${basePath}area/${area.slug}/`, siteUrl).toString();
+const homeUrl = new URL(homePath, siteUrl).toString();
+const areaIndexUrl = new URL(`${basePath}area/`, siteUrl).toString();
+
+const feeRows = [
+  { size: "1K〜1DK", price: "30,000〜70,000円", time: "1〜3時間" },
+  { size: "1LDK〜2DK", price: "60,000〜120,000円", time: "2〜6時間" },
+  { size: "2LDK〜3DK", price: "100,000〜180,000円", time: "3〜8時間" },
+  { size: "3LDK〜4DK", price: "150,000〜240,000円", time: "5〜12時間" },
+];
+
+const services = [
+  { title: "仕分け・整理", desc: "故人のお品物を一点ずつ丁寧に仕分け。形見・買取・処分・供養を分けて整理します。" },
+  { title: "専門査定・現金買取", desc: "骨董品・貴金属・着物・茶道具などを専門査定員がその場で査定し、現金でお支払いします。" },
+  { title: "搬出・回収・簡易清掃", desc: "不用品の搬出から作業後のお部屋の簡易清掃まで一括対応。養生も丁寧に行います。" },
+  { title: "仏壇・位牌の供養手配", desc: "提携寺院での合同供養に対応。個別供養のご相談も承ります。" },
+];
+
+const title = `${area.name}の遺品整理・生前整理｜徳丸商会｜骨董品・着物専門査定`;
+const description = `${area.name}の遺品整理・生前整理・福祉施設入居前の片付けは徳丸商会へ。${area.characteristic.slice(0, 60)} 出張費・査定費0円、立会い不要OK、即日対応可。古物商許可業者。052-990-3968`;
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "徳丸商会トップ", "item": homeUrl },
+      { "@type": "ListItem", "position": 2, "name": "対応エリア一覧", "item": areaIndexUrl },
+      { "@type": "ListItem", "position": 3, "name": area.name, "item": pageUrl },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `${area.name}の遺品整理・生前整理`,
+    "serviceType": "遺品整理サービス",
+    "provider": { "@id": `${homeUrl}#localbusiness` },
+    "areaServed": {
+      "@type": "City",
+      "name": area.name,
+      "containedInPlace": { "@type": "State", "name": "愛知県" }
+    },
+    "url": pageUrl,
+    "description": `${area.name}エリア専門の遺品整理・生前整理サービス。${area.characteristic}`,
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "JPY",
+      "lowPrice": "30000",
+      "highPrice": "240000",
+      "offerCount": "4"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "name": area.name,
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": String(area.geo.lat),
+      "longitude": String(area.geo.lng)
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": area.shortName,
+      "addressRegion": "愛知県",
+      "postalCode": area.postalCode,
+      "addressCountry": "JP"
+    }
+  }
+];
+---
+
+<Layout title={title} description={description} extraJsonLd={structuredData}>
+
+<header class="fixed top-0 inset-x-0 z-50 shadow-lg">
+  <div class="hidden md:flex bg-teal-dark text-white text-xs py-1 px-5 justify-end items-center gap-6">
+    <span class="whitespace-nowrap">受付 9:00〜21:00 年中無休</span>
+    <span class="whitespace-nowrap">古物商許可 第541042309800号</span>
+  </div>
+  <div class="bg-white/95 backdrop-blur-md border-b border-teal/10">
+    <div class="max-w-6xl mx-auto px-4 h-[60px] md:h-[72px] flex items-center justify-between">
+      <a href={homePath} class="flex items-center gap-2.5 shrink-0">
+        <img src={logo} alt="徳丸商会ロゴ" width="48" height="48" class="w-11 h-11 md:w-14 md:h-14" loading="eager" />
+        <div>
+          <div class="text-teal-dark font-black text-base md:text-xl leading-tight whitespace-nowrap">徳丸商会</div>
+          <div class="text-text-lighter text-[9px] md:text-xs font-bold leading-tight whitespace-nowrap">{area.shortName}の遺品整理・生前整理</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="tel:052-990-3968" class="flex items-center justify-center gap-1.5 bg-orange hover:bg-orange-light text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl transition-colors whitespace-nowrap shadow-sm">電話</a>
+        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 bg-line hover:brightness-110 text-white font-bold text-[11px] md:text-sm px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl transition-all whitespace-nowrap shadow-sm">LINE</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pt-[60px] md:pt-[calc(1.75rem+4.5rem)]">
+
+<!-- パンくず -->
+<nav aria-label="パンくず" class="bg-bg border-b border-border py-3">
+  <div class="max-w-6xl mx-auto px-5 text-xs text-text-light">
+    <a href={homePath} class="hover:text-teal">トップ</a>
+    <span class="mx-2 text-text-lighter">/</span>
+    <a href={`${basePath}area/`} class="hover:text-teal">対応エリア</a>
+    <span class="mx-2 text-text-lighter">/</span>
+    <span class="text-text">{area.name}</span>
+  </div>
+</nav>
+
+<!-- ヒーロー -->
+<section class="bg-teal-dark text-white relative overflow-hidden">
+  <div class="hidden md:block relative">
+    <img src={heroImage} srcset={`${hero480} 480w, ${hero800} 800w, ${heroImage} 1400w`} sizes="100vw" alt={`${area.name}の遺品整理・生前整理`} class="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" width="1400" height="600" />
+    <div class="absolute inset-0 bg-gradient-to-l from-teal-dark via-teal-dark/85 via-50% to-teal-dark/15"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-20 flex justify-end">
+      <div class="max-w-xl">
+        <div class="flex flex-wrap gap-2 mb-5">
+          {["出張費0円", "明朗会計", "立会い不要OK", "即日対応"].map(b => (
+            <span class="bg-orange text-white text-xs font-black px-3 py-1.5 rounded-full whitespace-nowrap shadow">{b}</span>
+          ))}
+        </div>
+        <h1 class="text-4xl lg:text-5xl font-black leading-[1.15] mb-5" style="text-shadow: 0 2px 12px rgba(0,0,0,0.5)">
+          {area.name}の<br /><span class="text-orange-light">遺品整理・生前整理</span>
+        </h1>
+        <p class="text-white/85 text-base mb-7 leading-relaxed" style="text-shadow: 0 1px 6px rgba(0,0,0,0.4)">
+          {area.characteristic}
+        </p>
+        <div class="flex flex-row gap-3 mb-3">
+          <a href="tel:052-990-3968" class="cta-glow bg-orange hover:bg-orange-light text-white font-black text-lg px-8 py-4 rounded-xl shadow-xl whitespace-nowrap transition-colors">電話で無料相談</a>
+          <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line bg-line hover:brightness-110 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-xl whitespace-nowrap transition-all">LINE査定</a>
+        </div>
+        <p class="text-white/65 text-xs">受付 9:00〜21:00 年中無休 ／ 出張費・査定費0円</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- モバイル -->
+  <div class="md:hidden">
+    <div class="relative">
+      <img src={hero480} srcset={`${hero480} 480w, ${hero800} 800w`} sizes="100vw" alt={`${area.name}の遺品整理・生前整理`} class="w-full aspect-[16/9] object-cover object-[35%_30%]" loading="eager" fetchpriority="high" width="480" height="263" />
+      <div class="absolute inset-0 bg-gradient-to-t from-teal-dark via-transparent to-transparent"></div>
+    </div>
+    <div class="px-5 -mt-8 relative pb-6">
+      <div class="flex flex-wrap gap-1.5 mb-3">
+        {["出張費0円", "明朗会計", "立会い不要", "即日対応"].map(b => (
+          <span class="bg-orange text-white text-[10px] font-black px-2.5 py-1 rounded-full whitespace-nowrap shadow">{b}</span>
+        ))}
+      </div>
+      <h1 class="text-[1.7rem] font-black leading-[1.15] mb-3">
+        {area.name}の<span class="text-orange-light">遺品整理・生前整理</span>
+      </h1>
+      <p class="text-white/80 text-[12px] leading-relaxed mb-5">
+        {area.characteristic}
+      </p>
+      <div class="flex gap-2.5 mb-2">
+        <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange text-white font-black text-xs py-3.5 rounded-xl text-center shadow-lg whitespace-nowrap">電話で相談</a>
+        <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line flex-1 bg-line text-white font-bold text-xs py-3.5 rounded-xl text-center shadow-lg whitespace-nowrap">LINE査定</a>
+      </div>
+      <p class="text-white/65 text-[9px] text-center">受付 9:00〜21:00 年中無休</p>
+    </div>
+  </div>
+</section>
+
+<!-- 信頼バー -->
+<section class="border-t-4 border-orange bg-white shadow-md">
+  <div class="max-w-4xl mx-auto px-5 py-6">
+    <div class="grid grid-cols-3 divide-x divide-border">
+      <div class="text-center px-2 md:px-4">
+        <p class="text-teal-dark font-black text-base md:text-2xl leading-tight">古物商許可</p>
+        <p class="text-orange font-bold text-[10px] md:text-sm">公安委員会届出</p>
+        <p class="text-text-lighter text-[9px] md:text-[10px] mt-0.5 whitespace-nowrap">第541042309800号</p>
+      </div>
+      <div class="text-center px-2 md:px-4">
+        <p class="text-teal-dark font-black text-xl md:text-3xl whitespace-nowrap">18<span class="text-base md:text-xl">品目</span></p>
+        <p class="text-orange font-bold text-[10px] md:text-sm whitespace-nowrap">専門査定対応</p>
+        <p class="text-text-lighter text-[9px] md:text-[10px] mt-0.5 whitespace-nowrap">骨董・貴金属・着物まで</p>
+      </div>
+      <div class="text-center px-2 md:px-4">
+        <p class="text-teal-dark font-black text-xl md:text-3xl whitespace-nowrap">0円</p>
+        <p class="text-orange font-bold text-[10px] md:text-sm whitespace-nowrap">出張費・査定費</p>
+        <p class="text-text-lighter text-[9px] md:text-[10px] mt-0.5 whitespace-nowrap">完全無料</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- エリア固有説明 -->
+<section class="py-14 md:py-20 bg-bg">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-teal-dark mb-3 text-center">
+      {area.name}での遺品整理について
+    </h2>
+    <p class="text-text-light text-sm text-center mb-10">
+      {area.shortName}の住まい・地域性に合わせて柔軟にご対応します
+    </p>
+
+    <div class="bg-white border border-border rounded-2xl p-6 md:p-8 shadow-sm mb-8">
+      <p class="text-text leading-[1.9] text-sm md:text-base mb-5">
+        {area.characteristic}
+      </p>
+      <div class="border-t border-border pt-5">
+        <p class="text-teal-dark font-bold text-sm mb-3">{area.shortName}でよく出る遺品（買取が活きる品目）</p>
+        <div class="flex flex-wrap gap-2">
+          {area.buyoutFocus.map(item => (
+            <span class="bg-teal/10 text-teal text-xs md:text-sm font-bold px-3 py-1.5 rounded-full">{item}</span>
+          ))}
+        </div>
+      </div>
+      <div class="border-t border-border pt-5 mt-5">
+        <p class="text-teal-dark font-bold text-sm mb-3">主な対応エリア（{area.shortName}内）</p>
+        <div class="flex flex-wrap gap-2">
+          {area.landmarks.map(lm => (
+            <span class="bg-bg-gray text-text-light text-xs md:text-sm px-3 py-1.5 rounded-full">{lm}</span>
+          ))}
+          <span class="bg-bg-gray text-text-light text-xs md:text-sm px-3 py-1.5 rounded-full">他、{area.shortName}全域</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- サービス4本 -->
+<section class="py-14 md:py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-center text-teal-dark mb-3">
+      {area.shortName}で対応する遺品整理サービス
+    </h2>
+    <p class="text-text-light text-sm text-center mb-10">仕分け〜買取〜供養までワンストップ</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      {services.map(s => (
+        <div class="border border-border rounded-2xl p-6 bg-bg-light">
+          <h3 class="text-teal-dark font-black text-base mb-2">{s.title}</h3>
+          <p class="text-text-light text-sm leading-relaxed">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 料金表 -->
+<section class="py-14 md:py-20 bg-bg">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-center text-teal-dark mb-3">
+      {area.shortName}の遺品整理・概算料金
+    </h2>
+    <p class="text-orange text-xs text-center font-bold mb-8">※ 料金はあくまで目安です。現地確認後に正式お見積りいたします</p>
+    <div class="bg-white rounded-2xl border border-border overflow-hidden shadow-sm">
+      <div class="bg-teal text-white text-center py-3 font-black text-sm">{area.shortName}の間取り別 目安料金</div>
+      <table class="w-full text-sm md:text-base">
+        <thead>
+          <tr class="bg-bg-gray text-text">
+            <th class="py-3 px-4 text-left font-bold">間取り</th>
+            <th class="py-3 px-4 text-center font-bold whitespace-nowrap">料金目安</th>
+            <th class="py-3 px-4 text-center font-bold whitespace-nowrap">作業時間</th>
+          </tr>
+        </thead>
+        <tbody>
+          {feeRows.map((r, i) => (
+            <tr class={i % 2 === 0 ? "bg-white" : "bg-bg-light"}>
+              <td class="py-3 px-4 font-bold text-teal-dark">{r.size}</td>
+              <td class="py-3 px-4 text-center font-bold text-orange">{r.price}</td>
+              <td class="py-3 px-4 text-center text-text-light">{r.time}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-text-lighter text-xs text-center mt-4 leading-relaxed">
+      ※ 買取可能な品があれば、整理費用から買取額を差し引きます<br class="md:hidden" />
+      ※ ご高齢者割引・LINE見積特典の各5%OFFキャンペーン実施中
+    </p>
+  </div>
+</section>
+
+<!-- CTA中段 -->
+<section class="py-14 md:py-20 bg-teal-dark text-white text-center">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black mb-4">
+      {area.name}での遺品整理は<br />まずはお電話・LINEからお気軽に
+    </h2>
+    <p class="text-white/80 text-sm md:text-base mb-8 leading-relaxed">
+      お電話なら最短即日でお伺い可能です。<br />
+      LINEなら写真を送るだけで概算見積もりをお届けします。
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <a href="tel:052-990-3968" class="cta-glow flex-1 bg-orange hover:bg-orange-light text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap transition-colors">電話で無料相談</a>
+      <a href="https://lin.ee/j4wK9IM" target="_blank" rel="noopener noreferrer" class="cta-glow-line flex-1 bg-line hover:brightness-110 text-white font-black text-base py-4 rounded-xl shadow-xl whitespace-nowrap transition-all">LINEで5%OFF査定</a>
+    </div>
+    <p class="text-white/60 text-xs mt-3">受付 9:00〜21:00 年中無休 ／ 出張費・査定費0円</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-14 md:py-20 bg-bg">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-xl md:text-3xl font-black text-center text-teal-dark mb-3">
+      {area.shortName}の遺品整理よくあるご質問
+    </h2>
+    <p class="text-text-light text-sm text-center mb-10">{area.name}でいただくご質問にお答えします</p>
+    <div class="space-y-3">
+      {faqs.map((faq, i) => (
+        <div id={`q${i + 1}`} x-data="{ open: false }" class="bg-white rounded-xl border border-border shadow-sm overflow-hidden scroll-mt-24">
+          <button x-on:click="open = !open" class="w-full flex items-start justify-between gap-4 p-5 text-left cursor-pointer" x-bind:aria-expanded="open.toString()" aria-controls={`q${i + 1}-answer`}>
+            <div class="flex items-start gap-3">
+              <span class="bg-teal text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0 mt-0.5">Q</span>
+              <h3 class="text-text font-bold text-sm leading-relaxed">{faq.question}</h3>
+            </div>
+            <span class="text-teal text-xl shrink-0 transition-transform duration-200 leading-none mt-0.5" x-bind:class="open && 'rotate-45'">+</span>
+          </button>
+          <div id={`q${i + 1}-answer`} x-show="open" x-transition class="px-5 pb-5" style="display:none" role="region" aria-labelledby={`q${i + 1}`}>
+            <div class="flex items-start gap-3 border-t border-border pt-4">
+              <span class="bg-orange text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0 mt-0.5">A</span>
+              <p class="text-text-light text-sm leading-relaxed">{faq.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 他エリアへの内部リンク -->
+<section class="py-14 md:py-20 bg-white border-t border-border">
+  <div class="max-w-5xl mx-auto px-5">
+    <h2 class="text-base md:text-xl font-black text-teal-dark text-center mb-3">
+      他のエリアもご覧ください
+    </h2>
+    <p class="text-text-light text-xs text-center mb-8">名古屋市・愛知県全域・三重県北部に対応</p>
+    <div class="flex flex-wrap gap-2 justify-center">
+      {areas.filter(a => a.slug !== area.slug).slice(0, 16).map(a => (
+        <a href={`${basePath}area/${a.slug}/`} class="bg-bg hover:bg-teal hover:text-white text-text-light text-xs md:text-sm px-3 py-1.5 rounded-full transition-colors border border-border whitespace-nowrap">
+          {a.name}
+        </a>
+      ))}
+    </div>
+    <div class="text-center mt-6">
+      <a href={`${basePath}area/`} class="inline-block text-teal hover:underline text-sm font-bold">対応エリア一覧をすべて見る →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+</Layout>
